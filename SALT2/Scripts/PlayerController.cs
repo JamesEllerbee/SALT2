@@ -4,16 +4,16 @@ using System;
 public class PlayerController : KinematicBody
 {
     // Variables
-    public const float MOVE_SPEED = 5;
-    public const float JUMP_FORCE = 10;
-    public const float GRAVITY = 9.8f;
-    public const float MAX_FALL_SPEED = 100;
+    [Export] private float MOVE_SPEED = 5;
+    [Export] private float JUMP_FORCE = 10;
+    [Export] private float GRAVITY = 9.8f;
+    [Export] private float MAX_FALL_SPEED = 100;
 
-    float y_velocity = 0;
-    bool facing_right = false;
+    private float y_velocity = 0;
+    private bool facing_right = false;
 
-    AnimationPlayer anim_player;
-    Spatial graphics;
+    private AnimationPlayer anim_player;
+    private Spatial graphics;
 
     /// <summary>
     /// Called when the node enters the scene tree for the first time.
