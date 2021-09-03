@@ -4,8 +4,11 @@
 ## Legend
 | Label | Meaning |
 |-------|---------|
-| NC    | Not confirmed, extra |
-| C     | Confimed |
+| L    | Low priorty|
+| M     | Medium priorty|
+| H     | High priorty|
+| I     | Implemented (Done)|
+
 
 ## Game Overview
 ---
@@ -22,7 +25,7 @@ Run-n-gun action shooter
 - Feels similiar to Metal Slug
 
 ### Objectives
-- Move left, basic platforming
+- Move right, basic platforming
 - Eliminating obtacles with projectiles
 - Collection (see collectables section)
 - Make to the end of each level 
@@ -31,18 +34,24 @@ Run-n-gun action shooter
 1 boss level.
 
 ### Level Structure
-**Start**
+**Start** [M]
 - Black, fades to level
 - Mission start sequence
     - Mission Start alert, 
     - fades out 
-    - voice [NC] mission start, go. 
+    - voice [L] mission start, go. 
     - Mission start sound
-**Design**
+**Design** [H]
 - Move from left to right
     - Blocked from moving left after moving the camera
 - Sloping up / down
-- Fall out of level, repsawn to last valid position
+- Jumping over obstacles to advance
+- Crouching under obstacles to advace
+- Gates that can only be opened by meleeing it
+- Gate that can only be opened by shooting a target
+- Introduce enemies in a simple isolated manner, getting more complicated and advance encounters as the player progresses
+- Fall out of level, repsawn to last valid position 
+    -Do we want pitfalls?
 **End**
 - Mission complete
 - fade to black
@@ -54,7 +63,7 @@ Run-n-gun action shooter
     - Move past to end level
 
 
-## Mechanics
+## Mechanics [H]
 ---
 ### Rules
 - Fixed-Camera on player (cannot move to left after advancing)
@@ -64,19 +73,19 @@ Run-n-gun action shooter
 Make use of 2d and 3d nodes
 
 
-### Objects
+### Objects [H]
 | Description        | Type        | Modifier          |
 |--------------------|-------------|-------------------|
 | Cucumber seeds     | Collectable | Increase score    |
 | Cucumber           | Collectable | Increase score    |
 | Cucumber basket    | Collectable | Increase score    |
-| Tank [NC]          | Vehicle     | Shooting modifier |
+| Tank [L]          | Vehicle     | Shooting modifier |
 | Slug Shotgun       | Weapon      | Shooting modifier |
-| Heavy machine [NC] | Weapon      | Shooting modifier |
-| Spread shot [NC]   | Weapon      | Shooting modifier |
+| Heavy machine [L] | Weapon      | Shooting modifier |
+| Spread shot [L]   | Weapon      | Shooting modifier |
 
 
-### Actions and Controls
+### Actions and Controls [H]
 - Keyboard
 - Gamepad support (Xbox)
 
@@ -87,26 +96,26 @@ Make use of 2d and 3d nodes
 | Move right             | D          | Analog -X, D-pad right |  
 | Move left              | A          | Analog +X, D-pad left  |
 | Shoot (hold)           | J          | B, Right trigger       |
-| Melee / Parry [NC] | K          | X, Left trigger        |
+| Melee / Parry [L] | K          | X, Left trigger        |
 | Jump                   | Space bar  | A                      |
 
-### Combat 
+### Combat [H]
 - 8 way shooting
     - Starting weapon slug shotgun
 - every weapon auto
 
-### Game Options
+### Game Options [M]
 - Volume
 - Windows / full screen
 
-## Story and Narrative
+## Story and Narrative [L]
 ---
 Cucumber jeans seed and salt marine are pissed.
 
 ## Game World
 ---
 
-### Areas
+### Areas [H]
 **Beach**
 - Giant cucumber 
     - in far back ground
@@ -117,7 +126,7 @@ Cucumber jeans seed and salt marine are pissed.
     - 2d with a background controller?
     - 3d?
 
-## Characters
+## Characters [H]
 ---
 ### Salt Guy
 **Main player character**
@@ -138,21 +147,21 @@ Animations
 - Hurt
 - Running
 - Jumping
-- Crouching?
+- Crouching
 
 ## Enemies
 ---
 ### Frog
 Different types
-- ground basic
+- ground basic [H]
     - runs around and shoots
-- ground rusher
+- ground rusher [H]
     - runs at you and attempts to melee
-- flying rusher
+- flying rusher [L]
     - dive bomb
-- flying basic
+- flying basic [L]
     - flies around and shots
-- vehicle [NC]
+- vehicle [L]
     - rides and shoots
 
 ## Levels
@@ -161,29 +170,29 @@ Different types
 
 ## Interface
 ---
-### Main menu
+### Main menu [H]
 - Play
-- Options
+- Options [M]
     - Full Screen vs Windowed
     - Volume
-- View Leaderboard [NC]
+- View Leaderboard [L]
 - Quit (Exits Application)
 
 
-### Pause Menu
+### Pause Menu [M]
 - Freeze's game
 - Grey screen
 - Pause alter (Resume, restores original brightness)
-- Options overlay
+- Options overlay [L]
     - Full Screen vs Windowed
     - Volume
-    - Quit (Either sends player back to main menu or exits applicaiton?)
+- Quit (Sends player back to main menu)
 
 
-### Score tracker
+### Score tracker [L]
 - TODO define score incrementing
 
-### Health bar
+### Health bar [H]
 - 3 Ticket (equivalent to hearts)
 - Getting hit removes a Ticket
 - On losing all Ticket
@@ -195,24 +204,24 @@ Different types
 - Melee elimination gives back ticket (Why? Is Meleeing that difficult?)
 - Some objects may give tickets back
 
-## Audio, music, sound effects
+## Audio, music, sound effects [M]
 ---TODO Add something  ---
 
-## Physics
+## Physics [H]
 ---
 ### Godot Kinematicbody
     - Feel like metal slug
     - Heavy reuse of existing solutions
 
-## Help System
+## Help System [L]
 ---
 ### Start of level
 - Controls drawn into environment (A la binding of isaac)
 
 ### Persistence
-- Local Leaderboard [NC]
+- Local Leaderboard [L]
 
 ### Cheats and Easter Eggs
-- Environment reacts to projectiles [NC]
+- Environment reacts to projectiles [L]
 
 
