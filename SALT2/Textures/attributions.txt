@@ -1,0 +1,2 @@
+<a href="https://www.freepik.com/photos/background">Background photo created by lifeforstock - www.freepik.com</a>
+water normals: https://github.com/Maujoe/godot-basic-water-material
