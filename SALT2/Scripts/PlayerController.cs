@@ -15,14 +15,21 @@ public class PlayerController : KinematicBody
     AnimationPlayer anim_player;
     Spatial graphics;
 
-    // Called when the node enters the scene tree for the first time.
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
     {
         graphics = (Spatial)GetNode("Graphics");
         anim_player = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
     }
 
-    // Called during physics process step of primary game loop.
+    /// <summary>
+    /// Called during physics process step of primary game loop.
+    /// </summary>
+    /// <param name="delta">
+    /// Time elapsed in seconds since the previous call to _process()
+    /// </param>
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
@@ -74,7 +81,7 @@ public class PlayerController : KinematicBody
     }
 
     // Flips player model depending on direction faced.
-    public void flip()
+    private void flip()
     {
         Console.WriteLine("FLIP!");
         graphics.RotateY(-1f);
@@ -82,7 +89,7 @@ public class PlayerController : KinematicBody
     }
 
     // Plays animations.
-    public void play_anim(String animation)
+    private void play_anim(String animation)
     {
         if(anim_player.CurrentAnimation == animation)
         {
