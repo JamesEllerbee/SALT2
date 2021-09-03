@@ -1,5 +1,5 @@
 # SALT2
-2d platformer project for STOP WAITING FOR GODOT game jam
+2d run-n-gun action shooter project for STOP WAITING FOR GODOT game jam
 
 ## Legend
 | Label | Meaning |
@@ -13,16 +13,18 @@
 Meta slug-like, 2.5/3d platformer featuring n-degrees of shooting with locked camera.
 
 ### Genre
-platformer, action, shoot em' up
+Run-n-gun action shooter 
 
 ### Look and Feel
+- 3D Models
 - Cell shading
 - Cartoon
+- Feels similiar to Metal Slug
 
 ### Objectives
-- Move left, platforming
+- Move left, basic platforming
 - Eliminating obtacles with projectiles
-- Collection
+- Collection (see collectables section)
 - Make to the end of each level 
 
 ### Game Progression
@@ -55,16 +57,12 @@ platformer, action, shoot em' up
 ## Mechanics
 ---
 ### Rules
-- Auto-scroll [NC]
+- Fixed-Camera on player (cannot move to left after advancing)
 - Shooting modifiers
 
 ### Scene sequence
 Make use of 2d and 3d nodes
 
-### Physcics
-Godot Kinematicbody
-- Feel like metal slug
-- Heavy reuse of existing solutions
 
 ### Objects
 | Description        | Type        | Modifier          |
@@ -89,7 +87,7 @@ Godot Kinematicbody
 | Move right             | D          | Analog -X, D-pad right |  
 | Move left              | A          | Analog +X, D-pad left  |
 | Shoot (hold)           | J          | B, Right trigger       |
-| Melee [C] / Parry [NC] | K          | X, Left trigger        |
+| Melee / Parry [NC] | K          | X, Left trigger        |
 | Jump                   | Space bar  | A                      |
 
 ### Combat 
@@ -100,12 +98,6 @@ Godot Kinematicbody
 ### Game Options
 - Volume
 - Windows / full screen
-
-### Persistence
-- Local Leaderboard [NC]
-
-### Cheats and Easter Eggs
-- Environment reacts to projectiles [NC]
 
 ## Story and Narrative
 ---
@@ -139,11 +131,14 @@ Abilities
         - Slugs are the projectiles
 - Jump
     - Single
+    - Can shoot while jumping
 - Picking up weapons
 
 Animations
 - Hurt
 - Running
+- Jumping
+- Crouching?
 
 ## Enemies
 ---
@@ -168,14 +163,22 @@ Different types
 ---
 ### Main menu
 - Play
-- Options [NC]
-- Quit
+- Options
+    - Full Screen vs Windowed
+    - Volume
+- View Leaderboard [NC]
+- Quit (Exits Application)
 
-### Pausing
-- Freeze
+
+### Pause Menu
+- Freeze's game
 - Grey screen
-- Pause alter
-- Option for quiting [NC]
+- Pause alter (Resume, restores original brightness)
+- Options overlay
+    - Full Screen vs Windowed
+    - Volume
+    - Quit (Either sends player back to main menu or exits applicaiton?)
+
 
 ### Score tracker
 - TODO define score incrementing
@@ -184,18 +187,32 @@ Different types
 - 3 Ticket (equivalent to hearts)
 - Getting hit removes a Ticket
 - On losing all Ticket
-    - Die, Respawn in same spot
+    - Die, Respawn in same spot 
     - Decrement score by fixed amount and reset number of ticket
     - Invulnerbility frames 
         - 1 seconds after taking damage
         - 3 seconds after respawning
-- Melee elimination gives back ticket
-- Some object may give tickets back
+- Melee elimination gives back ticket (Why? Is Meleeing that difficult?)
+- Some objects may give tickets back
 
 ## Audio, music, sound effects
+---TODO Add something  ---
+
+## Physics
 ---
+### Godot Kinematicbody
+    - Feel like metal slug
+    - Heavy reuse of existing solutions
 
 ## Help System
 ---
 ### Start of level
-- Controls drawn into
+- Controls drawn into environment (A la binding of isaac)
+
+### Persistence
+- Local Leaderboard [NC]
+
+### Cheats and Easter Eggs
+- Environment reacts to projectiles [NC]
+
+
