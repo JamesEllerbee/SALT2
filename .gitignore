@@ -349,5 +349,14 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-SALT2/.import
-SALT2/.mono
+# Godot-specific ignores
+SALT2/.import/
+SALT2/export.cfg
+SALT2/export_presets.cfg
+
+# Mono-specific ignores
+SALT2/.mono/
+SALT2/data_*/
+
+Results/
+metadata/
