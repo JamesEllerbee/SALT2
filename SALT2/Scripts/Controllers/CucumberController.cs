@@ -11,6 +11,11 @@ public class CucumberController : StaticBody
     [Export]
     private bool isActive = true;
 
+    /// <summary>
+    /// Gets a value indicating whether if this entity is active or not.
+    /// </summary>
+    public bool IsActive { get => isActive; }
+
     /// <inheritdoc/>
     public override void _Ready()
     {
@@ -20,10 +25,12 @@ public class CucumberController : StaticBody
         {
             GD.PrintErr("Could not resolve player");
         }
+
+        GD.Print(this.Translation);
     }
 
     /// <inheritdoc/>
-    public override void _PhysicsProcess(float delta)
+    public override void _Process(float delta)
     {
         // determine if player touching
         if (IsPlayerTouching() && isActive)
@@ -31,7 +38,7 @@ public class CucumberController : StaticBody
             GD.Print("Player touching cucumber");
             Disable();
 
-            // TODO: dispearring animation, clean up this entity
+            // TODO: animation, clean up this entity
         }
     }
 
@@ -46,8 +53,8 @@ public class CucumberController : StaticBody
             player.Translation.y :
             0;
 
-        var inX = this.Translation.x - this.Scale.x < player.Translation.x && player.Translation.x < this.Translation.x + this.Scale.x;
-        var inY = this.Translation.y - this.Scale.y < player.Translation.y && player.Translation.y < this.Translation.y + this.Scale.y;
+        var inX = this.Translation.x - this.Scale.x < playerX && playerX < this.Translation.x + this.Scale.x;
+        var inY = this.Translation.y - this.Scale.y < playerY && playerY < this.Translation.y + this.Scale.y;
 
         return inX && inY;
     }
