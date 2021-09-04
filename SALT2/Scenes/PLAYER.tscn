@@ -31,9 +31,6 @@ script = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 4, 2.4, 10 )
-
 [node name="Graphics" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Graphics"]

@@ -48,6 +48,8 @@ public class BasicGroundFrogController : KinematicBody
 
         // set the inital change direction period.
         changeDirectionMs = GetNextChangeDirectionPeriod();
+
+        MoveLockZ = true;
     }
 
     /// <inheritdoc/>
