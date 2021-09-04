@@ -1,32 +1,31 @@
-﻿using Godot;
+using Godot;
 
 namespace SALT2.Tests
 {
     /// <summary>
     /// Unit tests the <see cref="PlayerController"/>.
     /// </summary>
-    [Title("Player Controller")]
+    [Title("A Player Controller should...")]
     public class PlayerControllerTest : WAT.Test
     {
         /// <summary>
         /// Verifies that the <see cref="PlayerController"/> can be created.
         /// </summary>
         [Test]
-        public void TestPlayerControllerCreation()
+        public void InstantiateCorrectly()
         {
-            // Given player controller
+            // When player controller instantiated
             var playerController = new PlayerController();
 
-            // When player controller does...
-
-            // Then player controller behaves.
+            // Then player controller is not null.
             Assert.IsNotNull(playerController);
         }
 
         /// <summary>
         /// Verifies that the Flip() method in <see cref="PlayerController"/> works correctly.
         /// </summary>
-        public void TestFacingRight()
+        [Test]
+        public void ReportFacingRight()
         {
             // Given player controller
             var playerController = new PlayerController();
@@ -34,7 +33,7 @@ namespace SALT2.Tests
             // Given "move_right" action
             Input.ActionPress("move_right");
 
-            // When controller process...
+            // When player controller processes
             playerController._Process(1);
 
             // Then the player is facing right.
