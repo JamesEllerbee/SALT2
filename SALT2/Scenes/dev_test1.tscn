@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Textures/white-cloud-blue-sky-sea.jpg" type="Texture" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/FROG.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Controllers/CameraController.cs" type="Script" id=6]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
@@ -14,6 +16,8 @@ background_sky = SubResource( 1 )
 background_sky_custom_fov = 100.0
 background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1 )
 
+[sub_resource type="BoxShape" id=3]
+
 [node name="Main" type="Spatial"]
 
 [node name="Ground_Basic_Frog" parent="." instance=ExtResource( 4 )]
@@ -23,6 +27,8 @@ moveSpeed = 3.0
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -40,4 +46,20 @@ __meta__ = {
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
+[node name="Camera" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
+script = ExtResource( 6 )
+
+[node name="StaticBody" parent="Camera" index="0"]
+transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -9.98304, 0, -10 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="DebugMesh" parent="Camera/StaticBody" index="0"]
+visible = false
+
+[node name="CollisionShape" parent="Camera/StaticBody" index="1"]
+shape = SubResource( 3 )
+
 [editable path="Player"]
+[editable path="Camera"]
