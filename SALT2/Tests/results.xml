@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<testsuites failures="0" name="TestXML" tests="3" time="7.28">
+<testsuites failures="0" name="TestXML" tests="3" time="7.263">
 	<testsuite name="A Basic Ground Frog Controller should..." failures="0"  tests="1" time="0">
 		<testcase name="ChangeDirectionProperly" time="0"></testcase>
 	</testsuite>

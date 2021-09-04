@@ -1,4 +1,4 @@
-﻿namespace SALT2.Tests
+namespace SALT2.Tests
 {
     /// <summary>
     /// Unit tests the <see cref="PlayerController"/>.

@@ -54,8 +54,6 @@ public class BasicGroundFrogController : KinematicBody
     /// <inheritdoc/>
     public override void _Process(float delta)
     {
-        base._PhysicsProcess(delta);
-
         // during the process method, apply movement along the "walk cycle"
         var currentTime = GetCurrentTime();
         if (IsTimeToChange(currentTime))
@@ -68,6 +66,12 @@ public class BasicGroundFrogController : KinematicBody
 
             GD.Print("Basic ground frog changing direction");
         }
+    }
+
+    /// <inheritdoc/>
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
 
         // apply movement
         verticalVelocity -= gravity * delta;
