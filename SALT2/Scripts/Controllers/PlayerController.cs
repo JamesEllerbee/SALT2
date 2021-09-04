@@ -1,22 +1,35 @@
-using Godot;
 using System;
+using Godot;
 
+/// <summary>
+/// Script used to control the player.
+/// </summary>
 public class PlayerController : KinematicBody
 {
     // Variables
-    [Export] private float GRAVITY = 9.8f;
-    [Export] private float MAX_SPEED = 10;
-    [Export] private float JUMP_HEIGHT = 100;
-    [Export] private float ACCELERATION = 5;
-    [Export] private float FRICTION = 0.2f;
-    [Export] private float AIR_FRICTION = 0.05f;
+    [Export]
+    private float gravity = 17;
+    [Export]
+    private float maxSpeed = 5;
+    [Export]
+    private float jumpHeight = 10;
+    [Export]
+    private float acceleration = 4;
+    [Export]
+    private float friction = 0.7f;
+    [Export]
+    private float airFriction = 0.01f;
 
-    //private float y_velocity = 0;
     private Vector3 motion;
-    private bool facing_right = false;
+    private bool facingRight = false;
 
-    private AnimationPlayer anim_player;
+    private AnimationPlayer animPlayer;
     private Spatial graphics;
+
+    /// <summary>
+    /// Gets a value indicating whether player is facing right.
+    /// </summary>
+    public bool GetFacingRight { get => facingRight; }
 
     /// <summary>
     /// Called when the node enters the scene tree for the first time.
@@ -24,39 +37,42 @@ public class PlayerController : KinematicBody
     public override void _Ready()
     {
         graphics = (Spatial)GetNode("Graphics");
-        anim_player = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
+        animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
     }
 
     /// <summary>
     /// Called during physics process step of primary game loop.
     /// </summary>
     /// <param name="delta">
-    /// Time elapsed in seconds since the previous call to _process()
+    /// Time elapsed in seconds since the previous call to _process().
     /// </param>
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
 
-        motion.y -= GRAVITY * delta;
-        bool friction = false;
-        int move_dir = 0;
+        motion.y -= gravity * delta;
+        bool isFriction = false;
+        int moveDir = 0;
 
         // Check for player directional inputs to add or subtract acceleration.
-        if(Input.IsActionPressed("move_right"))
+        if (Input.IsActionPressed("move_right"))
         {
-            motion.x = Math.Min((motion.x + ACCELERATION), MAX_SPEED);
-            move_dir += 1;
+            motion.x = Math.Min(motion.x + acceleration, maxSpeed);
+            moveDir += 1;
+
             // TODO: Add walk animation.
         }
         else if (Input.IsActionPressed("move_left"))
         {
-            motion.x = Math.Max((motion.x - ACCELERATION), -MAX_SPEED);
-            move_dir -= 1;
+            motion.x = Math.Max(motion.x - acceleration, -maxSpeed);
+            moveDir -= 1;
+
             // TODO: Add walk animation.
         }
         else
         {
-            friction = true;
+            isFriction = true;
+
             // TODO: Add idle animation.
         }
 
@@ -67,11 +83,12 @@ public class PlayerController : KinematicBody
         {
             if (Input.IsActionPressed("move_jump"))
             {
-                motion.y = JUMP_HEIGHT;
+                motion.y = jumpHeight;
             }
-            if (friction == true)
+
+            if (isFriction == true)
             {
-                motion.x = Mathf.Lerp(motion.x, 0, FRICTION);
+                motion.x = Mathf.Lerp(motion.x, 0, friction);
             }
         }
         else
@@ -79,49 +96,51 @@ public class PlayerController : KinematicBody
             // Play jump animation if going up.
             if (motion.y > 0)
             {
-                play_anim("test_jump_anim");
+                PlayAnimation("test_jump_anim");
             }
+
             // Play falling animation if going down.
             else
             {
-                play_anim("test_fall_anim");
+                PlayAnimation("test_fall_anim");
             }
-            
+
             // Air friction is applied while in the air.
-            if (friction == true)
+            if (isFriction == true)
             {
-                motion.x = Mathf.Lerp(motion.x, 0, AIR_FRICTION);
+                motion.x = Mathf.Lerp(motion.x, 0, airFriction);
             }
         }
 
         // Decides when to call flip method.
-        if(move_dir < 0 && facing_right)
+        if (moveDir < 0 && facingRight)
         {
-            flip();
+            Flip();
         }
-        if (move_dir > 0 && !facing_right)
+
+        if (moveDir > 0 && !facingRight)
         {
-            flip();
+            Flip();
         }
 
         motion = MoveAndSlide(motion, Vector3.Up);
     }
 
     // Flips player model depending on direction faced.
-    private void flip()
+    private void Flip()
     {
-        //Console.WriteLine("FLIP!");
         graphics.RotateY(-1f);
-        facing_right = !facing_right;
+        facingRight = !facingRight;
     }
 
     // Plays animations.
-    private void play_anim(String animation)
+    private void PlayAnimation(String animation)
     {
-        if(anim_player.CurrentAnimation == animation)
+        if (animPlayer.CurrentAnimation == animation)
         {
             return;
         }
-        anim_player.Play(animation);
+
+        animPlayer.Play(animation);
     }
 }

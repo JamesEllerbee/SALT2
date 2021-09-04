@@ -17,12 +17,6 @@ background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
-GRAVITY = 17.0
-MAX_SPEED = 5.0
-JUMP_HEIGHT = 10.0
-ACCELERATION = 4.0
-FRICTION = 0.7
-AIR_FRICTION = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )

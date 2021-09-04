@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Materials/dev_green.tres" type="Material" id=1]
 [ext_resource path="res://Animations/test_walk_anim.tres" type="Animation" id=2]
-[ext_resource path="res://Scripts/PlayerController.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Controllers/PlayerController.cs" type="Script" id=3]
 [ext_resource path="res://Animations/test_jump_anim.tres" type="Animation" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
