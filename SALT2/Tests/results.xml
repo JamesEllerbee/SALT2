@@ -1,7 +1,11 @@
 <?xml version="1.0" ?>
-<testsuites failures="0" name="TestXML" tests="3" time="6.922">
+<testsuites failures="0" name="TestXML" tests="4" time="7.05">
 	<testsuite name="A Basic Ground Frog Controller should..." failures="0"  tests="1" time="0">
 		<testcase name="ChangeDirectionProperly" time="0"></testcase>
+	</testsuite>
+
+	<testsuite name="Camera Controller should..." failures="0"  tests="1" time="0">
+		<testcase name="UpdateXPostion" time="0"></testcase>
 	</testsuite>
 
 	<testsuite name="My Example Test" failures="0"  tests="2" time="0">
