@@ -1,3 +1,5 @@
+using Godot;
+
 namespace SALT2.Tests
 {
     /// <summary>
@@ -17,6 +19,24 @@ namespace SALT2.Tests
 
             // Then player controller is not null.
             Assert.IsNotNull(playerController);
+        }
+
+        /// <summary>
+        /// Verifies that the Flip() method in <see cref="PlayerController"/> works correctly.
+        /// </summary>
+        public void ReportFacingRight()
+        {
+            // Given player controller
+            var playerController = new PlayerController();
+
+            // Given "move_right" action
+            Input.ActionPress("move_right");
+
+            // When player controller processes
+            playerController._Process(1);
+
+            // Then the player is facing right.
+            Assert.IsTrue(playerController.GetFacingRight);
         }
     }
 }
