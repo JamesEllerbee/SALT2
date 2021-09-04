@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Materials/dev_green.tres" type="Material" id=1]
 [ext_resource path="res://Animations/test_walk_anim.tres" type="Animation" id=2]
 [ext_resource path="res://Scripts/Controllers/PlayerController.cs" type="Script" id=3]
 [ext_resource path="res://Animations/test_jump_anim.tres" type="Animation" id=4]
+[ext_resource path="res://Materials/dev_orange.tres" type="Material" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CylinderMesh" id=4]
 
 [sub_resource type="CapsuleMesh" id=2]
 
@@ -35,6 +38,16 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 4, 2.4, 10 )
 
 [node name="Graphics" type="Spatial" parent="."]
+
+[node name="Gun" type="Position3D" parent="Graphics"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25489, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Graphics/Gun"]
+transform = Transform( -1.31134e-08, 0.3, -1.31134e-08, 0, -1.31134e-08, -0.3, -0.3, -1.31134e-08, 5.73206e-16, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 5 )
+
+[node name="Cooldown" type="Timer" parent="Graphics/Gun"]
 
 [node name="MeshInstance" type="MeshInstance" parent="Graphics"]
 transform = Transform( 1, -1.74846e-07, 7.64274e-15, 0, -4.37114e-08, -1, 1.74846e-07, 1, -4.37114e-08, 0, 0.00231014, 0 )

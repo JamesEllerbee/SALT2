@@ -21,11 +21,7 @@ public class PlayerController : KinematicBody
     private float airFriction = 0.01f;
 
     private Vector3 motion;
-    private bool facingRight = false;
-    private bool isJumping = false;
-
-    private bool isFriction = false;
-    private int moveDir = 0;
+    private bool facingRight = true;
 
     private AnimationPlayer animPlayer;
     private Spatial graphics;
@@ -42,11 +38,18 @@ public class PlayerController : KinematicBody
     {
         graphics = (Spatial)GetNode("Graphics");
         animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
+        MoveLockZ = true;
     }
 
     /// <inheritdoc/>
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
+
+        motion.y -= gravity * delta;
+        bool isFriction = false;
+        int moveDir = 0;
+
         // Check for player directional inputs to add or subtract acceleration.
         if (Input.IsActionPressed("move_right"))
         {
@@ -69,36 +72,12 @@ public class PlayerController : KinematicBody
             // TODO: Add idle animation.
         }
 
-        if (Input.IsActionPressed("move_jump") && IsOnFloor())
-        {
-            isJumping = true;
-        }
-
-        // Decides when to call flip method.
-        if (moveDir < 0 && facingRight)
-        {
-            Flip();
-        }
-
-        if (moveDir > 0 && !facingRight)
-        {
-            Flip();
-        }
-    }
-
-    /// <inheritdoc/>
-    public override void _PhysicsProcess(float delta)
-    {
-        base._PhysicsProcess(delta);
-
-        motion.y -= gravity * delta;
-
         // Jump logic. Checks if player is on floor before deciding if it is ok to jump.
         // If player is in the air, play jump animation. Additionally, less friction is
         // applied to the player while in the air.
         if (IsOnFloor())
         {
-            if (isJumping)
+            if (Input.IsActionPressed("move_jump"))
             {
                 motion.y = jumpHeight;
             }
@@ -107,8 +86,6 @@ public class PlayerController : KinematicBody
             {
                 motion.x = Mathf.Lerp(motion.x, 0, friction);
             }
-
-            isJumping = false;
         }
         else
         {
@@ -131,13 +108,25 @@ public class PlayerController : KinematicBody
             }
         }
 
+        // Decides when to call flip method.
+        if (moveDir < 0 && facingRight)
+        {
+            Flip();
+        }
+
+        if (moveDir > 0 && !facingRight)
+        {
+            Flip();
+        }
+
+        motion.z = 0;
         motion = MoveAndSlide(motion, Vector3.Up);
     }
 
     // Flips player model depending on direction faced.
     private void Flip()
     {
-        graphics?.RotateY(-1f);
+        graphics.RotateY(3.14159f);
         facingRight = !facingRight;
     }
 
