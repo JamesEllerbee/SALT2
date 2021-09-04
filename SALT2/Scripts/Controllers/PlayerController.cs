@@ -10,8 +10,7 @@ public class PlayerController : KinematicBody
     [Export]
     private float moveSpeed = 5;
 
-    [Export]
-    private float jumpForece = 10;
+    [Export] private float jumpForce = 10;
 
     [Export]
     private float gravity = 9.8f;
@@ -71,7 +70,7 @@ public class PlayerController : KinematicBody
             yVelocity = -0.1f;
             if (Input.IsActionPressed("move_jump"))
             {
-                yVelocity = jumpForece;
+                yVelocity = jumpForce;
                 just_jumped = true;
             }
         }

@@ -3,21 +3,19 @@
     /// <summary>
     /// Unit tests the <see cref="PlayerController"/>.
     /// </summary>
-    [Title("Player Controller")]
+    [Title("A Player Controller should...")]
     public class PlayerControllerTest : WAT.Test
     {
         /// <summary>
         /// Verifies that the <see cref="PlayerController"/> can be created.
         /// </summary>
         [Test]
-        public void TestPlayerControllerCreation()
+        public void InstantiateCorrectly()
         {
-            // Given player controller
+            // When player controller instantiated
             var playerController = new PlayerController();
 
-            // When player controller does...
-
-            // Then player controller behaves.
+            // Then player controller is not null.
             Assert.IsNotNull(playerController);
         }
     }

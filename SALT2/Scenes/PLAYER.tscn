@@ -22,7 +22,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9 )
 [node name="Graphics" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Graphics"]
-transform = Transform( 1, 1.74846e-07, -7.64274e-15, 0, -4.37114e-08, -1, -1.74846e-07, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 1 )
 

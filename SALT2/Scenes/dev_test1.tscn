@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Textures/white-cloud-blue-sky-sea.jpg" type="Texture" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/FROG.tscn" type="PackedScene" id=4]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
@@ -15,6 +16,11 @@ background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0
 
 [node name="Main" type="Spatial"]
 
+[node name="Ground_Basic_Frog" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.39052, 6.492, 0 )
+movingPeriod = 1500
+moveSpeed = 3.0
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
 
@@ -22,7 +28,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
 environment = SubResource( 2 )
 
 [node name="GridMap" type="GridMap" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0963306, -1.90735e-06, 1.90735e-06 )
 mesh_library = ExtResource( 2 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
