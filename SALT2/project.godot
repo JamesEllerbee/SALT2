@@ -47,7 +47,7 @@ Pause="*res://AutoLoads/Scenes/Pause.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/WAT/plugin.cfg" )
 
 [input]
 

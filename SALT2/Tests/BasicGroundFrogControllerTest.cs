@@ -33,7 +33,6 @@ namespace SALT2.Tests
                 while (count >= 0)
                 {
                     frogController._Process(0.1F);
-                    GD.Print("Process!");
                     Thread.Sleep(100);
                     count--;
                 }

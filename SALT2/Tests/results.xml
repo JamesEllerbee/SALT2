@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<testsuites failures="0" name="TestXML" tests="4" time="7.05">
+<testsuites failures="0" name="TestXML" tests="4" time="4.25">
 	<testsuite name="A Basic Ground Frog Controller should..." failures="0"  tests="1" time="0">
 		<testcase name="ChangeDirectionProperly" time="0"></testcase>
 	</testsuite>
@@ -8,9 +8,8 @@
 		<testcase name="UpdateXPostion" time="0"></testcase>
 	</testsuite>
 
-	<testsuite name="My Example Test" failures="0"  tests="2" time="0">
-		<testcase name="This Is My Simple Test" time="0"></testcase>
-		<testcase name="MyParameterizedTest" time="0"></testcase>
+	<testsuite name="Cucumber Controller should..." failures="0"  tests="1" time="0">
+		<testcase name="BehaveWhenTouchedByPlayer" time="0"></testcase>
 	</testsuite>
 
 	<testsuite name="A Player Controller should..." failures="0"  tests="2" time="0">
