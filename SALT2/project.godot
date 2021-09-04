@@ -41,9 +41,13 @@ config/name="SALT2"
 run/main_scene="res://Scenes/dev_test1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Pause="*res://AutoLoads/Scenes/Pause.tscn"
+
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/WAT/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 
