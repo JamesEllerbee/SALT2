@@ -1,12 +1,14 @@
 <?xml version="1.0" ?>
-<testsuites failures="0" name="TestXML" tests="2" time="2.596">
+<testsuites failures="1" name="TestXML" tests="2" time="0.208">
 	<testsuite name="My Example Test" failures="0"  tests="2" time="0">
 		<testcase name="This Is My Simple Test" time="0"></testcase>
 		<testcase name="MyParameterizedTest" time="0"></testcase>
 	</testsuite>
 
-	<testsuite name="Player Controller" failures="0"  tests="1" time="0">
+	<testsuite name="Player Controller" failures="1"  tests="2" time="0">
 		<testcase name="TestPlayerControllerCreation" time="0"></testcase>
+		<testcase name="TestFacingRight" time="0">
+			<failure message="EXPECTED: |boolean| False == true but GOT |boolean| False == false"></failure></testcase>
 	</testsuite>
 
 </testsuites>
