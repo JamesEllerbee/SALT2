@@ -24,6 +24,7 @@ namespace SALT2.Tests
         /// <summary>
         /// Verifies that the Flip() method in <see cref="PlayerController"/> works correctly.
         /// </summary>
+        [Test]
         public void ReportFacingRight()
         {
             // Given player controller

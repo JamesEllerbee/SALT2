@@ -12,7 +12,7 @@ namespace SALT2.Tests
     public class BasicGroundFrogControllerTest : WAT.Test
     {
         /// <summary>
-        /// Verifies that after the elapsed period, the current direction is repoted
+        /// Verifies that after the elapsed period, the current direction is repoted.
         /// </summary>
         [Test]
         public void ChangeDirectionProperly()
@@ -27,23 +27,20 @@ namespace SALT2.Tests
             frogController._Ready();
 
             // Given thread to call _Process
-            var tokenSource = new CancellationTokenSource();
             var processTask = Task.Factory.StartNew(() =>
             {
-                while (true)
+                int count = 40;
+                while (count >= 0)
                 {
                     frogController._Process(0.1F);
                     GD.Print("Process!");
                     Thread.Sleep(100);
+                    count--;
                 }
-            }, tokenSource.Token);
+            });
 
-
-            // When the time
+            // When the time period for the entity to turn around passes
             Thread.Sleep(timeout);
-
-            // Clean up process task
-            tokenSource.Cancel();
 
             // Then verify controller is reporting the correct direction
             Assert.IsEqual(-1, frogController.CurrentFacingDirection, "Frog controller did not report the expected facing direction.");

@@ -7,7 +7,6 @@ using Godot;
 public class BasicGroundFrogController : KinematicBody
 {
     // TODO: Use abstract frog class to store fields common across all frog enemy types.
-
     #region  Private Fields
 
     /// <summary>
