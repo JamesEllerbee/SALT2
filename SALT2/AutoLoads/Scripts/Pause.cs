@@ -6,7 +6,7 @@ public class Pause : CanvasLayer
 
 	public override void _Input(InputEvent inputEvent)
 {
-	if (inputEvent.IsActionPressed("ui_cancel"))
+	if (inputEvent.IsActionPressed("ui_cancel") && !GetTree().CurrentScene.Name.Equals("Menu"))
 	{
 		GetNode<TextureRect>("BackGround").Visible = !GetNode<TextureRect>("BackGround").Visible;
 		GetTree().Paused = !GetTree().Paused; //toggles paused status
@@ -21,8 +21,9 @@ public void _on_ContinueButton_pressed()
 
 private void _on_QuitButton_pressed()
 {
-	//TODO: This will change scene to main menu once main menu is in root
-	//GetTree().ChangeScene()
+	GetNode<TextureRect>("BackGround").Visible = false;
+	GetTree().Paused = false;
+	GetTree().ChangeScene("res://Scenes/Menu.tscn");
 }
 
 private void _on_OptionsButton_pressed()

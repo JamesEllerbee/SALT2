@@ -7,6 +7,17 @@ public class Menu : Control
 	{
 		GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
 	}
+	
+	// public override void _Input(InputEvent inputEvent)
+	// {
+	// 	if (inputEvent.IsActionPressed("move_down") && )
+	// 		{
+	// 			GetNode<Button>("VBoxContainer/OptionsButton").FocusMode;
+	// 			GetFocusMode();
+				
+	// 		}
+	// }
+
 
 
 	private void _on_StartButton_pressed()
@@ -19,6 +30,19 @@ public class Menu : Control
 	GetTree().Quit();
 	}
 	
+	private void _on_StartButton_mouse_entered()
+	{
+   		GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
+	}
 	
+	private void _on_OptionsButton_mouse_entered()
+	{
+		GetNode<Button>("VBoxContainer/OptionsButton").GrabFocus();
+	}
 	
+	private void _on_QuitButton_mouse_entered()
+	{
+		GetNode<Button>("VBoxContainer/QuitButton").GrabFocus();
+	}
+
 }
