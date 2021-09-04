@@ -21,24 +21,43 @@ public class PlayerController : KinematicBody
     private float airFriction = 0.01f;
 
     private Vector3 motion;
+    private bool canShoot = true;
     private bool facingRight = true;
 
     private AnimationPlayer animPlayer;
     private Spatial graphics;
+    private Position3D gun;
+    private Timer cdTimer;
+    private PackedScene bullet;
 
     /// <summary>
     /// Gets a value indicating whether player is facing right.
     /// </summary>
     public bool GetFacingRight { get => facingRight; }
 
-    /// <summary>
-    /// Called when the node enters the scene tree for the first time.
-    /// </summary>
+    /// <inheritdoc/>
     public override void _Ready()
     {
         graphics = (Spatial)GetNode("Graphics");
         animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
+        gun = (Position3D)graphics.GetNode("Gun");
+        cdTimer = (Timer)gun.GetNode("Cooldown");
+        bullet = (PackedScene)ResourceLoader.Load("res://Scenes/BULLET.tscn");
         MoveLockZ = true;
+    }
+
+    /// <inheritdoc/>
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // When fire is pressed, spawn new bullet and shoot.
+        if (Input.IsActionPressed("action_shoot") && canShoot)
+        {
+            Shoot();
+            cdTimer.Start();
+            canShoot = false;
+        }
     }
 
     /// <inheritdoc/>
@@ -102,7 +121,7 @@ public class PlayerController : KinematicBody
             }
 
             // Air friction is applied while in the air.
-            if (isFriction == true)
+            if (isFriction)
             {
                 motion.x = Mathf.Lerp(motion.x, 0, airFriction);
             }
@@ -123,6 +142,14 @@ public class PlayerController : KinematicBody
         motion = MoveAndSlide(motion, Vector3.Up);
     }
 
+    /// <summary>
+    /// Called when cooldown timer hits 0. Resets player's ability to shoot.
+    /// </summary>
+    public void _on_Cooldown_timeout()
+    {
+        canShoot = true;
+    }
+
     // Flips player model depending on direction faced.
     private void Flip()
     {
@@ -139,5 +166,14 @@ public class PlayerController : KinematicBody
         }
 
         animPlayer.Play(animation);
+    }
+
+    // Logic for firing player's weapons.
+    private void Shoot()
+    {
+        BulletController b = bullet.Instance() as BulletController;
+        gun.AddChild(b);
+        b.LookAt(GlobalTransform.origin, Vector3.Up);
+        b.Shoot = true;
     }
 }

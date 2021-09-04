@@ -64,8 +64,6 @@ public class BasicGroundFrogController : KinematicBody
 
             // update next change directino interval
             changeDirectionMs = GetNextChangeDirectionPeriod();
-
-            GD.Print("Basic ground frog changing direction");
         }
     }
 

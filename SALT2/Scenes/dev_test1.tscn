@@ -25,10 +25,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.39052, 6.492, 0 )
 movingPeriod = 1500
 moveSpeed = 3.0
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
-collision_layer = 3
-collision_mask = 3
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132435, 2.23717, -0.0157108 )
+
+[node name="Gun" parent="Player/Graphics" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.255, 0, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -51,9 +54,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
 script = ExtResource( 6 )
 
 [node name="StaticBody" parent="Camera" index="0"]
-transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -9.98304, 0, -10 )
-collision_layer = 2
-collision_mask = 2
+transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -10.9558, 0, -10 )
 
 [node name="DebugMesh" parent="Camera/StaticBody" index="0"]
 visible = false
