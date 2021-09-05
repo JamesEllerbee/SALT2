@@ -13,12 +13,13 @@ height = 0.5
 "Enemy",
 ]]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 1029
 script = ExtResource( 2 )
 MoveSpeed = 4.0
 Gravity = 9.8
 MovingPeriod = 800
 AttackDamage = 1
+HitPoints = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -42,9 +43,7 @@ transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 disabled = true
 
-
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_DetectionRadius_body_entered"]
 [connection signal="body_exited" from="DetectionRadius" to="." method="_on_DetectionRadius_body_exited"]
-
 
 [editable path="Graphics/polywogUPDATED"]
