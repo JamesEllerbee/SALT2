@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Materials/dev_dark_green.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Controllers/CucumberController.cs" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 
 [sub_resource type="CapsuleMesh" id=2]
 
-[node name="Cumcumber" type="StaticBody"]
+[node name="Cumcumber" type="Area"]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 collision_layer = 0
-collision_mask = 4
+script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -20,3 +22,5 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="OnCumcumberBodyEntered"]
