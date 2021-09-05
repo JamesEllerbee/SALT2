@@ -9,14 +9,25 @@ namespace SALT2.Scripts.Controllers.Enemies
     /// </summary>
     public abstract class FrogController : KinematicBody
     {
+        #region Private Fields
+
         /// <summary>
         /// The direction modifier determines which direction the entity should begin moving in.
         /// </summary>
         [Export]
         private int directionModifier = 1;
 
-        [Export]
         private long changeDirectionMs;
+
+        private Spatial graphics;
+
+        private int deathSequenceTimeMs = 500;
+
+        private bool isDead = false;
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         /// Gets or sets this entity's enemy type.
@@ -49,6 +60,12 @@ namespace SALT2.Scripts.Controllers.Enemies
         public int AttackDamage { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the amount of damage this eneity can take before getting destoried.
+        /// </summary>
+        [Export]
+        public int HitPoints { get; protected set; }
+
+        /// <summary>
         /// Gets or sets the value indicating the current direction this entity is facing.
         /// </summary>
         public int CurrentFacingDirection { get => directionModifier; protected set => directionModifier = value; }
@@ -63,7 +80,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         /// </summary>
         public float VerticalVelocity { get; protected set; }
 
-        private Spatial graphics;
+        #endregion
 
         /// <inheritdoc/>
         public override void _Ready()
@@ -75,6 +92,19 @@ namespace SALT2.Scripts.Controllers.Enemies
 
             // set the inital change direction period.
             changeDirectionMs = GetNextChangeDirectionPeriod();
+
+            // if this entity hit points are <= 0 then handle death
+            if (HitPoints <= 0)
+            {
+                isDead = true;
+                graphics.RotateZ(1.5708f);
+
+                // wait half a second
+                System.Threading.Thread.Sleep(deathSequenceTimeMs);
+
+                // free this entity
+                Free();
+            }
         }
 
         /// <inheritdoc/>
@@ -83,11 +113,24 @@ namespace SALT2.Scripts.Controllers.Enemies
             base._PhysicsProcess(delta);
 
             var collisionInfo = MoveAndCollide(Vector3.Zero, testOnly: true);
-            if (collisionInfo != null && collisionInfo.Collider != null && collisionInfo.Collider is PlayerController)
+
+            // if collided with player and this entity is not dead,
+            if (collisionInfo != null && collisionInfo.Collider != null && collisionInfo.Collider is PlayerController && !isDead)
             {
+                // then resolve the player controller and damage the players
                 var playerController = (PlayerController)collisionInfo.Collider;
                 playerController.Damage(AttackDamage);
             }
+        }
+
+        /// <summary>
+        /// Subtracts the damage value from the entity's current health.
+        /// </summary>
+        /// <param name="damageValue"> The value that will be used to lower the entity's current hit point value. </param>
+        public void Damage(int damageValue)
+        {
+            // future: if an entity has more than 1 hp, and the enemy should have I frames, then update this to create a invulnerability timer and synchronize the code.
+            HitPoints -= damageValue;
         }
 
         /// <summary>
