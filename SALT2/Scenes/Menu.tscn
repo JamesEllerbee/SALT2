@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
+[ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Dry-Empty-GunFire-A-www.fesliyanstudios.com.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Mossberg 500 pump shotgun sound.wav" type="AudioStream" id=4]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -40,5 +43,83 @@ margin_right = 497.0
 margin_bottom = 68.0
 text = "Quit"
 
+[node name="VolumeSlider" type="HSlider" parent="."]
+visible = false
+anchor_left = 0.331
+anchor_top = 0.322
+anchor_right = 0.487
+anchor_bottom = 0.36
+margin_left = 0.0559692
+margin_top = -0.200012
+margin_right = 0.311981
+margin_bottom = -1.52588e-05
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VolumeSliderLabel" type="Label" parent="VolumeSlider"]
+anchor_left = 0.523
+anchor_top = 0.477
+anchor_right = 0.616
+anchor_bottom = 0.488
+margin_left = -46.68
+margin_top = -23.971
+margin_right = -12.56
+margin_bottom = -10.224
+text = "Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+
+[node name="FullScreenToggle" type="CheckButton" parent="."]
+visible = false
+margin_left = 375.0
+margin_top = 292.0
+margin_right = 451.0
+margin_bottom = 332.0
+
+[node name="FullScreenToggleLabel" type="Label" parent="FullScreenToggle"]
+anchor_top = -0.225
+anchor_right = 1.0
+anchor_bottom = 0.35
+margin_right = -3.0
+margin_bottom = -9.53674e-07
+text = "Full Screen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuButton" type="Button" parent="."]
+visible = false
+margin_left = 356.969
+margin_top = 393.031
+margin_right = 465.969
+margin_bottom = 419.031
+text = "Back"
+
+[node name="SelectSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -11.664
+
+[node name="StartSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -15.0
+
+[connection signal="focus_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_focus_entered"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="value_changed" from="VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
+[connection signal="pressed" from="FullScreenToggle" to="." method="_on_FullScreenToggle_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
