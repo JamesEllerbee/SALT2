@@ -1,6 +1,7 @@
 ﻿using Godot;
 using SALT2.Scripts.Enumerations;
 using System;
+using System.Threading.Tasks;
 
 namespace SALT2.Scripts.Controllers.Enemies
 {
@@ -19,11 +20,9 @@ namespace SALT2.Scripts.Controllers.Enemies
 
         private long changeDirectionMs;
 
-        private Spatial graphics;
+        private int deathSequenceTimeMs = 1000;
 
-        private int deathSequenceTimeMs = 500;
-
-        private bool isDead = false;
+        private bool inDeathSequence = false;
 
         #endregion
 
@@ -66,6 +65,11 @@ namespace SALT2.Scripts.Controllers.Enemies
         public int HitPoints { get; protected set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether if this entity is dead or not.
+        /// </summary>
+        public bool IsDead { get; protected set; }
+
+        /// <summary>
         /// Gets or sets the value indicating the current direction this entity is facing.
         /// </summary>
         public int CurrentFacingDirection { get => directionModifier; protected set => directionModifier = value; }
@@ -80,6 +84,11 @@ namespace SALT2.Scripts.Controllers.Enemies
         /// </summary>
         public float VerticalVelocity { get; protected set; }
 
+        /// <summary>
+        /// Gets or sets the graphics node for this entity.
+        /// </summary>
+        protected Spatial Graphics { get; set; }
+
         #endregion
 
         /// <inheritdoc/>
@@ -88,24 +97,43 @@ namespace SALT2.Scripts.Controllers.Enemies
             base._Ready();
 
             GD.Print($"Speed={MoveSpeed}, Period={MovingPeriod}");
-            graphics = (Spatial)GetNode("Graphics");
+            Graphics = (Spatial)GetNode("Graphics");
 
             // set the inital change direction period.
             changeDirectionMs = GetNextChangeDirectionPeriod();
+        }
 
-            // if this entity hit points are <= 0 then handle death
-            if (HitPoints <= 0)
+        /// <inheritdoc/>
+        public override void _Process(float delta)
+        {
+            base._Process(delta);
+
+            // if this entity hit points are <= 0  and is not already dead, then handle death
+            if (HitPoints <= 0 && !IsDead)
             {
-                isDead = true;
-                graphics.RotateZ(1.5708f);
+                GD.Print("I'm dead dude!");
+                IsDead = true;
 
-                // wait half a second
-                System.Threading.Thread.Sleep(deathSequenceTimeMs);
+                // update layer so that player no longer interacts with this entity.
+                CollisionLayer = 0b0;
 
-                // free this entity
-                Free();
+                // update mask so that bullets no longer interact with this entity.
+                CollisionMask = 0b0;
+
+                // begin death equence timer.
+                var deathTask = Task.Factory.StartNew(() =>
+                {
+                    Graphics.RotateZ(1.5708f);
+
+                    // wait half a second
+                    System.Threading.Thread.Sleep(deathSequenceTimeMs);
+
+                    // free this entity
+                    Free();
+                });
             }
         }
+
 
         /// <inheritdoc/>
         public override void _PhysicsProcess(float delta)
@@ -115,7 +143,7 @@ namespace SALT2.Scripts.Controllers.Enemies
             var collisionInfo = MoveAndCollide(Vector3.Zero, testOnly: true);
 
             // if collided with player and this entity is not dead,
-            if (collisionInfo != null && collisionInfo.Collider != null && collisionInfo.Collider is PlayerController && !isDead)
+            if (collisionInfo != null && collisionInfo.Collider != null && collisionInfo.Collider is PlayerController && !IsDead)
             {
                 // then resolve the player controller and damage the players
                 var playerController = (PlayerController)collisionInfo.Collider;
@@ -131,6 +159,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             // future: if an entity has more than 1 hp, and the enemy should have I frames, then update this to create a invulnerability timer and synchronize the code.
             HitPoints -= damageValue;
+            GD.Print($"Enemy damaged! {HitPoints}");
         }
 
         /// <summary>
@@ -181,7 +210,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         // Flips enemy model depending on direction faced.
         private void Flip()
         {
-            graphics.RotateY(3.14159f);
+            Graphics.RotateY(3.14159f);
         }
     }
 }

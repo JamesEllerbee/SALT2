@@ -53,7 +53,7 @@ public class BulletController : RigidBody
             var frogController = body as FrogController;
             if (frogController != null)
             {
-
+                frogController.Damage(damage);
             }
             else
             {
