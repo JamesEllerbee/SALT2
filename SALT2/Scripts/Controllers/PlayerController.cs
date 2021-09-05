@@ -6,7 +6,8 @@ using Godot;
 /// </summary>
 public class PlayerController : KinematicBody
 {
-    // Variables
+    #region Private Fields
+
     [Export]
     private float gravity = 17;
     [Export]
@@ -19,10 +20,13 @@ public class PlayerController : KinematicBody
     private float friction = 0.7f;
     [Export]
     private float airFriction = 0.01f;
+    [Export]
+    private int hitPoints = 3;
 
     private Vector3 motion;
     private bool canShoot = true;
     private bool facingRight = true;
+    private bool wasDamaged = false;
 
     private AnimationPlayer animPlayer;
     private Spatial graphics;
@@ -30,10 +34,22 @@ public class PlayerController : KinematicBody
     private Timer cdTimer;
     private PackedScene bullet;
 
+    #endregion
+
+    #region Public Properties
+
     /// <summary>
     /// Gets a value indicating whether player is facing right.
     /// </summary>
     public bool GetFacingRight { get => facingRight; }
+
+    /// <summary>
+    /// Gets the player's current number of hit points.
+    /// </summary>
+    public int CurrentHealth { get => hitPoints; }
+
+    #endregion
+
 
     /// <inheritdoc/>
     public override void _Ready()
@@ -57,6 +73,13 @@ public class PlayerController : KinematicBody
             Shoot();
             cdTimer.Start();
             canShoot = false;
+        }
+
+        if (wasDamaged)
+        {
+            // todo: do damaged stuff.
+
+            wasDamaged = false;
         }
     }
 
@@ -140,6 +163,16 @@ public class PlayerController : KinematicBody
 
         motion.z = 0;
         motion = MoveAndSlide(motion, Vector3.Up);
+    }
+
+    /// <summary>
+    /// Subtracts the damage value from the player's current health.
+    /// </summary>
+    /// <param name="damageValue"> The value that will be used to lower the player's current hit point value. </param>
+    public void Damage(int damageValue)
+    {
+        hitPoints -= damageValue;
+        wasDamaged = true;
     }
 
     /// <summary>
