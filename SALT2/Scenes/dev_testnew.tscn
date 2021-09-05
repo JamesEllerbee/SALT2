@@ -59,6 +59,7 @@ transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -14, 0, -10 )
 [node name="DebugMesh" parent="Camera/StaticBody" index="0"]
 visible = false
 
+
 [node name="CollisionShape" parent="Camera/StaticBody" index="1"]
 shape = SubResource( 3 )
 
