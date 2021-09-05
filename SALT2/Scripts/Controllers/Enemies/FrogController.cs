@@ -9,7 +9,6 @@ namespace SALT2.Scripts.Controllers.Enemies
     /// </summary>
     public abstract class FrogController : KinematicBody
     {
-
         /// <summary>
         /// The direction modifier determines which direction the entity should begin moving in.
         /// </summary>
@@ -44,9 +43,14 @@ namespace SALT2.Scripts.Controllers.Enemies
         public long MovingPeriod { get; protected set; }
 
         /// <summary>
-        /// Gets the value indicating the current direction this entity is facing.
+        /// Gets or sets the value indicating the current direction this entity is facing.
         /// </summary>
-        public int CurrentFacingDirection { get => directionModifier; }
+        public int CurrentFacingDirection { get => directionModifier; protected set => directionModifier = value; }
+
+        /// <summary>
+        /// Gets or sets the next change direction interval.
+        /// </summary>
+        public long TimeToChange_Ms { get => changeDirectionMs; protected set => changeDirectionMs = value; }
 
         /// <summary>
         /// Gets or sets vertical velocity.
@@ -69,21 +73,27 @@ namespace SALT2.Scripts.Controllers.Enemies
         public override void _PhysicsProcess(float delta)
         {
             base._PhysicsProcess(delta);
+        }
 
+        /// <summary>
+        /// Process the walk cycle.
+        /// </summary>
+        protected void DoWalkCycle(float delta)
+        {
             // during the process method, apply movement along the "walk cycle"
             var currentTime = GetCurrentTime();
             if (IsTimeToChange(currentTime))
             {
                 // update direction modifier
-                directionModifier *= -1;
+                CurrentFacingDirection *= -1;
 
                 // update next change directino interval
-                changeDirectionMs = GetNextChangeDirectionPeriod();
+                TimeToChange_Ms = GetNextChangeDirectionPeriod();
             }
 
             // apply movement
             VerticalVelocity -= Gravity * delta;
-            MoveAndSlide(new Vector3(directionModifier * MoveSpeed, VerticalVelocity, 0), Vector3.Up);
+            MoveAndSlide(new Vector3(CurrentFacingDirection * MoveSpeed, VerticalVelocity, 0), Vector3.Up);
 
             if (IsOnFloor())
             {
