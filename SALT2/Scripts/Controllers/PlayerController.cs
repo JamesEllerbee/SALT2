@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -6,7 +8,10 @@ using Godot;
 /// </summary>
 public class PlayerController : KinematicBody
 {
-    // Variables
+    #region Private Fields
+
+
+
     [Export]
     private float gravity = 17;
     [Export]
@@ -19,21 +24,47 @@ public class PlayerController : KinematicBody
     private float friction = 0.7f;
     [Export]
     private float airFriction = 0.01f;
+    [Export]
+    private int hitPoints = 3;
+    [Export]
+    private int invincibilityTimeMs = 1500;
+    private int deathSequenceTimeMs = 3000;
 
     private Vector3 motion;
     private bool canShoot = true;
     private bool facingRight = true;
+    private bool wasRecentlyDamaged = false;
+    private bool inDeathSequence = false;
+    private int maxHp;
+    private object damagedSyncObject = new object();
+    private object deathSequenceSyncObject = new object();
+
+    private Spatial ticket1;
+    private Spatial ticket2;
+    private Spatial ticket3;
 
     private AnimationPlayer animPlayer;
     private Spatial graphics;
     private Position3D gun;
-    private Timer cdTimer;
+    private Godot.Timer cdTimer;
     private PackedScene bullet;
+
+    #endregion
+
+    #region Public Properties
 
     /// <summary>
     /// Gets a value indicating whether player is facing right.
     /// </summary>
     public bool GetFacingRight { get => facingRight; }
+
+    /// <summary>
+    /// Gets the player's current number of hit points.
+    /// </summary>
+    public int CurrentHealth { get => hitPoints; }
+
+    #endregion
+
 
     /// <inheritdoc/>
     public override void _Ready()
@@ -41,9 +72,15 @@ public class PlayerController : KinematicBody
         graphics = (Spatial)GetNode("Graphics");
         animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
         gun = (Position3D)graphics.GetNode("Gun");
-        cdTimer = (Timer)gun.GetNode("Cooldown");
+        cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
         bullet = (PackedScene)ResourceLoader.Load("res://Scenes/BULLET.tscn");
         MoveLockZ = true;
+
+        maxHp = hitPoints;
+
+        ticket1 = (Spatial)GetNode("/root/Main/Camera/Ticket1");
+        ticket2 = (Spatial)GetNode("/root/Main/Camera/Ticket2");
+        ticket3 = (Spatial)GetNode("/root/Main/Camera/Ticket3");
     }
 
     /// <inheritdoc/>
@@ -57,6 +94,33 @@ public class PlayerController : KinematicBody
             Shoot();
             cdTimer.Start();
             canShoot = false;
+        }
+
+        // todo: do damaged stuff,
+        if (hitPoints <= 0 && !inDeathSequence)
+        {
+            bool haveLock = false;
+            Monitor.TryEnter(deathSequenceSyncObject, TimeSpan.FromMilliseconds(1), ref haveLock);
+
+            if (haveLock)
+            {
+                inDeathSequence = true;
+
+                // trigger death and respawn.
+                var deathTimers = Task.Factory.StartNew(() =>
+                {
+                    // pause for three sceonds before updating the ui and resetting the player's hitpoints.
+                    graphics.RotateZ(1.5708f);
+
+                    System.Threading.Thread.Sleep(deathSequenceTimeMs);
+
+                    graphics.RotateZ(-1.5708f);
+
+                    UpdateUIHp(true);
+                    hitPoints = maxHp;
+                    inDeathSequence = false;
+                });
+            }
         }
     }
 
@@ -143,6 +207,38 @@ public class PlayerController : KinematicBody
     }
 
     /// <summary>
+    /// Subtracts the damage value from the player's current health.
+    /// </summary>
+    /// <param name="damageValue"> The value that will be used to lower the player's current hit point value. </param>
+    public void Damage(int damageValue)
+    {
+        // don't apply damage if the player was recently damaged
+        bool haveLock = false;
+        Monitor.TryEnter(damagedSyncObject, TimeSpan.FromMilliseconds(1), ref haveLock);
+        if (haveLock && !wasRecentlyDamaged)
+        {
+            hitPoints -= damageValue;
+            wasRecentlyDamaged = true;
+            GD.Print($"Damaged! Remaining HP {hitPoints}");
+
+            UpdateUIHp();
+
+            // start a timer to re-enable damage
+            // todo: invulnerability animation
+            var damageTimer = Task.Factory.StartNew(() =>
+            {
+
+                // after the invicibility timeout, set was damaged to false allowing the player to be damaged again
+                System.Threading.Thread.Sleep(invincibilityTimeMs);
+                wasRecentlyDamaged = false;
+
+                // todo: stop invincibility animation
+                GD.Print("Player can now be damaged.");
+            });
+        }
+    }
+
+    /// <summary>
     /// Called when cooldown timer hits 0. Resets player's ability to shoot.
     /// </summary>
     public void _on_Cooldown_timeout()
@@ -175,5 +271,30 @@ public class PlayerController : KinematicBody
         gun.AddChild(b);
         b.LookAt(GlobalTransform.origin, Vector3.Up);
         b.Shoot = true;
+    }
+
+    private void UpdateUIHp(bool reset = false)
+    {
+        if (!reset)
+        {
+            if (ticket3.Visible)
+            {
+                ticket3.Visible = false;
+            }
+            else if (ticket2.Visible)
+            {
+                ticket2.Visible = false;
+            }
+            else if (ticket1.Visible)
+            {
+                ticket1.Visible = false;
+            }
+        }
+        else
+        {
+            ticket1.Visible = true;
+            ticket2.Visible = true;
+            ticket3.Visible = true;
+        }
     }
 }
