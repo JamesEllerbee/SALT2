@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Materials/dev_green.tres" type="Material" id=1]
 [ext_resource path="res://Animations/test_walk_anim.tres" type="Animation" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://Materials/dev_orange.tres" type="Material" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CapsuleShape" id=5]
+radius = 0.5
+height = 0.5
 
 [sub_resource type="CylinderMesh" id=2]
 
@@ -35,6 +39,11 @@ script = ExtResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
+
+[node name="CrouchingShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.749305, 0 )
+shape = SubResource( 5 )
+disabled = true
 
 [node name="Graphics" type="Spatial" parent="."]
 

@@ -17,6 +17,8 @@ public class PlayerController : KinematicBody
     [Export]
     private float maxSpeed = 5;
     [Export]
+    private float maxCrouchSpeed = 2;
+    [Export]
     private float jumpHeight = 10;
     [Export]
     private float acceleration = 4;
@@ -29,6 +31,7 @@ public class PlayerController : KinematicBody
     [Export]
     private int invincibilityTimeMs = 1500;
     private int deathSequenceTimeMs = 3000;
+    private float currentSpeed;
 
     private Vector3 motion;
     private bool canShoot = true;
@@ -47,6 +50,8 @@ public class PlayerController : KinematicBody
     private Spatial graphics;
     private Position3D gun;
     private Godot.Timer cdTimer;
+    private CollisionShape standingShape;
+    private CollisionShape crouchingShape;
     private PackedScene bullet;
 
     #endregion
@@ -73,10 +78,13 @@ public class PlayerController : KinematicBody
         animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
         gun = (Position3D)graphics.GetNode("Gun");
         cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
+        standingShape = (CollisionShape)GetNode("CollisionShape");
+        crouchingShape = (CollisionShape)GetNode("CrouchingShape");
         bullet = (PackedScene)ResourceLoader.Load("res://Scenes/BULLET.tscn");
         MoveLockZ = true;
 
         maxHp = hitPoints;
+        currentSpeed = maxSpeed;
 
         ticket1 = (Spatial)GetNode("/root/Main/Camera/Ticket1");
         ticket2 = (Spatial)GetNode("/root/Main/Camera/Ticket2");
@@ -94,6 +102,20 @@ public class PlayerController : KinematicBody
             Shoot();
             cdTimer.Start();
             canShoot = false;
+        }
+
+        // When down is pressed, make player crouch.
+        if (Input.IsActionPressed("move_down"))
+        {
+            currentSpeed = maxCrouchSpeed;
+            crouchingShape.Disabled = false;
+            standingShape.Disabled = true;
+        }
+        else
+        {
+            currentSpeed = maxSpeed;
+            standingShape.Disabled = false;
+            crouchingShape.Disabled = true;
         }
 
         // if the player's remaining hp is less than zero and the player is not already in a death sequence.
@@ -139,14 +161,14 @@ public class PlayerController : KinematicBody
         // Check for player directional inputs to add or subtract acceleration.
         if (Input.IsActionPressed("move_right") && !inDeathSequence)
         {
-            motion.x = Math.Min(motion.x + acceleration, maxSpeed);
+            motion.x = Math.Min(motion.x + acceleration, currentSpeed);
             moveDir += 1;
 
             // TODO: Add walk animation.
         }
         else if (Input.IsActionPressed("move_left") && !inDeathSequence)
         {
-            motion.x = Math.Max(motion.x - acceleration, -maxSpeed);
+            motion.x = Math.Max(motion.x - acceleration, -currentSpeed);
             moveDir -= 1;
 
             // TODO: Add walk animation.
