@@ -26,7 +26,9 @@ tracks/0/keys = {
 "values": [ Vector3( 90, 0, 0 ), Vector3( 90, -180, 0 ), Vector3( 90, -360, 0 ) ]
 }
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
 collision_mask = 27
 script = ExtResource( 3 )
 

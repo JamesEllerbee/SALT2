@@ -29,6 +29,9 @@ public class BasicGroundFrogController : KinematicBody
     /// </summary>
     [Export]
     private int directionModifier = 1;
+    [Export]
+    private int hitPoints = 3;
+    private int hitpoints;
 
     #endregion
 
