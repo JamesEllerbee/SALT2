@@ -42,4 +42,9 @@ transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 disabled = true
 
+
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_DetectionRadius_body_entered"]
+[connection signal="body_exited" from="DetectionRadius" to="." method="_on_DetectionRadius_body_exited"]
+
+
 [editable path="Graphics/polywogUPDATED"]

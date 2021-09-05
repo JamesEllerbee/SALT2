@@ -66,7 +66,8 @@ public class BulletController : RigidBody
         {
             GD.Print("Player Hit!");
 
-            // TODO: Add logic to do damage.
+            PlayerController player = body as PlayerController;
+            player.Damage(damage);
             QueueFree();
         }
         else

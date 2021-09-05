@@ -207,10 +207,12 @@ namespace SALT2.Scripts.Controllers.Enemies
             return changeDirectionMs - currentTime <= 0L;
         }
 
-        // Flips enemy model depending on direction faced.
-        private void Flip()
+        /// <summary>
+        /// Flips enemy model depending on direction faced.
+        /// </summary>
+        protected void Flip()
         {
-            Graphics.RotateY(3.14159f);
+            RotateY(3.14159f);
         }
     }
 }
