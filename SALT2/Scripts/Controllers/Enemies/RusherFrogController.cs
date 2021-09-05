@@ -8,10 +8,17 @@ namespace SALT2.Scripts.Controllers.Enemies
     /// </summary>
     public class RusherFrogController : FrogController
     {
+        private AnimationPlayer anim;
+
         /// <inheritdoc/>
         public override void _Ready()
         {
             base._Ready();
+
+            // Animation Setup
+            anim = (AnimationPlayer)GetNode("Graphics/polywogUPDATED/AnimationPlayer");
+            anim.GetAnimation("WalkCycle").Loop = true;
+            anim.Play("WalkCycle");
         }
 
         /// <inheritdoc/>

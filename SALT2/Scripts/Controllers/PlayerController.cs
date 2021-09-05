@@ -113,6 +113,7 @@ public class PlayerController : KinematicBody
                     graphics.RotateZ(1.5708f);
 
                     System.Threading.Thread.Sleep(deathSequenceTimeMs);
+                    motion = Vector3.Zero;
 
                     graphics.RotateZ(-1.5708f);
 
@@ -136,14 +137,14 @@ public class PlayerController : KinematicBody
         int moveDir = 0;
 
         // Check for player directional inputs to add or subtract acceleration.
-        if (Input.IsActionPressed("move_right"))
+        if (Input.IsActionPressed("move_right") && !inDeathSequence)
         {
             motion.x = Math.Min(motion.x + acceleration, maxSpeed);
             moveDir += 1;
 
             // TODO: Add walk animation.
         }
-        else if (Input.IsActionPressed("move_left"))
+        else if (Input.IsActionPressed("move_left") && !inDeathSequence)
         {
             motion.x = Math.Max(motion.x - acceleration, -maxSpeed);
             moveDir -= 1;
@@ -160,7 +161,7 @@ public class PlayerController : KinematicBody
         // Jump logic. Checks if player is on floor before deciding if it is ok to jump.
         // If player is in the air, play jump animation. Additionally, less friction is
         // applied to the player while in the air.
-        if (IsOnFloor())
+        if (IsOnFloor() && !inDeathSequence)
         {
             if (Input.IsActionPressed("move_jump"))
             {
@@ -172,7 +173,7 @@ public class PlayerController : KinematicBody
                 motion.x = Mathf.Lerp(motion.x, 0, friction);
             }
         }
-        else
+        else if (!inDeathSequence)
         {
             // Play jump animation if going up.
             if (motion.y > 0)

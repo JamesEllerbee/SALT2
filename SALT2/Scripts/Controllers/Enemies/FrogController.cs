@@ -63,12 +63,15 @@ namespace SALT2.Scripts.Controllers.Enemies
         /// </summary>
         public float VerticalVelocity { get; protected set; }
 
+        private Spatial graphics;
+
         /// <inheritdoc/>
         public override void _Ready()
         {
             base._Ready();
 
             GD.Print($"Speed={MoveSpeed}, Period={MovingPeriod}");
+            graphics = (Spatial)GetNode("Graphics");
 
             // set the inital change direction period.
             changeDirectionMs = GetNextChangeDirectionPeriod();
@@ -102,6 +105,9 @@ namespace SALT2.Scripts.Controllers.Enemies
 
                 // update next change directino interval
                 TimeToChange_Ms = GetNextChangeDirectionPeriod();
+
+                // Flip model
+                Flip();
             }
 
             // apply movement
@@ -127,6 +133,12 @@ namespace SALT2.Scripts.Controllers.Enemies
         private bool IsTimeToChange(long currentTime)
         {
             return changeDirectionMs - currentTime <= 0L;
+        }
+
+        // Flips enemy model depending on direction faced.
+        private void Flip()
+        {
+            graphics.RotateY(3.14159f);
         }
     }
 }
