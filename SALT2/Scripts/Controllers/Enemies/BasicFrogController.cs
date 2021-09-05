@@ -20,7 +20,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             base._Ready();
 
-            //anim = (AnimationPlayer)GetNode("AnimationPlayer");
+            // anim = (AnimationPlayer)GetNode("AnimationPlayer");
             gun = (Position3D)GetNode("Graphics/Gun");
             cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
             bullet = (PackedScene)ResourceLoader.Load("res://Scenes/ENEMY_BULLET.tscn");
