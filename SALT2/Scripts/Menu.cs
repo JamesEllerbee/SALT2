@@ -28,7 +28,7 @@ public class Menu : Control
     /// <inheritdoc/>
     public override void _Process(float delta)
     {
-        //Makes music loop
+        // Makes music loop
         if (!GetNode<AudioStreamPlayer2D>("MainMenuMusic").Playing)
         {
             GetNode<AudioStreamPlayer2D>("MainMenuMusic").Play();
@@ -61,7 +61,7 @@ public class Menu : Control
 
     private void _on_FullScreenToggle_pressed()
     {
-        OS.WindowFullscreen = !OS.WindowFullscreen; //toggles full screeen off/on
+        OS.WindowFullscreen = !OS.WindowFullscreen; // toggles full screeen off/on
     }
 
     private void _on_MainMenuButton_pressed()
