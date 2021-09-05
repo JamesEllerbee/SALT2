@@ -18,13 +18,15 @@ namespace SALT2.Scripts.Controllers.Enemies
         public override void _Process(float delta)
         {
             base._Process(delta);
-
         }
 
         /// <inheritdoc/>
         public override void _PhysicsProcess(float delta)
         {
             base._PhysicsProcess(delta);
+
+            // todo: can alter what this entity should be doing when player has been detected
+            DoWalkCycle(delta);
         }
 
         /// <summary>

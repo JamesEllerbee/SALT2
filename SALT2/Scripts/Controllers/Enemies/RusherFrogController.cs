@@ -3,14 +3,11 @@ using Godot;
 
 namespace SALT2.Scripts.Controllers.Enemies
 {
-
     /// <summary>
     /// Script that controls the Rusher Frog enemy types.
     /// </summary>
     public class RusherFrogController : FrogController
     {
-        private bool moveTowardsPlayer = false;
-
         /// <inheritdoc/>
         public override void _Ready()
         {
@@ -27,6 +24,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         public override void _PhysicsProcess(float delta)
         {
             base._PhysicsProcess(delta);
+            DoWalkCycle(delta);
         }
 
         /// <summary>
