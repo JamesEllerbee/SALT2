@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using SALT2.Scripts.Controllers.Enemies;
 
 /// <summary>
 /// Script used to control all types of bullets.
@@ -47,6 +48,18 @@ public class BulletController : RigidBody
             GD.Print("Enemy Hit!");
 
             // TODO: Add logic to do damage.
+
+            // Get enemy controller
+            var frogController = body as FrogController;
+            if (frogController != null)
+            {
+                frogController.Damage(damage);
+            }
+            else
+            {
+                GD.PrintErr("Could not resolve frog controller");
+            }
+
             QueueFree();
         }
         else if (body.IsInGroup("Player"))

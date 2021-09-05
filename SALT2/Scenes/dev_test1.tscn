@@ -50,6 +50,7 @@ script = ExtResource( 6 )
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -10.9558, 0, -10 )
 
 [node name="CollisionShape" parent="Camera/StaticBody" index="1"]
+
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.54591, 0, 0 )
 shape = SubResource( 3 )
 
@@ -62,5 +63,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7395, 2.32817, 0 )
 
 [editable path="Player"]
 [editable path="Camera"]
+
 [editable path="GroundRusherFrog"]
 [editable path="GroundRusherFrog/Graphics/polywogUPDATED"]

@@ -23,12 +23,10 @@ background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0
 [node name="Main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
 
-[node name="Player" parent="." groups=[
-"Player",
-] instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
-collision_layer = 1031
-collision_mask = 1031
+collision_mask = 1051
 
 [node name="Gun" parent="Player/Graphics" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.255, 0, 0 )
@@ -47,24 +45,20 @@ cell_center_z = false
 collision_layer = 1024
 collision_mask = 1024
 data = {
-"cells": PoolIntArray( 65547, 0, 4, 131033, 0, 5, 196619, 0, 4, 327668, 0, 589825, 327669, 0, 589825, 327670, 0, 589825, 327671, 0, 589825, 327672, 0, 589825, 327673, 0, 589825, 327674, 0, 589825, 327691, 0, 589828, 458763, 0, 589828, -327674, 0, 0, -327673, 0, 0, -327671, 0, 0, -327669, 0, 4, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 3, -262135, 0, 3, -196606, 0, 0, -196605, 0, 0, -196604, 0, 3, -196602, 0, 3, -196597, 0, 4, -131071, 0, 0, -131070, 0, 0, -131064, 0, 3, -131063, 0, 3, -65535, 0, 0, -65533, 0, 3, -65532, 0, 3, -65530, 0, 3, -65528, 0, 3, -65527, 0, 3, -65525, 0, 4, -40, 0, 0, -38, 0, 0, -36, 0, 0, -34, 0, 0, -32, 0, 0, -30, 0, 0, -28, 0, 0, -26, 0, 0, -24, 0, 0, -22, 0, 0, -20, 0, 0, -18, 0, 0, -16, 0, 0, -15, 0, 0, -13, 0, 0, -11, 0, 0, -9, 0, 0, -7, 0, 0, -5, 0, 0, -3, 0, 0, -1, 0, 0, 1, 7, 786435, 3, 7, 786435, 5, 7, 786435, 7, 7, 786437, 9, 7, 786437, 11, 7, 786437, 13, 7, 786437, 65521, 7, 786437, 65523, 7, 786437, 65525, 7, 786437, 65527, 7, 786437, 65529, 7, 786437, 65531, 7, 786435, 65533, 7, 786435, 65535, 7, 786435, -262143, 7, 786437, -262141, 7, 786437, -262139, 7, 786437, -262137, 7, 786437, -262135, 7, 786437, -262133, 7, 786437, -262131, 7, 786437, -196623, 7, 786437, -196621, 7, 786437, -196619, 7, 786437, -196617, 7, 786437, -196615, 7, 786437, -196613, 7, 786437, -196611, 7, 786437, -196609, 7, 786437, -196605, 7, 786437, -196601, 7, 786437, -196599, 7, 786437, -196597, 7, 786437, -196595, 7, 786437, -131071, 7, 786435, -131069, 7, 786437, -131067, 7, 786437, -131065, 7, 786437, -131063, 7, 786437, -131061, 7, 786437, -131059, 7, 786437, -65551, 7, 786437, -65549, 7, 786437, -65547, 7, 786437, -65545, 7, 786437, -65543, 7, 786437, -65541, 7, 786437, -65539, 7, 786437, -65537, 7, 786435, -65531, 7, 786437, -65529, 7, 786437, -65527, 7, 786437, -65525, 7, 786437, -65523, 7, 786437, -5, 7, 786437 )
+
+"cells": PoolIntArray( 65547, 0, 4, 131032, 0, 1310720, 131034, 0, 1310720, 131036, 0, 1310720, 131038, 0, 1310720, 196619, 0, 4, 262104, 0, 1310720, 262106, 0, 1310720, 262108, 0, 1310720, 327668, 0, 589825, 327669, 0, 589825, 327670, 0, 589825, 327671, 0, 589825, 327672, 0, 589825, 327673, 0, 589825, 327674, 0, 589825, 327691, 0, 589828, 393176, 0, 1310720, 393178, 0, 1310720, 458763, 0, 589828, 524248, 0, 1310720, -327674, 0, 0, -327673, 0, 0, -327671, 0, 0, -327669, 0, 4, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 3, -262135, 0, 3, -196606, 0, 0, -196605, 0, 0, -196604, 0, 3, -196602, 0, 3, -196597, 0, 4, -131071, 0, 0, -131070, 0, 0, -131064, 0, 3, -131063, 0, 3, -65535, 0, 0, -65533, 0, 3, -65532, 0, 3, -65530, 0, 3, -65528, 0, 3, -65527, 0, 3, -65525, 0, 4, -40, 0, 0, -38, 0, 0, -36, 0, 0, -34, 0, 0, -32, 0, 0, -30, 0, 0, -28, 0, 0, -26, 0, 0, -24, 0, 0, -22, 0, 0, -20, 0, 0, -18, 0, 0, -16, 0, 0, -15, 0, 0, -13, 0, 0, -11, 0, 0, -9, 0, 0, -7, 0, 0, -5, 0, 0, -3, 0, 0, -1, 0, 0, 1, 7, 786435, 3, 7, 786435, 5, 7, 786435, 7, 7, 786437, 9, 7, 786437, 11, 7, 786437, 13, 7, 786437, 65521, 7, 786437, 65523, 7, 786437, 65525, 7, 786437, 65527, 7, 786437, 65529, 7, 786437, 65531, 7, 786435, 65533, 7, 786435, 65535, 7, 786435, -262143, 7, 786437, -262141, 7, 786437, -262139, 7, 786437, -262137, 7, 786437, -262135, 7, 786437, -262133, 7, 786437, -262131, 7, 786437, -196623, 7, 786437, -196621, 7, 786437, -196619, 7, 786437, -196617, 7, 786437, -196615, 7, 786437, -196613, 7, 786437, -196611, 7, 786437, -196609, 7, 786437, -196605, 7, 786437, -196601, 7, 786437, -196599, 7, 786437, -196597, 7, 786437, -196595, 7, 786437, -131071, 7, 786435, -131069, 7, 786437, -131067, 7, 786437, -131065, 7, 786437, -131063, 7, 786437, -131061, 7, 786437, -131059, 7, 786437, -65551, 7, 786437, -65549, 7, 786437, -65547, 7, 786437, -65545, 7, 786437, -65543, 7, 786437, -65541, 7, 786437, -65539, 7, 786437, -65537, 7, 786435, -65531, 7, 786437, -65529, 7, 786437, -65527, 7, 786437, -65525, 7, 786437, -65523, 7, 786437, -5, 7, 786437 )
 }
 __meta__ = {
 "_editor_clip_": 2,
-"_editor_floor_": Vector3( 0, 0, 0 )
+"_editor_floor_": Vector3( 0, 3, 0 )
 }
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
 script = ExtResource( 6 )
 
-[node name="StaticBody" parent="Camera" index="0"]
+[node name="StaticBody" parent="Camera" index="3"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -10.9558, 0, -10 )
-collision_layer = 1
-collision_mask = 1
-
-[node name="DebugMesh" parent="Camera/StaticBody" index="0"]
-visible = false
+collision_mask = 0
 
 [node name="CollisionShape" parent="Camera/StaticBody" index="1"]
 shape = SubResource( 3 )
@@ -80,38 +74,90 @@ transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.01, -0.7, 0.6, -1 )
 
 [node name="GroundBasicFrog" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92736, 6.3373, 0 )
-collision_layer = 1024
-collision_mask = 1024
-MoveSpeed = 3.0
-Gravity = 9.8
-MovingPeriod = 800
-AttackDamage = 1
+collision_layer = 1026
+collision_mask = 1029
+HitPoints = 1
+
+[node name="DetectionRadius" parent="GroundBasicFrog" index="2"]
+collision_layer = 0
 
 [node name="CollisionShape" parent="GroundBasicFrog/DetectionRadius" index="0"]
 disabled = false
 
 [node name="GroundRusherFrog" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5688, 2.2607, 0 )
-collision_layer = 1024
-collision_mask = 1024
+
+collision_layer = 1026
+collision_mask = 1029
 EnemyType = 1
-MoveSpeed = 4.0
-Gravity = 9.8
-MovingPeriod = 800
-AttackDamage = 1
+HitPoints = 1
 
 [node name="DetectionRadius" parent="GroundRusherFrog" index="2"]
 gravity_vec = Vector3( 0, 0, 0 )
 linear_damp = 0.0
 angular_damp = 0.0
-collision_layer = 1
+
 collision_mask = 1
 
 [node name="CollisionShape" parent="GroundRusherFrog/DetectionRadius" index="0"]
 disabled = false
 
+
+[node name="GroundRusherFrog2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2167, 2.2607, 0 )
+collision_mask = 1029
+EnemyType = 1
+HitPoints = 1
+
+[node name="DetectionRadius" parent="GroundRusherFrog2" index="2"]
+gravity_vec = Vector3( 0, 0, 0 )
+linear_damp = 0.0
+angular_damp = 0.0
+collision_mask = 1
+
+[node name="CollisionShape" parent="GroundRusherFrog2/DetectionRadius" index="0"]
+disabled = false
+
+[node name="GroundRusherFrog3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9435, 2.2607, 0 )
+collision_mask = 1029
+EnemyType = 1
+HitPoints = 1
+
+[node name="CollisionShape" parent="GroundRusherFrog3" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00317955, 0, 0 )
+
+[node name="DetectionRadius" parent="GroundRusherFrog3" index="2"]
+gravity_vec = Vector3( 0, 0, 0 )
+linear_damp = 0.0
+angular_damp = 0.0
+collision_mask = 1
+
+[node name="CollisionShape" parent="GroundRusherFrog3/DetectionRadius" index="0"]
+disabled = false
+
+[node name="GroundRusherFrog4" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3735, 3.80626, 0 )
+collision_mask = 1029
+EnemyType = 1
+MoveSpeed = 0.0
+HitPoints = 1
+
+[node name="DetectionRadius" parent="GroundRusherFrog4" index="2"]
+gravity_vec = Vector3( 0, 0, 0 )
+linear_damp = 0.0
+angular_damp = 0.0
+collision_mask = 1
+
+[node name="CollisionShape" parent="GroundRusherFrog4/DetectionRadius" index="0"]
+disabled = false
+
 [connection signal="body_entered" from="GroundBasicFrog/DetectionRadius" to="GroundBasicFrog" method="_on_DetectionRadius_body_entered"]
 [connection signal="body_entered" from="GroundRusherFrog/DetectionRadius" to="GroundRusherFrog" method="_on_DetectionRadius_body_entered"]
+[connection signal="body_entered" from="GroundRusherFrog2/DetectionRadius" to="GroundRusherFrog2" method="_on_DetectionRadius_body_entered"]
+[connection signal="body_entered" from="GroundRusherFrog3/DetectionRadius" to="GroundRusherFrog3" method="_on_DetectionRadius_body_entered"]
+[connection signal="body_entered" from="GroundRusherFrog4/DetectionRadius" to="GroundRusherFrog4" method="_on_DetectionRadius_body_entered"]
+
 
 [editable path="Player"]
 [editable path="Camera"]

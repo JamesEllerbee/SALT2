@@ -31,11 +31,15 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             base._Process(delta);
 
-            if (shooting && canShoot)
+            if (shooting && canShoot && !IsDead)
             {
                 Shoot();
                 cdTimer.Start();
                 canShoot = false;
+            }
+            if (IsDead)
+            {
+                // todo: begin playing the death animation
             }
         }
 

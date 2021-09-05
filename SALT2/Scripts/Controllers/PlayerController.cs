@@ -96,7 +96,7 @@ public class PlayerController : KinematicBody
             canShoot = false;
         }
 
-        // todo: do damaged stuff,
+        // if the player's remaining hp is less than zero and the player is not already in a death sequence.
         if (hitPoints <= 0 && !inDeathSequence)
         {
             bool haveLock = false;
@@ -120,6 +120,8 @@ public class PlayerController : KinematicBody
                     UpdateUIHp(true);
                     hitPoints = maxHp;
                     inDeathSequence = false;
+
+                    // todo: add invinsibility timer
                 });
             }
         }
