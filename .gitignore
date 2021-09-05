@@ -358,5 +358,6 @@ SALT2/export_presets.cfg
 SALT2/.mono/
 SALT2/data_*/
 
-Results/
-metadata/
+SALT2/Results/
+SALT2/metadata/
+SALT2/Tests/results.xml

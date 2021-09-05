@@ -38,7 +38,7 @@ Display=8
 [application]
 
 config/name="SALT2"
-run/main_scene="res://Scenes/dev_test1.tscn"
+run/main_scene="res://Scenes/dev_testnew.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -52,7 +52,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/WAT/plugin.cfg" )
 
 [input]
 

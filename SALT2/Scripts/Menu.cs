@@ -7,6 +7,17 @@ public class Menu : Control
 	{
 		GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
 	}
+	
+  // why is this code commented out?
+	// public override void _Input(InputEvent inputEvent)
+	// {
+	// 	if (inputEvent.IsActionPressed("move_down") && )
+	// 		{
+	// 			GetNode<Button>("VBoxContainer/OptionsButton").FocusMode;
+	// 			GetFocusMode();
+				
+	// 		}
+	// }
 
 	public override void _Process(float delta)
 	{
@@ -16,7 +27,6 @@ public class Menu : Control
 		}
 	}
 	
-
 	private void _on_StartButton_pressed()
 	{
 	GetNode<AudioStreamPlayer>("StartSoundFX").Play();
@@ -34,9 +44,7 @@ public class Menu : Control
 		GetNode<HSlider>("VolumeSlider").Visible = true;
 		GetNode<CheckButton>("FullScreenToggle").Visible = true;
 		GetNode<Button>("MainMenuButton").Visible = true;
-	
 	}
-	
 	
 	private void _on_VolumeSlider_value_changed(float value)
 	{
@@ -56,10 +64,24 @@ public class Menu : Control
 		GetNode<Button>("MainMenuButton").Visible = false;
 	}
 
-
 private void _on_StartButton_mouse_entered()
 {
 	GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
+
+	private void _on_StartButton_mouse_entered()
+	{
+   		GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
+	}
+	
+	private void _on_OptionsButton_mouse_entered()
+	{
+		GetNode<Button>("VBoxContainer/OptionsButton").GrabFocus();
+	}
+	
+	private void _on_QuitButton_mouse_entered()
+	{
+		GetNode<Button>("VBoxContainer/QuitButton").GrabFocus();
+	}
 }
 
 private void _on_OptionsButton_mouse_entered()
@@ -86,6 +108,4 @@ private void _on_QuitButton_focus_entered()
 {
 	GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
 }
-
 }
-

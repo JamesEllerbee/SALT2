@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Godot;
+using SALT2.Scripts.Controllers.Enemies;
 using Thread = System.Threading.Thread;
 
 namespace SALT2.Tests
@@ -21,7 +22,7 @@ namespace SALT2.Tests
             var timeout = 4000;
 
             // Given a basic ground frog controller
-            var frogController = new BasicGroundFrogController();
+            var frogController = new BasicFrogController();
 
             // Given controller ready
             frogController._Ready();
@@ -33,7 +34,6 @@ namespace SALT2.Tests
                 while (count >= 0)
                 {
                     frogController._Process(0.1F);
-                    GD.Print("Process!");
                     Thread.Sleep(100);
                     count--;
                 }

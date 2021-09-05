@@ -29,6 +29,9 @@ public class BasicGroundFrogController : KinematicBody
     /// </summary>
     [Export]
     private int directionModifier = 1;
+    [Export]
+    private int hitPoints = 3;
+    private int hitpoints;
 
     #endregion
 
@@ -48,6 +51,8 @@ public class BasicGroundFrogController : KinematicBody
 
         // set the inital change direction period.
         changeDirectionMs = GetNextChangeDirectionPeriod();
+
+        MoveLockZ = true;
     }
 
     /// <inheritdoc/>
@@ -62,8 +67,6 @@ public class BasicGroundFrogController : KinematicBody
 
             // update next change directino interval
             changeDirectionMs = GetNextChangeDirectionPeriod();
-
-            GD.Print("Basic ground frog changing direction");
         }
     }
 
