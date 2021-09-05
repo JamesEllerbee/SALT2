@@ -50,13 +50,15 @@ script = ExtResource( 6 )
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -10.9558, 0, -10 )
 
 [node name="CollisionShape" parent="Camera/StaticBody" index="1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.54591, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="GroundBasicFrog" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1906, 2.35211, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4616, 1.90403, 0 )
+MovingPeriod = 1000
 
 [node name="GroundRusherFrog" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7395, 2.8137, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7395, 2.32817, 0 )
 
 [editable path="Player"]
 [editable path="Camera"]

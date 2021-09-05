@@ -45,5 +45,17 @@ namespace SALT2.Scripts.Controllers.Enemies
                 GD.Print($"Detected player");
             }
         }
+
+        /// <summary>
+        /// Used to go back to walking when player exits detection radius.
+        /// </summary>
+        /// <param name="body">The body that exited this entity. </param>
+        public void _on_DetectionRadius_body_exited(PhysicsBody body)
+        {
+            if (body.IsInGroup("Player"))
+            {
+                GD.Print("Stopped detecting player");
+            }
+        }
     }
 }
