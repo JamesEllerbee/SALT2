@@ -18,57 +18,116 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseText" type="TextEdit" parent="BackGround"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -78.7551
-margin_top = 55.9588
-margin_right = 73.2449
-margin_bottom = 116.959
-text = "Pause"
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_bottom = 2.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ContinueButton" type="Button" parent="BackGround"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -54.2659
-margin_top = -108.777
-margin_right = 34.7341
-margin_bottom = -41.7767
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+margin_top = 267.0
+margin_right = 1023.0
+margin_bottom = 287.0
 text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionsButton" type="Button" parent="BackGround"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.2162
-margin_top = -8.94049
-margin_right = 37.7838
-margin_bottom = 43.0595
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+margin_top = 291.0
+margin_right = 1023.0
+margin_bottom = 311.0
 text = "Options"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuitButton" type="Button" parent="BackGround"]
-anchor_left = 0.5
-anchor_top = 0.566
-anchor_right = 0.504
-anchor_bottom = 0.638
-margin_left = -48.0594
-margin_top = 33.1244
-margin_right = 34.8445
-margin_bottom = 40.9244
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 315.0
+margin_right = 1023.0
+margin_bottom = 335.0
 text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[connection signal="pressed" from="BackGround/ContinueButton" to="." method="_on_ContinueButton_pressed"]
-[connection signal="pressed" from="BackGround/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="BackGround/QuitButton" to="." method="_on_QuitButton_pressed"]
+[node name="VolumeSlider" type="HSlider" parent="."]
+visible = false
+anchor_left = 0.431
+anchor_top = 0.5
+anchor_right = 0.595
+anchor_bottom = 0.5
+margin_left = -0.344025
+margin_top = -8.0
+margin_right = -0.280029
+margin_bottom = 8.0
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VolumeSliderLabel" type="Label" parent="VolumeSlider"]
+anchor_left = 0.244
+anchor_top = -1.625
+anchor_right = 0.649
+anchor_bottom = -0.062
+margin_left = 0.00799561
+margin_top = 1.90735e-06
+margin_right = -0.0320053
+margin_bottom = -0.00799996
+text = "Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullScreenToggle" type="CheckButton" parent="."]
+visible = false
+anchor_left = 0.463
+anchor_top = 0.662
+anchor_right = 0.537
+anchor_bottom = 0.729
+margin_left = -0.11203
+margin_top = 0.179718
+margin_right = 0.112
+margin_bottom = -0.0202637
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FullScreenToggle"]
+anchor_left = 0.089
+anchor_top = -0.419
+anchor_right = 0.892
+margin_left = -0.764
+margin_top = -0.239998
+margin_right = 0.208
+margin_bottom = 3.0
+text = "Full Screen"
+
+[node name="BackButton" type="Button" parent="."]
+visible = false
+anchor_left = 0.453
+anchor_top = 0.815
+anchor_right = 0.556
+anchor_bottom = 0.88
+margin_left = 0.0147705
+margin_top = 0.203888
+margin_right = -0.457275
+margin_bottom = 0.203857
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="value_changed" from="VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
+[connection signal="pressed" from="FullScreenToggle" to="." method="_on_FullScreenToggle_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
