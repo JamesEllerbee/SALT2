@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
-[ext_resource path="res://Sounds/Dry-Empty-GunFire-A-www.fesliyanstudios.com.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/Mossberg 500 pump shotgun sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Dry-Empty-GunFire-A.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Mossberg_500_pump_shotgun_sound.wav" type="AudioStream" id=4]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -76,6 +76,7 @@ __meta__ = {
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
 volume_db = -10.0
+attenuation = 1e-05
 
 [node name="FullScreenToggle" type="CheckButton" parent="."]
 visible = false
