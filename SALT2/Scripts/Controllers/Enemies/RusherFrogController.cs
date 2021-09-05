@@ -3,7 +3,6 @@ using Godot;
 
 namespace SALT2.Scripts.Controllers.Enemies
 {
-
     /// <summary>
     /// Script that controls the Rusher Frog enemy types.
     /// </summary>

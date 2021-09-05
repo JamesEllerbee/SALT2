@@ -78,7 +78,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         /// <summary>
         /// Process the walk cycle.
         /// </summary>
-        protected void DoWalkCycle()
+        protected void DoWalkCycle(float delta)
         {
             // during the process method, apply movement along the "walk cycle"
             var currentTime = GetCurrentTime();
