@@ -38,7 +38,9 @@ public class Menu : Control
     private void _on_StartButton_pressed()
     {
         GetNode<AudioStreamPlayer>("StartSoundFX").Play();
-        GetTree().ChangeScene("res://Scenes/dev_test1.tscn");
+
+        // todo: update this to the level scene.
+        GetTree().ChangeScene("res://Scenes/dev_testnew.tscn");
     }
 
     private void _on_QuitButton_pressed()
