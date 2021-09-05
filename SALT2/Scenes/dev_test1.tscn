@@ -55,10 +55,17 @@ shape = SubResource( 3 )
 [node name="GroundBasicFrog" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1906, 2.35211, 0 )
 
+[node name="CollisionShape" parent="GroundBasicFrog/DetectionRadius" index="0"]
+disabled = false
+
 [node name="GroundRusherFrog" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7395, 2.8137, 0 )
 
+[node name="CollisionShape" parent="GroundRusherFrog/DetectionRadius" index="0"]
+disabled = false
+
 [editable path="Player"]
 [editable path="Camera"]
+[editable path="GroundBasicFrog"]
 [editable path="GroundRusherFrog"]
 [editable path="GroundRusherFrog/Graphics/polywogUPDATED"]

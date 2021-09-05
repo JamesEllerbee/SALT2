@@ -18,6 +18,11 @@ namespace SALT2.Scripts.Controllers.Enemies
         public override void _Process(float delta)
         {
             base._Process(delta);
+
+            if (IsDead)
+            {
+                // todo: begin playing the death animation
+            }
         }
 
         /// <inheritdoc/>

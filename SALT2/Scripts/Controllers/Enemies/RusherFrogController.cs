@@ -9,6 +9,7 @@ namespace SALT2.Scripts.Controllers.Enemies
     public class RusherFrogController : FrogController
     {
         private AnimationPlayer anim;
+        private bool isPlayingDeathAnimation = false;
 
         /// <inheritdoc/>
         public override void _Ready()
@@ -24,14 +25,25 @@ namespace SALT2.Scripts.Controllers.Enemies
         /// <inheritdoc/>
         public override void _Process(float delta)
         {
-            base._PhysicsProcess(delta);
+            base._Process(delta);
+
+            if (IsDead && !isPlayingDeathAnimation)
+            {
+                GD.Print("Playing death animation");
+                // todo: begin playing the death animation
+                anim.Play("Death");
+                isPlayingDeathAnimation = true;
+            }
         }
 
         /// <inheritdoc/>
         public override void _PhysicsProcess(float delta)
         {
             base._PhysicsProcess(delta);
-            DoWalkCycle(delta);
+            if (!IsDead)
+            {
+                DoWalkCycle(delta);
+            }
         }
 
         /// <summary>
