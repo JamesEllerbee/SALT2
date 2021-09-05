@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -22,16 +24,19 @@ public class PlayerController : KinematicBody
     private float airFriction = 0.01f;
     [Export]
     private int hitPoints = 3;
+    [Export]
+    private int invincibilityTimeMs = 1500;
 
     private Vector3 motion;
     private bool canShoot = true;
     private bool facingRight = true;
     private bool wasDamaged = false;
+    private object syncObject = new object();
 
     private AnimationPlayer animPlayer;
     private Spatial graphics;
     private Position3D gun;
-    private Timer cdTimer;
+    private Godot.Timer cdTimer;
     private PackedScene bullet;
 
     #endregion
@@ -57,7 +62,7 @@ public class PlayerController : KinematicBody
         graphics = (Spatial)GetNode("Graphics");
         animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
         gun = (Position3D)graphics.GetNode("Gun");
-        cdTimer = (Timer)gun.GetNode("Cooldown");
+        cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
         bullet = (PackedScene)ResourceLoader.Load("res://Scenes/BULLET.tscn");
         MoveLockZ = true;
     }
@@ -75,13 +80,13 @@ public class PlayerController : KinematicBody
             canShoot = false;
         }
 
-        if (wasDamaged)
+        // todo: do damaged stuff.
+        if (hitPoints < 0)
         {
-            // todo: do damaged stuff.
-
-            wasDamaged = false;
+            // trigger death and respawn.
         }
     }
+
 
     /// <inheritdoc/>
     public override void _PhysicsProcess(float delta)
@@ -171,8 +176,27 @@ public class PlayerController : KinematicBody
     /// <param name="damageValue"> The value that will be used to lower the player's current hit point value. </param>
     public void Damage(int damageValue)
     {
-        hitPoints -= damageValue;
-        wasDamaged = true;
+        // don't apply damage if the player was recently damaged
+        bool hasLock = false;
+        Monitor.TryEnter(syncObject, TimeSpan.FromMilliseconds(1), ref hasLock);
+        if (hasLock && !wasDamaged)
+        {
+            hitPoints -= damageValue;
+            wasDamaged = true;
+            GD.Print($"Damaged! Remaining HP {hitPoints}");
+
+            // start a timer to re-enable damage
+            // todo: invulnerability animation
+            var task = Task.Factory.StartNew(() =>
+            {
+                // after the invicibility timeout, set was damaged to false allowing the player to be damaged again
+                System.Threading.Thread.Sleep(invincibilityTimeMs);
+                wasDamaged = false;
+
+                // todo: stop invincibility animation
+                GD.Print("Player can now be damaged.");
+            });
+        }
     }
 
     /// <summary>

@@ -43,6 +43,12 @@ namespace SALT2.Scripts.Controllers.Enemies
         public long MovingPeriod { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the amount of damage this entity will cause another entity.
+        /// </summary>
+        [Export]
+        public int AttackDamage { get; protected set; }
+
+        /// <summary>
         /// Gets or sets the value indicating the current direction this entity is facing.
         /// </summary>
         public int CurrentFacingDirection { get => directionModifier; protected set => directionModifier = value; }
@@ -56,7 +62,6 @@ namespace SALT2.Scripts.Controllers.Enemies
         /// Gets or sets vertical velocity.
         /// </summary>
         public float VerticalVelocity { get; protected set; }
-
 
         /// <inheritdoc/>
         public override void _Ready()
@@ -73,11 +78,19 @@ namespace SALT2.Scripts.Controllers.Enemies
         public override void _PhysicsProcess(float delta)
         {
             base._PhysicsProcess(delta);
+
+            var collisionInfo = MoveAndCollide(Vector3.Zero, testOnly: true);
+            if (collisionInfo != null && collisionInfo.Collider != null && collisionInfo.Collider is PlayerController)
+            {
+                var playerController = (PlayerController)collisionInfo.Collider;
+                playerController.Damage(AttackDamage);
+            }
         }
 
         /// <summary>
         /// Process the walk cycle.
         /// </summary>
+        /// <param name="delta"> Time since last physics processing. </param>
         protected void DoWalkCycle(float delta)
         {
             // during the process method, apply movement along the "walk cycle"

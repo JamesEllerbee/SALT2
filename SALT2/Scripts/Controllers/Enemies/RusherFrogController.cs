@@ -35,7 +35,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             if (body.IsInGroup("Player"))
             {
-                GD.Print("Detected player");
+                GD.Print($"Detected player");
             }
         }
     }
