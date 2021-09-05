@@ -10,18 +10,16 @@
 [ext_resource path="res://Scripts/Controllers/CucumberController.cs" type="Script" id=8]
 [ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=9]
 
-[sub_resource type="BoxShape" id=1]
-
-[sub_resource type="PanoramaSky" id=2]
+[sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 1 )
 background_sky_custom_fov = 100.0
 background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1 )
 
-[node name="Main" type="Spatial"]
+[sub_resource type="BoxShape" id=3]
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
@@ -45,8 +43,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
 collision_layer = 1031
 collision_mask = 1031
 
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132435, 2.23717, -0.0157108 )
+
+[node name="Gun" parent="Player/Graphics" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.255, 0, 0 )
+
+[node name="Cooldown" parent="Player/Graphics/Gun" index="1"]
+wait_time = 0.15
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 3 )
+environment = SubResource( 2 )
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0963306, -1.90735e-06, 1.90735e-06 )
@@ -63,11 +72,18 @@ __meta__ = {
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
-[node name="Cumcumber" parent="." instance=ExtResource( 7 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.7288, 2.49426, 0 )
-collision_layer = 4
-collision_mask = 0
-script = ExtResource( 8 )
+[node name="Camera" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
+script = ExtResource( 6 )
+
+[node name="StaticBody" parent="Camera" index="0"]
+transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -10.9558, 0, -10 )
+
+[node name="DebugMesh" parent="Camera/StaticBody" index="0"]
+visible = false
+
+[node name="CollisionShape" parent="Camera/StaticBody" index="1"]
+shape = SubResource( 3 )
 
 [node name="GroundBasicFrog" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92736, 6.3373, 0 )
