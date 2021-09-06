@@ -139,8 +139,8 @@ public class PlayerController : KinematicBody
 
                     graphics.RotateZ(-1.5708f);
 
-                    UpdateUIHp(true);
                     hitPoints = maxHp;
+                    UpdateUIHp();
                     inDeathSequence = false;
 
                     // todo: add invinsibility timer
@@ -232,27 +232,36 @@ public class PlayerController : KinematicBody
     }
 
     /// <summary>
-    /// Subtracts the damage value from the player's current health.
+    /// Subtracts the <paramref name="amount"/> value from the player's current health.
     /// </summary>
-    /// <param name="damageValue"> The value that will be used to lower the player's current hit point value. </param>
-    public void Damage(int damageValue)
+    /// <param name="amount"> The value that will be used to lower the player's current hit point value. </param>
+    public void UpdateHitPoints(int amount)
     {
         // don't apply damage if the player was recently damaged
         bool haveLock = false;
         Monitor.TryEnter(damagedSyncObject, TimeSpan.FromMilliseconds(1), ref haveLock);
         if (haveLock && !wasRecentlyDamaged)
         {
-            hitPoints -= damageValue;
-            wasRecentlyDamaged = true;
-            GD.Print($"Damaged! Remaining HP {hitPoints}");
+            hitPoints -= amount;
+
+            if (hitPoints > maxHp)
+            {
+                hitPoints = maxHp;
+            }
+            else if (hitPoints < 0)
+            {
+                hitPoints = 0;
+            }
 
             UpdateUIHp();
+
+            wasRecentlyDamaged = true;
+            GD.Print($"Player HP changed! Remaining HP {hitPoints}");
 
             // start a timer to re-enable damage
             // todo: invulnerability animation
             var damageTimer = Task.Factory.StartNew(() =>
             {
-
                 // after the invicibility timeout, set was damaged to false allowing the player to be damaged again
                 System.Threading.Thread.Sleep(invincibilityTimeMs);
                 wasRecentlyDamaged = false;
@@ -298,28 +307,26 @@ public class PlayerController : KinematicBody
         b.Shoot = true;
     }
 
-    private void UpdateUIHp(bool reset = false)
+    private void UpdateUIHp()
     {
-        if (!reset)
-        {
-            if (ticket3.Visible)
-            {
-                ticket3.Visible = false;
-            }
-            else if (ticket2.Visible)
-            {
-                ticket2.Visible = false;
-            }
-            else if (ticket1.Visible)
-            {
-                ticket1.Visible = false;
-            }
-        }
-        else
+        if (hitPoints == 3)
         {
             ticket1.Visible = true;
             ticket2.Visible = true;
             ticket3.Visible = true;
+        }
+        else if (hitPoints == 2)
+        {
+            ticket3.Visible = false;
+        }
+        else if (hitPoints == 1)
+        {
+            ticket2.Visible = false;
+        }
+        else if (hitPoints <= 0)
+        {
+            ticket1.Visible = false;
+
         }
     }
 }

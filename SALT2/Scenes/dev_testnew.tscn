@@ -8,6 +8,9 @@
 [ext_resource path="res://Scripts/Controllers/CameraController.cs" type="Script" id=6]
 [ext_resource path="res://Prefabs/TICKET.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/SEED_DAY_MUSIC.tscn" type="PackedScene" id=8]
+
+[ext_resource path="res://Prefabs/CUCUMBER.tscn" type="PackedScene" id=8]
+
 [ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=9]
 
 [sub_resource type="PanoramaSky" id=1]
@@ -121,10 +124,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3735, 3.80626, 0 )
 EnemyType = 1
 MoveSpeed = 0.0
 
+
 [node name="SeedBayMusic" parent="." instance=ExtResource( 8 )]
+[node name="Cumcumber" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 28.0247, 2.69115, 0 )
+
+[node name="Cumcumber2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.13322, 5.43569, 0 )
 
 [editable path="Player"]
 [editable path="Camera"]
 [editable path="GroundBasicFrog"]
 [editable path="GroundRusherFrog"]
 [editable path="GroundRusherFrog/Graphics/polywogUPDATED"]
+[editable path="GroundRusherFrog2"]
+[editable path="GroundRusherFrog2/Graphics/polywogUPDATED"]
+[editable path="GroundRusherFrog3"]
+[editable path="GroundRusherFrog3/Graphics/polywogUPDATED"]
+[editable path="GroundRusherFrog4"]
+[editable path="GroundRusherFrog4/Graphics/polywogUPDATED"]
+[editable path="Cumcumber"]
+[editable path="Cumcumber2"]

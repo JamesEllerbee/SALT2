@@ -147,7 +147,7 @@ namespace SALT2.Scripts.Controllers.Enemies
             {
                 // then resolve the player controller and damage the players
                 var playerController = (PlayerController)collisionInfo.Collider;
-                playerController.Damage(AttackDamage);
+                playerController.UpdateHitPoints(AttackDamage);
             }
         }
 

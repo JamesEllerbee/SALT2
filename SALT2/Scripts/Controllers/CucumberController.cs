@@ -4,12 +4,18 @@ using Godot;
 /// <summary>
 /// Script used to control a cucumber collectable.
 /// </summary>
-public class CucumberController : StaticBody
+public class CucumberController : Area
 {
+    [Export]
+    private int restoreAmount = 1;
+
     private KinematicBody player;
+    private Spatial graphics;
 
     [Export]
     private bool isActive = true;
+
+    private bool wasUsed = false;
 
     /// <summary>
     /// Gets a value indicating whether if this entity is active or not.
@@ -23,7 +29,14 @@ public class CucumberController : StaticBody
 
         if (player == null)
         {
-            GD.PrintErr("Could not resolve player");
+            GD.PrintErr("[Cucumber Controller] Could not resolve player");
+        }
+
+        graphics = (Spatial)GetNode("Graphics");
+
+        if (graphics == null)
+        {
+            GD.PrintErr("[Cucumber Controller] Could not resolve Graphics node.");
         }
 
         GD.Print(this.Translation);
@@ -32,36 +45,28 @@ public class CucumberController : StaticBody
     /// <inheritdoc/>
     public override void _Process(float delta)
     {
-        // determine if player touching
-        if (IsPlayerTouching() && isActive)
-        {
-            GD.Print("Player touching cucumber");
-            Disable();
+        base._Process(delta);
 
-            // TODO: animation, clean up this entity
+        if (wasUsed)
+        {
+            Free();
         }
     }
 
-    private bool IsPlayerTouching()
+    /// <summary>
+    /// Hit detection.
+    /// </summary>
+    /// <param name="body">The body that entered this entity.</param>
+    public void OnCumcumberBodyEntered(PhysicsBody body)
     {
-        // the player is touching this entity if the player'x and y are within this entitys translation and scale
-        var playerX = player != null ?
-            player.Translation.x :
-            0;
+        if (body.IsInGroup("Player") && !wasUsed)
+        {
+            var playerController = body as PlayerController;
+            playerController.UpdateHitPoints(restoreAmount * -1);
 
-        var playerY = player != null ?
-            player.Translation.y :
-            0;
-
-        var inX = this.Translation.x - this.Scale.x < playerX && playerX < this.Translation.x + this.Scale.x;
-        var inY = this.Translation.y - this.Scale.y < playerY && playerY < this.Translation.y + this.Scale.y;
-
-        return inX && inY;
-    }
-
-    private void Disable()
-    {
-        this.Visible = false;
-        isActive = false;
+            wasUsed = true;
+            CollisionMask = 0b0;
+            graphics.Visible = false;
+        }
     }
 }
