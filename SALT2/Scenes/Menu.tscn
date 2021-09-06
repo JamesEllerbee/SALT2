@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Textures/rockhover.png" type="Texture" id=9]
 [ext_resource path="res://Textures/cucumber_tick.png" type="Texture" id=10]
 [ext_resource path="res://Fonts/HelvetiPixel.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Textures/saltX.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -67,6 +68,17 @@ margin_right = 1024.0
 margin_bottom = 600.0
 texture = ExtResource( 6 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = 410.062
+margin_right = 637.062
+margin_bottom = 257.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }

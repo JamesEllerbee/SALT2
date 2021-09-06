@@ -1,15 +1,42 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Textures/BlackTexture.png" type="Texture" id=1]
 [ext_resource path="res://AutoLoads/Scripts/Pause.cs" type="Script" id=2]
 [ext_resource path="res://Fonts/SALT2TITLE.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Textures/rock2.png" type="Texture" id=4]
+[ext_resource path="res://Textures/rockpressed.png" type="Texture" id=5]
+[ext_resource path="res://Textures/rockhover.png" type="Texture" id=6]
+[ext_resource path="res://Textures/cucumber_tick.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/HelvetiPixel.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-size = 35
+size = 34
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 35
+size = 38
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 44
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.498039, 0.733333, 0.631373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.498039, 0.733333, 0.631373, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 40
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
 font_data = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -29,51 +56,77 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 visible = false
-margin_left = 20.0
-margin_top = 300.0
-margin_right = 200.0
-margin_bottom = 586.0
+margin_left = 421.951
+margin_top = 153.959
+margin_right = 601.951
+margin_bottom = 439.959
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
-margin_top = 158.0
+[node name="ContinueButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 38.0
 margin_right = 180.0
-margin_bottom = 198.0
+margin_bottom = 118.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="VBoxContainer/ContinueButton"]
+margin_left = 17.0
+margin_top = 23.0
+margin_right = 162.0
+margin_bottom = 56.0
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
 text = "Continue"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-margin_top = 202.0
+[node name="OptionsButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 122.0
 margin_right = 180.0
-margin_bottom = 242.0
-custom_fonts/font = SubResource( 1 )
-text = "Options"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 202.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 246.0
+[node name="Label" type="Label" parent="VBoxContainer/OptionsButton"]
+margin_left = 21.0
+margin_top = 21.0
+margin_right = 159.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+text = "Options"
+
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 206.0
 margin_right = 180.0
 margin_bottom = 286.0
-custom_fonts/font = SubResource( 1 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="VBoxContainer/QuitButton"]
+margin_left = 44.0
+margin_top = 19.0
+margin_right = 135.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 3 )
 text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VolumeSlider" type="HSlider" parent="."]
 visible = false
-margin_left = 441.0
-margin_top = 262.0
-margin_right = 609.0
-margin_bottom = 278.0
+margin_left = 421.951
+margin_top = 243.959
+margin_right = 595.951
+margin_bottom = 273.959
+custom_icons/grabber_highlight = ExtResource( 7 )
+custom_icons/grabber = ExtResource( 7 )
+custom_styles/grabber_area_highlight = SubResource( 5 )
+custom_styles/grabber_area = SubResource( 6 )
 min_value = -80.0
 max_value = 0.0
 __meta__ = {
@@ -85,11 +138,14 @@ anchor_left = -2.625
 anchor_top = -16.375
 anchor_right = -2.625
 anchor_bottom = -16.375
-margin_left = 472.544
-margin_top = 209.373
-margin_right = 521.544
-margin_bottom = 224.373
+margin_left = 488.701
+margin_top = 435.209
+margin_right = 561.701
+margin_bottom = 461.209
 rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
 text = "Volume"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,40 +153,50 @@ __meta__ = {
 
 [node name="FullScreenToggle" type="CheckButton" parent="."]
 visible = false
-margin_left = 454.042
-margin_top = 377.113
-margin_right = 530.042
-margin_bottom = 417.113
-rect_scale = Vector2( 2, 2 )
+margin_left = 479.544
+margin_top = 356.959
+margin_right = 555.544
+margin_bottom = 396.959
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="FullScreenToggle"]
-anchor_left = 0.461
-anchor_top = -0.864
-anchor_right = 0.461
-anchor_bottom = -0.864
-margin_left = -35.036
-margin_top = 1.76355
-margin_right = 34.964
-margin_bottom = 18.0035
+anchor_left = -6.218
+anchor_top = -8.999
+anchor_right = -6.218
+anchor_bottom = -8.999
+margin_left = 427.975
+margin_top = 315.626
+margin_right = 588.975
+margin_bottom = 350.626
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
 text = "Full Screen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="TextureButton" parent="."]
 visible = false
-margin_left = 454.042
-margin_top = 536.0
-margin_right = 594.042
-margin_bottom = 576.0
-custom_fonts/font = SubResource( 2 )
+margin_left = 421.951
+margin_top = 485.686
+margin_right = 601.951
+margin_bottom = 565.686
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="BackButton"]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 147.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
