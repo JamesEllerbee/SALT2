@@ -17,7 +17,6 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="BackGround" type="TextureRect" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0.270588 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,7 +27,6 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 margin_left = 20.0
 margin_top = 300.0
 margin_right = 200.0
@@ -69,7 +67,6 @@ __meta__ = {
 }
 
 [node name="VolumeSlider" type="HSlider" parent="."]
-visible = false
 margin_left = 441.0
 margin_top = 262.0
 margin_right = 609.0
@@ -96,7 +93,6 @@ __meta__ = {
 }
 
 [node name="FullScreenToggle" type="CheckButton" parent="."]
-visible = false
 margin_left = 454.042
 margin_top = 377.113
 margin_right = 530.042
@@ -121,7 +117,6 @@ __meta__ = {
 }
 
 [node name="BackButton" type="Button" parent="."]
-visible = false
 margin_left = 454.042
 margin_top = 536.0
 margin_right = 594.042
