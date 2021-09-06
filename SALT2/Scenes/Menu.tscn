@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
@@ -149,17 +149,17 @@ region = Rect2( 128, 1024, 128, 128 )
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 512, 128, 128 )
+region = Rect2( 0, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 512, 128, 128 )
+region = Rect2( 128, 0, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 640, 128, 128 )
+region = Rect2( 0, 128, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
@@ -199,42 +199,42 @@ region = Rect2( 128, 1024, 128, 128 )
 [sub_resource type="AtlasTexture" id=40]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 128, 128, 128 )
+region = Rect2( 0, 512, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=41]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 256, 128, 128 )
+region = Rect2( 128, 512, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=42]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 256, 128, 128 )
+region = Rect2( 0, 640, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=43]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 384, 128, 128 )
+region = Rect2( 128, 128, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=44]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 384, 128, 128 )
+region = Rect2( 0, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=45]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 128, 128 )
+region = Rect2( 128, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=46]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 0, 128, 128 )
+region = Rect2( 0, 384, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=47]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 128, 128, 128 )
+region = Rect2( 128, 384, 128, 128 )
 
 [sub_resource type="SpriteFrames" id=48]
 animations = [ {
@@ -245,7 +245,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
 "loop": true,
-"name": "Shoot",
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
@@ -255,19 +255,34 @@ animations = [ {
 }, {
 "frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
 "loop": true,
+"name": "Shoot",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": true,
 "name": "Jump",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 43 ), SubResource( 44 ) ],
+"frames": [ SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
 "name": "Death",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
 } ]
+
+[sub_resource type="Animation" id=49]
+resource_name = "FadeToBlack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -510,7 +525,17 @@ frames = SubResource( 48 )
 animation = "Idle"
 frame = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Black" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeToBlack" type="AnimationPlayer" parent="."]
+anims/FadeToBlack = SubResource( 49 )
 
 [connection signal="focus_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_focus_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_mouse_entered"]
@@ -526,4 +551,3 @@ frame = 1
 [connection signal="pressed" from="FullScreenToggle" to="." method="_on_FullScreenToggle_pressed"]
 [connection signal="focus_entered" from="MainMenuButton" to="." method="_on_MainMenuButton_focus_entered"]
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

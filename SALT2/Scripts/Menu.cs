@@ -29,8 +29,10 @@ public class Menu : Control
 	{
 		GetNode<AnimatedSprite>("AnimatedSprite").Play("Shoot", false);
 		GetNode<AudioStreamPlayer>("StartSoundFX").Play();
-		
 		await ToSignal(GetTree().CreateTimer(0.5f, true), "timeout");
+		GetNode<ColorRect>("Black").Visible = true;
+		GetNode<AnimationPlayer>("FadeToBlack").Play("FadeToBlack");
+		await ToSignal(GetTree().CreateTimer(1, true), "timeout");
 
 		GetTree().ChangeScene("res://Scenes/dev_testnew.tscn");
 	}
