@@ -1,9 +1,22 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Materials/dev_purple.tres" type="Material" id=1]
 [ext_resource path="res://Animations/uv_water.tres" type="Animation" id=2]
 [ext_resource path="res://Materials/dev_water.tres" type="Material" id=3]
 [ext_resource path="res://Materials/dev_orange.tres" type="Material" id=4]
+[ext_resource path="res://Level/Objects/cumberXD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Level/Objects/palmTree.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/Objects/rocked.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Level/Blocks/roadTile_060.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://Level/Blocks/roadTile_001.obj" type="ArrayMesh" id=10]
+[ext_resource path="res://Level/Blocks/roadTile_002.obj" type="ArrayMesh" id=11]
+[ext_resource path="res://Level/Blocks/roadTile_254.obj" type="ArrayMesh" id=12]
+[ext_resource path="res://Level/Blocks/roadTile_212.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://Level/Blocks/roadTile_289.obj" type="ArrayMesh" id=14]
+[ext_resource path="res://Level/Blocks/roadTile_003.obj" type="ArrayMesh" id=15]
+[ext_resource path="res://Level/Blocks/roadTile_098.obj" type="ArrayMesh" id=16]
+[ext_resource path="res://Level/Blocks/roadTile_007.obj" type="ArrayMesh" id=17]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -75,3 +88,85 @@ shape = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
 mesh = SubResource( 9 )
 material/0 = ExtResource( 4 )
+
+[node name="cumberXD" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30 )
+
+[node name="palmTree" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
+
+[node name="sandLand" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 50 )
+
+[node name="rocked" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+
+[node name="roadTile_001" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.862, 112.698, 185.952 )
+mesh = ExtResource( 10 )
+material/0 = null
+
+[node name="roadTile_002" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.293, 115.216, 183.708 )
+mesh = ExtResource( 11 )
+material/0 = null
+
+[node name="roadTile_003" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.9589, 111.209, 188.654 )
+mesh = ExtResource( 15 )
+material/0 = null
+
+[node name="roadTile_007" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 104.713, 109.324, 187.698 )
+mesh = ExtResource( 17 )
+material/0 = null
+
+[node name="roadTile_060" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.862, 112.698, 185.952 )
+mesh = ExtResource( 9 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+
+[node name="roadTile_098" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.862, 112.698, 185.952 )
+mesh = ExtResource( 16 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+
+[node name="roadTile_212" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.5799, 113.641, 186.901 )
+mesh = ExtResource( 13 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+
+[node name="roadTile_254" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
+mesh = ExtResource( 12 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+
+[node name="roadTile_289" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.2018, 113.269, 189.473 )
+mesh = ExtResource( 14 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null

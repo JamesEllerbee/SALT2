@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="sandLand" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 2 )
+cell_center_z = false
+data = {
+"cells": PoolIntArray( 0, 1, 12, 1, 1, 12, 2, 1, 12, 3, 1, 12, 4, 1, 12, 5, 1, 12, 6, 1, 12, 7, 1, 12, 8, 1, 12, 9, 1, 12, 10, 1, 12, 11, 1, 12, 12, 1, 12, 65535, 1, 12 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}

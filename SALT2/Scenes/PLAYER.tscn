@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Models/SaltMare.glb" type="PackedScene" id=1]
+[ext_resource path="res://Materials/dev_red.tres" type="Material" id=2]
 [ext_resource path="res://Scripts/Controllers/PlayerController.cs" type="Script" id=3]
 [ext_resource path="res://Materials/dev_orange.tres" type="Material" id=5]
 
@@ -10,6 +11,21 @@ radius = 1.5
 [sub_resource type="CapsuleShape" id=2]
 
 [sub_resource type="CylinderMesh" id=3]
+
+[sub_resource type="Animation" id=4]
+resource_name = "damageTaken"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/SaltMare/Armature/Skeleton/Circle:material/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ null, ExtResource( 2 ), null ]
+}
 
 [node name="Player" type="KinematicBody" groups=[
 "Player",
@@ -42,6 +58,10 @@ material/0 = ExtResource( 5 )
 
 [node name="Cooldown" type="Timer" parent="Graphics/Gun"]
 wait_time = 0.2
+
+[node name="DamageAnimation" type="AnimationPlayer" parent="."]
+playback_speed = 20.0
+anims/damageTaken = SubResource( 4 )
 
 [connection signal="animation_finished" from="Graphics/SaltMare/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Graphics/Gun/Cooldown" to="." method="_on_Cooldown_timeout"]

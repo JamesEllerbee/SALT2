@@ -9,20 +9,21 @@ namespace SALT2.Scripts.Controllers.Enemies
     public class BasicFrogController : FrogController
     {
         private Position3D gun;
-        private Godot.Timer cdTimer;
         private PackedScene bullet;
         private AnimationPlayer anim;
-        private bool canShoot = true;
+        private bool canShoot = false;
         private bool shooting = false;
+        private bool shootAnim = false;
 
         /// <inheritdoc/>
         public override void _Ready()
         {
             base._Ready();
 
-            // anim = (AnimationPlayer)GetNode("AnimationPlayer");
+            anim = (AnimationPlayer)GetNode("Graphics/frogGUNR/AnimationPlayer");
+            anim.GetAnimation("Walk").Loop = true;
+            anim.Play("Walk");
             gun = (Position3D)GetNode("Graphics/Gun");
-            cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
             bullet = (PackedScene)ResourceLoader.Load("res://Scenes/ENEMY_BULLET.tscn");
         }
 
@@ -33,13 +34,14 @@ namespace SALT2.Scripts.Controllers.Enemies
 
             if (shooting && canShoot && !IsDead)
             {
-                Shoot();
-                cdTimer.Start();
+                shootAnim = true;
+                anim.Play("shoot");
                 canShoot = false;
             }
+
             if (IsDead)
             {
-                // todo: begin playing the death animation
+                anim.Play("pain");
             }
         }
 
@@ -49,9 +51,13 @@ namespace SALT2.Scripts.Controllers.Enemies
             base._PhysicsProcess(delta);
 
             // todo: can alter what this entity should be doing when player has been detected
-            if (!shooting)
+            if (!shooting && !IsDead)
             {
-                DoWalkCycle(delta);
+                if (!shootAnim)
+                {
+                    anim.Play("Walk");
+                    DoWalkCycle(delta);
+                }
             }
         }
 
@@ -65,6 +71,8 @@ namespace SALT2.Scripts.Controllers.Enemies
             {
                 GD.Print("Detected player");
                 shooting = true;
+                shootAnim = true;
+                anim.Play("shoot");
             }
         }
 
@@ -78,7 +86,7 @@ namespace SALT2.Scripts.Controllers.Enemies
             {
                 GD.Print("Stopped detecting player");
 
-                // Resets player to correct rotation for walk cycle.
+                // Resets enemy to correct rotation for walk cycle.
                 if (CurrentFacingDirection == 1 && RotationDegrees.y > 0)
                 {
                     Flip();
@@ -88,6 +96,7 @@ namespace SALT2.Scripts.Controllers.Enemies
                     Flip();
                 }
 
+                canShoot = false;
                 shooting = false;
             }
         }
@@ -104,6 +113,8 @@ namespace SALT2.Scripts.Controllers.Enemies
                 Flip();
                 GD.Print("Detected player");
                 shooting = true;
+                shootAnim = true;
+                anim.Play("shoot");
             }
         }
 
@@ -117,7 +128,7 @@ namespace SALT2.Scripts.Controllers.Enemies
             {
                 GD.Print("Stopped detecting player");
 
-                // Resets player to correct rotation for walk cycle.
+                // Resets enemy to correct rotation for walk cycle.
                 if (CurrentFacingDirection == 1 && RotationDegrees.y > 0)
                 {
                     Flip();
@@ -127,16 +138,23 @@ namespace SALT2.Scripts.Controllers.Enemies
                     Flip();
                 }
 
+                canShoot = false;
                 shooting = false;
             }
         }
 
         /// <summary>
-        /// Called when cooldown timer hits 0. Resets enemy's ability to shoot.
+        /// Used to detect end of shooting animations.
         /// </summary>
-        public void _on_Cooldown_timeout()
+        /// <param name="animation">The animation that has finished.</param>
+        public void _on_AnimationPlayer_animation_finished(String animation)
         {
-            canShoot = true;
+            if (animation == "shoot")
+            {
+                Shoot();
+                canShoot = true;
+                shootAnim = false;
+            }
         }
 
         // Logic for firing enemy's weapons.
