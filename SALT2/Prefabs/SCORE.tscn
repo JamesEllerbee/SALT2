@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Controllers/ScoreController.cs" type="Script" id=1]
+
+[node name="Score" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.33484
+margin_right = 1.0
+margin_bottom = 1.33484
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.092
+margin_left = 807.0
+margin_top = 13.0
+margin_right = -116.0
+margin_bottom = -18.2
+rect_scale = Vector2( 2, 2 )
+text = "000000000"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 742.0
+margin_top = 23.0
+margin_right = 782.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+text = "Score:
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}

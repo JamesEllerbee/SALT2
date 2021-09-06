@@ -10,7 +10,7 @@ public class PlayerController : KinematicBody
 {
     #region Private Fields
 
-
+    private const int ScoreDamagePenalty = -100;
 
     [Export]
     private float gravity = 17;
@@ -45,6 +45,8 @@ public class PlayerController : KinematicBody
     private Spatial ticket1;
     private Spatial ticket2;
     private Spatial ticket3;
+
+    private ScoreController scoreController;
 
     private AnimationPlayer animPlayer;
     private Spatial graphics;
@@ -85,6 +87,8 @@ public class PlayerController : KinematicBody
 
         maxHp = hitPoints;
         currentSpeed = maxSpeed;
+
+        scoreController = GetNode<ScoreController>("/root/Main/Score");
 
         ticket1 = (Spatial)GetNode("/root/Main/Camera/Ticket1");
         ticket2 = (Spatial)GetNode("/root/Main/Camera/Ticket2");
@@ -254,6 +258,7 @@ public class PlayerController : KinematicBody
             }
 
             UpdateUIHp();
+            UpdateScore(amount);
 
             wasRecentlyDamaged = true;
             GD.Print($"Player HP changed! Remaining HP {hitPoints}");
@@ -326,7 +331,21 @@ public class PlayerController : KinematicBody
         else if (hitPoints <= 0)
         {
             ticket1.Visible = false;
+        }
+    }
 
+    private void UpdateScore(int value)
+    {
+        bool wasDamage = value > 0;
+        if (wasDamage)
+        {
+            // decrement score
+            scoreController.Add(ScoreDamagePenalty);
+        }
+        else
+        {
+            // increment score
+            scoreController.Add(ScoreDamagePenalty * -1);
         }
     }
 }
