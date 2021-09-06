@@ -6,7 +6,6 @@ using Godot;
 /// </summary>
 public class Menu : Control
 {
-
     /// <inheritdoc/>
     public override void _Ready()
     {

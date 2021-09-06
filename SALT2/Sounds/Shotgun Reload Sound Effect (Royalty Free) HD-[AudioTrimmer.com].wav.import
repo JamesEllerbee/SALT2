@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Shotgun Reload Sound Effect (Royalty Free) HD-[AudioTrimmer.com].wav-34cfe2b6ca748e509a4e8211bc2f2f2f.sample"
+
+[deps]
+
+source_file="res://Sounds/Shotgun Reload Sound Effect (Royalty Free) HD-[AudioTrimmer.com].wav"
+dest_files=[ "res://.import/Shotgun Reload Sound Effect (Royalty Free) HD-[AudioTrimmer.com].wav-34cfe2b6ca748e509a4e8211bc2f2f2f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
