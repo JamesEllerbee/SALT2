@@ -1,0 +1,183 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Controllers/AlertController.cs" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "alertAppear"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "
+", "A
+", "AL
+", "ALE
+", "ALER
+", "ALERT
+", "ALERT!
+" ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "alertBlink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "
+", "ALERT!
+" ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "emergencyAppear"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "
+", "E
+", "EM
+", "EME
+", "EMER
+", "EMERG
+", "EMERGE
+", "EMERGEN
+", "EMERGENC
+", "EMERGENCY
+", "EMERGENCY!
+", "EMERGENCY!
+C", "EMERGENCY!
+CO", "EMERGENCY!
+COD", "EMERGENCY!
+CODE", "EMERGENCY!
+CODE:" ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "destroyBlink"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "
+", "DESTROY.
+", "
+", "DESTROY.
+", "
+", "DESTROY.
+", "
+", "DESTROY.
+", "
+", "DESTROY.
+" ]
+}
+
+[node name="Alert" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.85718
+margin_top = -6.6742
+margin_right = 7.85718
+margin_bottom = -6.67419
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Alert" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.1
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlertAnim" type="AnimationPlayer" parent="Alert"]
+playback_speed = 5.0
+anims/alertAppear = SubResource( 1 )
+
+[node name="AlertBlinkAnim" type="AnimationPlayer" parent="Alert"]
+anims/alertBlink = SubResource( 2 )
+
+[node name="Emergency" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.3
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmergencyAnim" type="AnimationPlayer" parent="Emergency"]
+playback_speed = 5.0
+anims/emergencyAppear = SubResource( 3 )
+
+[node name="Destroy" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.48987
+margin_top = 3.36737
+margin_right = -4.48987
+margin_bottom = 40.3674
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DestroyAnim" type="AnimationPlayer" parent="Destroy"]
+anims/destroyBlink = SubResource( 4 )
+
+[connection signal="animation_finished" from="Alert/AlertAnim" to="." method="_on_AlertAnim_animation_finished"]
+[connection signal="animation_finished" from="Alert/AlertBlinkAnim" to="." method="_on_AlertAnim_animation_finished"]
+[connection signal="animation_finished" from="Emergency/EmergencyAnim" to="." method="_on_EmergencyAnim_animation_finished"]
+[connection signal="animation_finished" from="Destroy/DestroyAnim" to="." method="_on_DestroyAnim_animation_finished"]

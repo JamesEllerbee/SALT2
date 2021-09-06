@@ -78,7 +78,8 @@ public class BulletController : RigidBody
         {
             GD.Print("Boss Hit!");
 
-            // TODO: Add logic to damage boss
+            BossController boss = body as BossController;
+            boss.UpdateHitPoints(damage);
             QueueFree();
             scoreController.Add(20);
         }

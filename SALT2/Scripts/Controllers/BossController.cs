@@ -15,23 +15,38 @@ public class BossController : StaticBody
     private bool isFighting = false;
     private bool canShootGun = false;
     private bool canShootLazer = false;
-    private int hitpoints;
+    private bool isLazerFiring = false;
+    private int hitPoints;
 
     private Position3D gun;
     private Position3D lazer;
     private Timer gunCooldown;
     private Timer lazerCooldown;
+    private AudioStreamPlayer lazerDuration;
+    private AudioStreamPlayer lazerCharge;
+    private Timer bossWindup;
     private PhysicsBody player;
+    private RayCast lazerCast;
+    private CSGCombiner lazerModel;
+    private CSGCombiner lazerChargeModel;
+    private AnimationPlayer anim;
     private PackedScene bullet;
 
     /// <inheritdoc/>
     public override void _Ready()
     {
-        hitpoints = maxHitpoints;
+        hitPoints = maxHitpoints;
         gun = (Position3D)GetNode("Gun");
         lazer = (Position3D)GetNode("Lazer");
         gunCooldown = (Timer)gun.GetNode("Cooldown");
         lazerCooldown = (Timer)lazer.GetNode("LazerCooldown");
+        lazerDuration = (AudioStreamPlayer)lazer.GetNode("LazerDuration");
+        lazerCharge = (AudioStreamPlayer)lazer.GetNode("LazerCharge");
+        bossWindup = (Timer)GetNode("BossWindup");
+        lazerCast = (RayCast)lazer.GetNode("RayCast");
+        lazerModel = (CSGCombiner)lazer.GetNode("CSGCombiner");
+        lazerChargeModel = (CSGCombiner)lazer.GetNode("CSGCombiner2");
+        anim = (AnimationPlayer)GetNode("AnimationPlayer");
         bullet = (PackedScene)ResourceLoader.Load("res://Scenes/ENEMY_BULLET.tscn");
         RotateY(3.14159f);
     }
@@ -50,9 +65,22 @@ public class BossController : StaticBody
 
             if (canShootLazer)
             {
-                ShootLazer();
-                lazerCooldown.Start();
                 canShootLazer = false;
+                lazerChargeModel.Visible = true;
+                lazerCharge.Play();
+            }
+
+            if (isLazerFiring)
+            {
+                if (lazerCast.IsColliding())
+                {
+                    //GD.Print(lazerCast.GetCollider().GetType().ToString());
+                    if (lazerCast.GetCollider().GetType().ToString() == "PlayerController")
+                    {
+                        PlayerController collider = lazerCast.GetCollider() as PlayerController;
+                        collider.UpdateHitPoints(1);
+                    }
+                }
             }
         }
     }
@@ -66,9 +94,7 @@ public class BossController : StaticBody
         if (body.IsInGroup("Player"))
         {
             player = body;
-            isFighting = true;
-            gunCooldown.Start();
-            lazerCooldown.Start();
+            bossWindup.Start();
         }
     }
 
@@ -88,6 +114,65 @@ public class BossController : StaticBody
         canShootLazer = true;
     }
 
+    /// <summary>
+    /// Fire lazer when chargeup is finished.
+    /// </summary>
+    public void _on_LazerCharge_finished()
+    {
+        lazerChargeModel.Visible = false;
+        ShootLazer();
+    }
+
+    /// <summary>
+    /// Disable lazer after duration is up.
+    /// </summary>
+    public void _on_LazerDuration_finished()
+    {
+        isLazerFiring = false;
+        lazerCast.Enabled = false;
+        lazerModel.Visible = false;
+        lazerCooldown.Start();
+    }
+
+    /// <summary>
+    /// Gives player a chance to see boss before fight.
+    /// </summary>
+    public void _on_BossWindup_timeout()
+    {
+        isFighting = true;
+        gunCooldown.Start();
+        lazerCooldown.Start();
+    }
+
+    /// <summary>
+    /// Subtracts the <paramref name="amount"/> value from the boss's current health.
+    /// </summary>
+    /// <param name="amount"> The value that will be used to lower the boss's current hit point value. </param>
+    public void UpdateHitPoints(int amount)
+    {
+        if (isFighting)
+        {
+            hitPoints -= amount;
+            anim.Play("damageTaken");
+
+            if (hitPoints > maxHitpoints)
+            {
+                hitPoints = maxHitpoints;
+            }
+            else if (hitPoints < 0)
+            {
+                hitPoints = 0;
+            }
+
+            GD.Print($"Boss HP changed! Remaining HP {hitPoints}");
+
+            if (hitPoints == 0)
+            {
+                // Add death scene
+            }
+        }
+    }
+
     // Logic for firing boss's standard gun.
     private void Shoot()
     {
@@ -102,6 +187,9 @@ public class BossController : StaticBody
     // Fires boss's lazer weapon.
     private void ShootLazer()
     {
-        // TODO: Add lazer logic.
+        lazerCast.Enabled = true;
+        lazerModel.Visible = true;
+        isLazerFiring = true;
+        lazerDuration.Play();
     }
 }
