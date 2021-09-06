@@ -79,6 +79,7 @@ public class PlayerController : KinematicBody
         animPlayer.GetAnimation("idle").Loop = true;
         animPlayer.GetAnimation("crouchStay").Loop = true;
         animPlayer.GetAnimation("pain").Loop = true;
+        animPlayer.GetAnimation("jump").Loop = true;
         animPlayer.Play("idle");
         gun = (Position3D)graphics.GetNode("Gun");
         cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
@@ -247,13 +248,19 @@ public class PlayerController : KinematicBody
             // Play jump animation if going up.
             if (motion.y > 0)
             {
-                // jump
+                if (!isShooting)
+                {
+                    animPlayer.Play("jump");
+                }
             }
 
             // Play falling animation if going down.
             else
             {
-                // fall
+                if (!isShooting)
+                {
+                    animPlayer.Play("jump");
+                }
             }
 
             // Air friction is applied while in the air.
@@ -299,6 +306,7 @@ public class PlayerController : KinematicBody
             {
                 hitPoints = 0;
             }
+
             UpdateScore(amount);
             wasRecentlyDamaged = true;
             GD.Print($"Player HP changed! Remaining HP {hitPoints}");

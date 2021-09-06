@@ -17,7 +17,7 @@ radius = 0.5
 [node name="Boss" type="StaticBody" groups=[
 "Boss",
 ]]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 collision_layer = 2048
 collision_mask = 1029
 script = ExtResource( 4 )
