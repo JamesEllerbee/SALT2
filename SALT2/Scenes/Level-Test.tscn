@@ -1,8 +1,10 @@
+
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=3]
+
 [ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=6]
@@ -12,6 +14,7 @@
 [ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/CUCUMBER.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Controllers/GameController.cs" type="Script" id=12]
+
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 12 )
@@ -116,3 +119,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 226.94, 5.319, 0.437 )
 
 [node name="GroundBasicFrog7" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 230.151, 7.284, 0 )
+
