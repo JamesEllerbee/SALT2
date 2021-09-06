@@ -15,6 +15,8 @@ public class BulletController : RigidBody
 
     private bool shoot = false;
 
+    private ScoreController scoreController;
+
     /// <summary>
     /// Gets or sets a value indicating whether bullet is shot.
     /// </summary>
@@ -24,6 +26,7 @@ public class BulletController : RigidBody
     public override void _Ready()
     {
         SetAsToplevel(true);
+        scoreController = GetNode<ScoreController>("/root/Main/Score");
     }
 
     /// <inheritdoc/>
@@ -61,13 +64,14 @@ public class BulletController : RigidBody
             }
 
             QueueFree();
+            scoreController.Add(10);
         }
         else if (body.IsInGroup("Player"))
         {
             GD.Print("Player Hit!");
 
             PlayerController player = body as PlayerController;
-            player.Damage(damage);
+            player.UpdateHitPoints(damage);
             QueueFree();
         }
         else if (body.IsInGroup("Boss"))

@@ -24,6 +24,11 @@ namespace SALT2.Scripts.Controllers.Enemies
 
         private bool inDeathSequence = false;
 
+        [Export]
+        private int bounty = 300;
+
+        private ScoreController scoreController;
+
         #endregion
 
         #region Public Properties
@@ -97,7 +102,8 @@ namespace SALT2.Scripts.Controllers.Enemies
             base._Ready();
 
             GD.Print($"Speed={MoveSpeed}, Period={MovingPeriod}");
-            Graphics = (Spatial)GetNode("Graphics");
+            Graphics = GetNode<Spatial>("Graphics");
+            scoreController = GetNode<ScoreController>("/root/Main/Score");
 
             // set the inital change direction period.
             changeDirectionMs = GetNextChangeDirectionPeriod();
@@ -131,6 +137,8 @@ namespace SALT2.Scripts.Controllers.Enemies
                     // free this entity
                     Free();
                 });
+
+                scoreController.Add(bounty);
             }
         }
 
@@ -147,7 +155,7 @@ namespace SALT2.Scripts.Controllers.Enemies
             {
                 // then resolve the player controller and damage the players
                 var playerController = (PlayerController)collisionInfo.Collider;
-                playerController.Damage(AttackDamage);
+                playerController.UpdateHitPoints(AttackDamage);
             }
         }
 
