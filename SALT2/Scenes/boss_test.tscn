@@ -2,10 +2,11 @@
 
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=3]
+[ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY0.tres" type="MeshLibrary" id=3]
 [ext_resource path="res://Prefabs/BOSS.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=6]
+
 
 [node name="Main" type="Spatial"]
 
