@@ -9,7 +9,7 @@ public class Menu : Control
 	/// <inheritdoc/>
 	public override void _Ready()
 	{
-		GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
+		GetNode<TextureButton>("VBoxContainer/StartButton").GrabFocus();
 	}
 
 	// why is this code commented out?
@@ -53,7 +53,7 @@ public class Menu : Control
 		GetNode<VBoxContainer>("VBoxContainer").Visible = false;
 		GetNode<HSlider>("VolumeSlider").Visible = true;
 		GetNode<CheckButton>("FullScreenToggle").Visible = true;
-		GetNode<Button>("MainMenuButton").Visible = true;
+		GetNode<TextureButton>("MainMenuButton").Visible = true;
 	}
 
 	private void _on_VolumeSlider_value_changed(float value)
@@ -71,22 +71,22 @@ public class Menu : Control
 		GetNode<VBoxContainer>("VBoxContainer").Visible = true;
 		GetNode<HSlider>("VolumeSlider").Visible = false;
 		GetNode<CheckButton>("FullScreenToggle").Visible = false;
-		GetNode<Button>("MainMenuButton").Visible = false;
+		GetNode<TextureButton>("MainMenuButton").Visible = false;
 	}
 
 	private void _on_StartButton_mouse_entered()
 	{
-		GetNode<Button>("VBoxContainer/StartButton").GrabFocus();
+		GetNode<TextureButton>("VBoxContainer/StartButton").GrabFocus();
 	}
 
 	private void _on_OptionsButton_mouse_entered()
 	{
-		GetNode<Button>("VBoxContainer/OptionsButton").GrabFocus();
+		GetNode<TextureButton>("VBoxContainer/OptionsButton").GrabFocus();
 	}
 
 	private void _on_QuitButton_mouse_entered()
 	{
-		GetNode<Button>("VBoxContainer/QuitButton").GrabFocus();
+		GetNode<TextureButton>("VBoxContainer/QuitButton").GrabFocus();
 	}
 
 	private void _on_StartButton_focus_entered()
