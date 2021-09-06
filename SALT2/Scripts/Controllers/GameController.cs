@@ -1,21 +1,26 @@
-using Godot;
 using System;
+using Godot;
 
+/// <summary>
+/// Script to controll game components.
+/// </summary>
 public class GameController : Spatial
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    private MusicController musicController;
 
-    // Called when the node enters the scene tree for the first time.
+    /// <inheritdoc/>
     public override void _Ready()
     {
-        
+        musicController = GetNode<MusicController>("/root/Main/SeedBayMusic");
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    /// <inheritdoc/>
+    public override void _Process(float delta)
+    {
+        // if the music controller is not currently playing music, make it play.
+        if (!musicController.Playing)
+        {
+            musicController.Play();
+        }
+    }
 }
