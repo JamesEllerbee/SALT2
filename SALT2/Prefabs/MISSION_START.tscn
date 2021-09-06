@@ -1,0 +1,153 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Controllers/MissionStartController.cs" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "alertAppear"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "
+", "A
+", "AL
+", "ALE
+", "ALER
+", "ALERT
+", "ALERT!
+" ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "alertBlink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "
+", "ALERT!
+" ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "missionAppear"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", "M", "MI", "MIS", "MISS", "MISSI", "MISSIO", "MISSION", "MISSION:" ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "startBlink"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", "START.", "", "START.", "", "START.", "", "START.", "", "START." ]
+}
+
+[node name="MissionStart" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.85718
+margin_top = -6.6742
+margin_right = 7.85718
+margin_bottom = -6.67419
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Alert" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.1
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "
+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlertAnim" type="AnimationPlayer" parent="Alert"]
+playback_speed = 5.0
+anims/alertAppear = SubResource( 1 )
+
+[node name="AlertBlinkAnim" type="AnimationPlayer" parent="Alert"]
+anims/alertBlink = SubResource( 2 )
+
+[node name="Mission" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.3
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MissionAnim" type="AnimationPlayer" parent="Mission"]
+playback_speed = 2.0
+anims/missionAppear = SubResource( 3 )
+
+[node name="Start" type="Label" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.48987
+margin_top = 3.36737
+margin_right = -4.48987
+margin_bottom = 40.3674
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartAnim" type="AnimationPlayer" parent="Start"]
+anims/startBlink = SubResource( 4 )
+
+[connection signal="animation_finished" from="Alert/AlertAnim" to="." method="_on_AlertAnim_animation_finished"]
+[connection signal="animation_finished" from="Alert/AlertBlinkAnim" to="." method="_on_AlertAnim_animation_finished"]
+[connection signal="animation_finished" from="Mission/MissionAnim" to="." method="_on_MissionAnim_animation_finished"]
+[connection signal="animation_finished" from="Start/StartAnim" to="." method="_on_StartAnim_animation_finished"]

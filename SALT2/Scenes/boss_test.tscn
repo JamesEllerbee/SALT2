@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=2]
@@ -6,30 +6,23 @@
 [ext_resource path="res://Prefabs/BOSS.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/BossBoundary.tscn" type="PackedScene" id=7]
+
 
 
 [node name="Main" type="Spatial"]
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38278, 4.00106, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.351457, 4.00106, 10 )
 
 [node name="LeftBoundary" parent="Camera" index="0"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -14, 0, -12 )
 
-[node name="DebugMesh" parent="Camera/LeftBoundary" index="0"]
-visible = false
-
 [node name="RightBoundary" parent="Camera" index="1"]
 transform = Transform( -1, 0, 4.37114e-07, 0, 100, 0, -8.74228e-08, 0, -5, 20.4401, 12, -12 )
 
-[node name="DebugMesh" parent="Camera/RightBoundary" index="0"]
-visible = false
-
 [node name="Despawner" parent="Camera" index="2"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -16.2392, 0, -12 )
-
-[node name="DebugMesh" parent="Camera/Despawner" index="0"]
-visible = false
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 3 )
@@ -41,11 +34,14 @@ __meta__ = {
 "_editor_clip_": 0
 }
 
+[node name="BossBoundary" parent="." instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -7.54979e-07, 0, 10, 0, 1.50996e-07, 0, -5, 30.5133, 0, 0 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08955, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.20022, 2.08955, 0 )
 
 [node name="Boss" parent="." instance=ExtResource( 4 )]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 20.9265, 4.60196, 0 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 21.9375, 7.13196, 0 )
 
 [node name="Health" parent="." instance=ExtResource( 5 )]
 margin_left = 1.0

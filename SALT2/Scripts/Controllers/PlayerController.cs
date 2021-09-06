@@ -48,6 +48,7 @@ public class PlayerController : KinematicBody
 
     private ScoreController scoreController;
     private AnimationPlayer animPlayer;
+    private AnimationPlayer damageAnim;
     private Spatial graphics;
     private Position3D gun;
     private Godot.Timer cdTimer;
@@ -79,7 +80,10 @@ public class PlayerController : KinematicBody
         animPlayer.GetAnimation("idle").Loop = true;
         animPlayer.GetAnimation("crouchStay").Loop = true;
         animPlayer.GetAnimation("pain").Loop = true;
+        animPlayer.GetAnimation("jump").Loop = true;
         animPlayer.Play("idle");
+        damageAnim = (AnimationPlayer)GetNode("DamageAnimation");
+        damageAnim.GetAnimation("damageTaken").Loop = true;
         gun = (Position3D)graphics.GetNode("Gun");
         cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
         standingShape = (CollisionShape)GetNode("CollisionShape");
@@ -130,6 +134,7 @@ public class PlayerController : KinematicBody
             if (haveLock)
             {
                 inDeathSequence = true;
+                damageAnim.Stop();
 
                 // trigger death and respawn.
                 var deathTimers = Task.Factory.StartNew(() =>
@@ -247,13 +252,19 @@ public class PlayerController : KinematicBody
             // Play jump animation if going up.
             if (motion.y > 0)
             {
-                // jump
+                if (!isShooting)
+                {
+                    animPlayer.Play("jump");
+                }
             }
 
             // Play falling animation if going down.
             else
             {
-                // fall
+                if (!isShooting)
+                {
+                    animPlayer.Play("jump");
+                }
             }
 
             // Air friction is applied while in the air.
@@ -290,6 +301,10 @@ public class PlayerController : KinematicBody
         if (haveLock && !wasRecentlyDamaged)
         {
             hitPoints -= amount;
+            if (amount > 0 && !inDeathSequence)
+            {
+                damageAnim.Play("damageTaken");
+            }
 
             if (hitPoints > maxHp)
             {
@@ -299,6 +314,7 @@ public class PlayerController : KinematicBody
             {
                 hitPoints = 0;
             }
+
             UpdateScore(amount);
             wasRecentlyDamaged = true;
             GD.Print($"Player HP changed! Remaining HP {hitPoints}");
@@ -313,6 +329,7 @@ public class PlayerController : KinematicBody
 
                 // todo: stop invincibility animation
                 GD.Print("Player can now be damaged.");
+                damageAnim.Stop();
             });
         }
     }
