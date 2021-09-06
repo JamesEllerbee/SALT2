@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Controllers/ScoreController.cs" type="Script" id=1]
+[ext_resource path="res://Fonts/HelvetiPixel.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
 
 [node name="Score" type="Control"]
 anchor_right = 1.0
@@ -22,6 +29,9 @@ margin_top = 13.0
 margin_right = -116.0
 margin_bottom = -18.2
 rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
 text = "000000000"
 align = 1
 valign = 1
@@ -35,6 +45,9 @@ margin_top = 23.0
 margin_right = 782.0
 margin_bottom = 54.0
 rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
 text = "Score:
 "
 __meta__ = {
