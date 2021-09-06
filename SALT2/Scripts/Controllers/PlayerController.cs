@@ -40,10 +40,6 @@ public class PlayerController : KinematicBody
     private object damagedSyncObject = new object();
     private object deathSequenceSyncObject = new object();
 
-    private Spatial ticket1;
-    private Spatial ticket2;
-    private Spatial ticket3;
-
     private AnimationPlayer animPlayer;
     private Spatial graphics;
     private Position3D gun;
@@ -68,7 +64,6 @@ public class PlayerController : KinematicBody
 
     #endregion
 
-
     /// <inheritdoc/>
     public override void _Ready()
     {
@@ -83,10 +78,6 @@ public class PlayerController : KinematicBody
 
         maxHp = hitPoints;
         currentSpeed = maxSpeed;
-
-        ticket1 = (Spatial)GetNode("/root/Main/Camera/Ticket1");
-        ticket2 = (Spatial)GetNode("/root/Main/Camera/Ticket2");
-        ticket3 = (Spatial)GetNode("/root/Main/Camera/Ticket3");
     }
 
     /// <inheritdoc/>
@@ -138,7 +129,6 @@ public class PlayerController : KinematicBody
                     graphics.RotateZ(-1.5708f);
 
                     hitPoints = maxHp;
-                    UpdateUIHp();
                     inDeathSequence = false;
 
                     // todo: add invinsibility timer
@@ -251,8 +241,6 @@ public class PlayerController : KinematicBody
                 hitPoints = 0;
             }
 
-            UpdateUIHp();
-
             wasRecentlyDamaged = true;
             GD.Print($"Player HP changed! Remaining HP {hitPoints}");
 
@@ -303,28 +291,5 @@ public class PlayerController : KinematicBody
         gun.AddChild(b);
         b.LookAt(GlobalTransform.origin, Vector3.Up);
         b.Shoot = true;
-    }
-
-    private void UpdateUIHp()
-    {
-        if (hitPoints == 3)
-        {
-            ticket1.Visible = true;
-            ticket2.Visible = true;
-            ticket3.Visible = true;
-        }
-        else if (hitPoints == 2)
-        {
-            ticket3.Visible = false;
-        }
-        else if (hitPoints == 1)
-        {
-            ticket2.Visible = false;
-        }
-        else if (hitPoints <= 0)
-        {
-            ticket1.Visible = false;
-
-        }
     }
 }
