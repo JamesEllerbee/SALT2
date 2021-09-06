@@ -1,18 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Textures/white-cloud-blue-sky-sea.jpg" type="Texture" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/BASIC_GROUND_FROG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/Controllers/CameraController.cs" type="Script" id=6]
-[ext_resource path="res://Prefabs/TICKET.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Prefabs/SEED_DAY_MUSIC.tscn" type="PackedScene" id=8]
-
 [ext_resource path="res://Prefabs/CUCUMBER.tscn" type="PackedScene" id=8]
-
 [ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
@@ -23,10 +19,10 @@ background_sky = SubResource( 1 )
 background_sky_custom_fov = 100.0
 background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1 )
 
-[sub_resource type="BoxShape" id=3]
-
 [node name="Main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
+
+[node name="Health" parent="." instance=ExtResource( 10 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23717, 0 )
@@ -56,28 +52,21 @@ __meta__ = {
 }
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
-script = ExtResource( 6 )
 
-[node name="StaticBody" parent="Camera" index="3"]
-transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -14, 0, -10 )
+[node name="LeftBoundary" parent="Camera" index="0"]
+transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -6.01274, 0, 0 )
 
-[node name="DebugMesh" parent="Camera/StaticBody" index="0"]
+[node name="DebugMesh" parent="Camera/LeftBoundary" index="0"]
 visible = false
 
-[node name="CollisionShape" parent="Camera/StaticBody" index="1"]
-shape = SubResource( 3 )
+[node name="RightBoundary" parent="Camera" index="1"]
+transform = Transform( -1, 0, 4.37114e-07, 0, 100, 0, -8.74228e-08, 0, -5, 5.97065, 0, 0 )
 
-[node name="StaticBody2" parent="Camera" index="4"]
-transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, 14, 0, -10 )
-
-[node name="DebugMesh" parent="Camera/StaticBody2" index="0"]
+[node name="DebugMesh" parent="Camera/RightBoundary" index="0"]
 visible = false
 
-[node name="CollisionShape" parent="Camera/StaticBody2" index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10.956, 0, 0 )
-
-[node name="Despawner" parent="Camera" index="5"]
-transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -16.5, 0, -10 )
+[node name="Despawner" parent="Camera" index="2"]
+transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, 45.2228, 0, -10 )
 
 [node name="DebugMesh" parent="Camera/Despawner" index="0"]
 visible = false
@@ -116,16 +105,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3735, 3.80626, 0 )
 EnemyType = 1
 MoveSpeed = 0.0
 
-
 [node name="SeedBayMusic" parent="." instance=ExtResource( 8 )]
+
 [node name="Cumcumber" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 28.0247, 2.69115, 0 )
 
 [node name="Cumcumber2" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.13322, 5.43569, 0 )
 
-[node name="Score" parent="." instance=ExtResource( 10 )]
-
+[editable path="Health"]
+[node name="Score" parent="." instance=ExtResource( 11 )]
 [editable path="Player"]
 [editable path="Camera"]
 [editable path="GroundBasicFrog"]
