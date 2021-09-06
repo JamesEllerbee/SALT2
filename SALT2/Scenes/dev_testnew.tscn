@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Textures/white-cloud-blue-sky-sea.jpg" type="Texture" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Prefabs/CUCUMBER.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=12]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 1 )
@@ -21,14 +22,6 @@ background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0
 
 [node name="Main" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
-
-[node name="Health" parent="." instance=ExtResource( 11 )]
-
-[node name="Score" parent="." instance=ExtResource( 11 )]
-margin_left = 11.3137
-margin_top = 1.81109
-margin_right = 11.3137
-margin_bottom = 1.8111
 
 [node name="SeedBayMusic" parent="." instance=ExtResource( 8 )]
 
@@ -119,8 +112,10 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 28.0247, 2.69115, 0 )
 [node name="Cumcumber2" parent="." instance=ExtResource( 10 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.13322, 5.43569, 0 )
 
-[editable path="Health"]
-[editable path="Score"]
+[node name="Score" parent="." instance=ExtResource( 12 )]
+
+[node name="Health" parent="." instance=ExtResource( 11 )]
+
 [editable path="Player"]
 [editable path="Camera"]
 [editable path="GroundBasicFrog"]
