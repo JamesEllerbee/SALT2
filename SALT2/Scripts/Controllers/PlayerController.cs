@@ -10,8 +10,6 @@ public class PlayerController : KinematicBody
 {
     #region Private Fields
 
-
-
     [Export]
     private float gravity = 17;
     [Export]
