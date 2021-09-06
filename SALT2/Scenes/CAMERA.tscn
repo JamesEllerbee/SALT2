@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Controllers/CameraController.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Controllers/DespawnController.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Controllers/CameraController.cs" type="Script" id=3]
 
@@ -10,8 +9,7 @@
 
 [node name="Camera" type="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
-
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="LeftBoundary" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -1.546, 0, 0 )
