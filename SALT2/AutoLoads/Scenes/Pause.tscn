@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Textures/BlackTexture.png" type="Texture" id=1]
 [ext_resource path="res://AutoLoads/Scripts/Pause.cs" type="Script" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://Textures/rockhover.png" type="Texture" id=6]
 [ext_resource path="res://Textures/cucumber_tick.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/HelvetiPixel.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Prefabs/SLUG_SPRITE.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sounds/PauseMusic.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Dry-Empty-GunFire-A.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Shotgun Reload Sound Effect (Royalty Free) HD-[AudioTrimmer.com].wav" type="AudioStream" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 34
@@ -21,21 +25,21 @@ font_data = ExtResource( 3 )
 size = 44
 font_data = ExtResource( 3 )
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.498039, 0.733333, 0.631373, 1 )
+
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.498039, 0.733333, 0.631373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.498039, 0.733333, 0.631373, 1 )
-
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 size = 24
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 40
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=8]
 size = 50
 font_data = ExtResource( 3 )
 
@@ -125,8 +129,8 @@ margin_right = 595.951
 margin_bottom = 273.959
 custom_icons/grabber_highlight = ExtResource( 7 )
 custom_icons/grabber = ExtResource( 7 )
-custom_styles/grabber_area_highlight = SubResource( 5 )
-custom_styles/grabber_area = SubResource( 6 )
+custom_styles/grabber_area_highlight = SubResource( 4 )
+custom_styles/grabber_area = SubResource( 5 )
 min_value = -80.0
 max_value = 0.0
 __meta__ = {
@@ -143,7 +147,7 @@ margin_top = 435.209
 margin_right = 561.701
 margin_bottom = 461.209
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 text = "Volume"
@@ -170,7 +174,7 @@ margin_left = 427.975
 margin_top = 315.626
 margin_right = 588.975
 margin_bottom = 350.626
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 text = "Full Screen"
@@ -193,13 +197,33 @@ margin_left = 32.0
 margin_top = 16.0
 margin_right = 147.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 text = "Back"
 
+[node name="AnimatedSprite" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 635, 225 )
+scale = Vector2( 0.480719, 0.458621 )
+
+[node name="PauseMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="SelectSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -5.0
+
+[node name="ContinueSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -5.0
+pitch_scale = 1.5
+
+[connection signal="mouse_entered" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="value_changed" from="VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
 [connection signal="pressed" from="FullScreenToggle" to="." method="_on_FullScreenToggle_pressed"]
