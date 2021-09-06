@@ -11,7 +11,6 @@ public class PlayerController : KinematicBody
     #region Private Fields
 
     private const int ScoreDamagePenalty = -100;
-
     [Export]
     private float gravity = 17;
     [Export]
