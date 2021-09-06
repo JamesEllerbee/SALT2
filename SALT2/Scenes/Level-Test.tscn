@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/Objects/rocked.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Level/Objects/palmTree.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Spatial"]
 
@@ -15,7 +17,6 @@
 
 [node name="sandLand" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.5732, 2.41922, -13.5514 )
-visible = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.34833, 3.47906, 0.443986 )
@@ -33,3 +34,63 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 1, 0 )
 }
+
+[node name="palmTree" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.231711, 0.0483522, -0.971582, -0.204274, 0.978914, 0, 0.951095, 0.198469, 0.236702, 12.1695, 0.510541, -9.09772 )
+
+[node name="palmTree2" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 0.167501, 0.0232833, -0.985597, -0.378297, 0.92471, -0.0424462, 0.910403, 0.379959, 0.163698, -13.7113, -2.8612, -18.7355 )
+
+[node name="palmTree3" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 0.0262494, 0.165899, -0.985793, 0.221902, 0.960564, 0.167562, 0.974716, -0.223148, -0.011599, -22.7192, -4.7409, -67.7558 )
+
+[node name="palmTree4" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( -0.847897, -0.476184, -0.233065, -0.350164, 0.833085, -0.428199, 0.398065, -0.281458, -0.873113, -7.26809, -1.51666, -45.7523 )
+
+[node name="palmTree5" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 0.973714, 0.220632, -0.0565798, -0.210062, 0.965892, 0.151416, 0.0880572, -0.13555, 0.986849, 3.91146, -1.37296, -86.3446 )
+
+[node name="palmTree6" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 1, -1.49012e-08, 0, 0, 1, 0, 1.49012e-08, 0, 1, 11.771, 2.4563, -49.3566 )
+
+[node name="palmTree7" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 0.167501, 0.0232833, -0.985597, -0.378297, 0.92471, -0.0424462, 0.910403, 0.379959, 0.163698, -1.94032, -0.404894, -68.0921 )
+
+[node name="palmTree8" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 0.0262494, 0.165899, -0.985793, 0.221902, 0.960564, 0.167562, 0.974716, -0.223148, -0.011599, -10.9482, -2.2846, -117.112 )
+
+[node name="palmTree9" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( -0.847897, -0.476184, -0.233065, -0.350164, 0.833085, -0.428199, 0.398065, -0.281458, -0.873113, 4.5029, 0.939638, -95.109 )
+
+[node name="palmTree10" parent="palmTree" instance=ExtResource( 8 )]
+transform = Transform( 0.973714, 0.220632, -0.0565798, -0.210062, 0.965892, 0.151416, 0.0880572, -0.13555, 0.986849, 15.6825, 1.08335, -135.701 )
+
+[node name="rocked" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.429922, -0.71352, -0.553223, 0.00629109, 0.615093, -0.788429, 0.902844, 0.335483, 0.268931, 24.7465, 2.77215, -17.9022 )
+
+[node name="rocked2" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( -0.19043, 0.156986, 0.969068, -0.916587, 0.325088, -0.23278, -0.351576, -0.932563, 0.0819845, 14.1639, -0.345102, 0.166399 )
+
+[node name="rocked3" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.78486, 0.357107, 0.506429, -0.610688, 0.584413, 0.534342, -0.105146, -0.728653, 0.676764, 18.4192, -16.2545, -11.4835 )
+
+[node name="rocked4" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.900615, -0.0917056, -0.424834, -0.26424, -0.891612, -0.367702, -0.345067, 0.443416, -0.827231, 24.6652, -21.4032, -17.274 )
+
+[node name="rocked5" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.819863, 0.24218, 0.518819, 0.0695352, -0.941548, 0.329623, 0.568322, -0.23417, -0.788781, 33.6963, -32.1817, -24.4478 )
+
+[node name="rocked6" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.993174, -0.0470923, -0.106711, 0.0582421, 0.992881, 0.103901, 0.101059, -0.109407, 0.988847, 20.2495, -43.2549, -33.3251 )
+
+[node name="rocked7" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( -0.108448, 0.24012, 0.964667, -0.957682, 0.235023, -0.166164, -0.266618, -0.941864, 0.20447, 34.3152, -42.7553, -31.6914 )
+
+[node name="rocked8" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.819481, 0.404904, 0.40559, -0.571553, 0.525344, 0.63035, 0.0421567, -0.748376, 0.661933, 35.6126, -59.7582, -44.5502 )
+
+[node name="rocked9" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.943733, -0.0964089, -0.316343, -0.245758, -0.844535, -0.475778, -0.221293, 0.526751, -0.820709, 41.2852, -67.2095, -47.4524 )
+
+[node name="rocked10" parent="rocked" instance=ExtResource( 7 )]
+transform = Transform( 0.750346, 0.309855, 0.583927, 0.17584, -0.945071, 0.275538, 0.63723, -0.104071, -0.763615, 42.9525, -78.1253, -59.1253 )
