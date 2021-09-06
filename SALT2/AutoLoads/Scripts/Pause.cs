@@ -22,7 +22,7 @@ public class Pause : CanvasLayer
 
 			GetNode<HSlider>("VolumeSlider").Visible = false;
 			GetNode<CheckButton>("FullScreenToggle").Visible = false;
-			GetNode<Button>("BackButton").Visible = false;
+			GetNode<TextureButton>("BackButton").Visible = false;
 			GetTree().Paused = !GetTree().Paused; // toggles paused status
 		}
 	}
@@ -47,7 +47,7 @@ public class Pause : CanvasLayer
 		GetNode<VBoxContainer>("VBoxContainer").Visible = false;
 		GetNode<HSlider>("VolumeSlider").Visible = true;
 		GetNode<CheckButton>("FullScreenToggle").Visible = true;
-		GetNode<Button>("BackButton").Visible = true;
+		GetNode<TextureButton>("BackButton").Visible = true;
 	}
 
 	private void _on_VolumeSlider_value_changed(float value)
@@ -65,6 +65,6 @@ public class Pause : CanvasLayer
 		GetNode<VBoxContainer>("VBoxContainer").Visible = true;
 		GetNode<HSlider>("VolumeSlider").Visible = false;
 		GetNode<CheckButton>("FullScreenToggle").Visible = false;
-		GetNode<Button>("BackButton").Visible = false;
+		GetNode<TextureButton>("BackButton").Visible = false;
 	}
 }
