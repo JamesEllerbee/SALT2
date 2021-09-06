@@ -174,16 +174,19 @@ region = Rect2( 128, 384, 128, 128 )
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
 atlas = ExtResource( 14 )
+region = Rect2( 128, 640, 128, 128 )
 region = Rect2( 128, 128, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
 atlas = ExtResource( 14 )
+region = Rect2( 0, 768, 128, 128 )
 region = Rect2( 0, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=37]
 flags = 4
 atlas = ExtResource( 14 )
+region = Rect2( 128, 768, 128, 128 )
 region = Rect2( 128, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=38]
@@ -265,8 +268,8 @@ animations = [ {
 }, {
 "frames": [ SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
-"name": "Death",
-"speed": 5.0
+"name": "Jump",
+"speed": 6.0
 } ]
 
 [sub_resource type="Animation" id=49]
