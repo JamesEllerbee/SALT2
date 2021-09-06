@@ -80,6 +80,7 @@ public class BulletController : RigidBody
 
             // TODO: Add logic to damage boss
             QueueFree();
+            scoreController.Add(20);
         }
         else
         {

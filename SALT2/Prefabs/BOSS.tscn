@@ -14,7 +14,9 @@
 [sub_resource type="SphereShape" id=4]
 radius = 0.5
 
-[node name="Boss" type="StaticBody"]
+[node name="Boss" type="StaticBody" groups=[
+"Boss",
+]]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
 collision_layer = 2048
 collision_mask = 1029
