@@ -164,62 +164,62 @@ region = Rect2( 0, 640, 128, 128 )
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 640, 128, 128 )
+region = Rect2( 0, 384, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 768, 128, 128 )
+region = Rect2( 128, 384, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 768, 128, 128 )
+region = Rect2( 128, 128, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 896, 128, 128 )
+region = Rect2( 0, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=37]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 896, 128, 128 )
+region = Rect2( 128, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 1024, 128, 128 )
+region = Rect2( 128, 640, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=39]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 1024, 128, 128 )
+region = Rect2( 0, 768, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=40]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 128, 128, 128 )
+region = Rect2( 128, 768, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=41]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 256, 128, 128 )
+region = Rect2( 0, 896, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=42]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 256, 128, 128 )
+region = Rect2( 128, 896, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=43]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 384, 128, 128 )
+region = Rect2( 0, 1024, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=44]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 384, 128, 128 )
+region = Rect2( 128, 1024, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=45]
 flags = 4
@@ -248,20 +248,20 @@ animations = [ {
 "name": "Shoot",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"frames": [ SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
-"name": "Walk",
-"speed": 15.0
+"name": "Death",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 43 ), SubResource( 44 ) ],
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
 "loop": true,
-"name": "Death",
-"speed": 5.0
+"name": "Walk",
+"speed": 15.0
 }, {
 "frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
