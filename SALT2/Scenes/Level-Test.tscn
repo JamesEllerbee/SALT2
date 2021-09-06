@@ -23,8 +23,10 @@ script = ExtResource( 12 )
 [node name="SeedBayMusic" parent="." instance=ExtResource( 9 )]
 
 [node name="sandLand" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.5732, -0.148333, -13.5514 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.161, 0 )
+
+[node name="sandLand2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 365.981, -20.905, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
