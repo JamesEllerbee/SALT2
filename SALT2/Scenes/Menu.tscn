@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Dry-Empty-GunFire-A-www.fesliyanstudios.com.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Mossberg 500 pump shotgun sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://Fonts/SALT2TITLE.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 125
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 5 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -13,46 +30,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.415686, 0.721569, 0.745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.011
+anchor_top = 0.011
+anchor_right = 0.011
+anchor_bottom = 0.032
+margin_left = 10.0
+margin_top = 17.1409
+margin_right = 400.0
+margin_bottom = 135.141
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 6
+custom_constants/shadow_offset_y = 4
+text = "SALT2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -242.0
-margin_top = -141.0
-margin_right = 255.0
-margin_bottom = -26.0
+margin_left = 20.0
+margin_top = 300.0
+margin_right = 200.0
+margin_bottom = 586.141
+custom_constants/separation = 5
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
-margin_right = 497.0
-margin_bottom = 20.0
+margin_top = 152.0
+margin_right = 180.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 2 )
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
-margin_top = 24.0
-margin_right = 497.0
-margin_bottom = 44.0
+margin_top = 197.0
+margin_right = 180.0
+margin_bottom = 241.0
+custom_fonts/font = SubResource( 3 )
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 48.0
-margin_right = 497.0
-margin_bottom = 68.0
+margin_top = 246.0
+margin_right = 180.0
+margin_bottom = 286.0
+custom_fonts/font = SubResource( 4 )
 text = "Quit"
 
 [node name="VolumeSlider" type="HSlider" parent="."]
 visible = false
-anchor_left = 0.331
-anchor_top = 0.322
-anchor_right = 0.487
-anchor_bottom = 0.36
-margin_left = 0.0559692
-margin_top = -0.200012
-margin_right = 0.311981
-margin_bottom = -1.52588e-05
+margin_left = 458.749
+margin_top = 199.512
+margin_right = 582.749
+margin_bottom = 308.512
 min_value = -80.0
 max_value = 0.0
 __meta__ = {
@@ -60,14 +101,14 @@ __meta__ = {
 }
 
 [node name="VolumeSliderLabel" type="Label" parent="VolumeSlider"]
-anchor_left = 0.523
+anchor_left = 0.5
 anchor_top = 0.477
-anchor_right = 0.616
-anchor_bottom = 0.488
-margin_left = -46.68
-margin_top = -23.971
-margin_right = -12.56
-margin_bottom = -10.224
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.4143
+margin_top = -36.4072
+margin_right = 25.5857
+margin_bottom = -24.9142
 text = "Volume"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -79,10 +120,10 @@ volume_db = -10.0
 
 [node name="FullScreenToggle" type="CheckButton" parent="."]
 visible = false
-margin_left = 375.0
-margin_top = 292.0
-margin_right = 451.0
-margin_bottom = 332.0
+margin_left = 486.435
+margin_top = 300.0
+margin_right = 562.435
+margin_bottom = 340.0
 
 [node name="FullScreenToggleLabel" type="Label" parent="FullScreenToggle"]
 anchor_top = -0.225
@@ -97,10 +138,11 @@ __meta__ = {
 
 [node name="MainMenuButton" type="Button" parent="."]
 visible = false
-margin_left = 356.969
-margin_top = 393.031
-margin_right = 465.969
-margin_bottom = 419.031
+anchor_right = 0.022
+margin_left = 496.0
+margin_top = 393.0
+margin_right = 528.472
+margin_bottom = 413.0
 text = "Back"
 
 [node name="SelectSoundFX" type="AudioStreamPlayer" parent="."]
