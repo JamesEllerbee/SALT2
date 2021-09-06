@@ -22,7 +22,7 @@ data = {
 image = SubResource( 18 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="ConvexPolygonShape" id=2]
+[sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
 [sub_resource type="CubeMesh" id=20]
@@ -41,8 +41,7 @@ data = {
 image = SubResource( 21 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="SpatialMaterial" id=1]
-resource_name = "Stone"
+[sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0.847059, 0.827451, 0.74902, 1 )
 metallic = 0.33
 
@@ -54,7 +53,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": SubResource( 1 ),
+"material": SubResource( 8 ),
 "name": "Stone",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -180,7 +179,7 @@ data = {
 image = SubResource( 29 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape" id=18]
 extents = Vector3( 1.51294, 0.225757, 1.50661 )
 
 [sub_resource type="SpatialMaterial" id=31]
@@ -193,8 +192,7 @@ resource_name = "Asphalt"
 albedo_color = Color( 0.411765, 0.411765, 0.411765, 1 )
 metallic = 0.33
 
-[sub_resource type="SpatialMaterial" id=3]
-resource_name = "Grey_Asphalt"
+[sub_resource type="SpatialMaterial" id=21]
 albedo_color = Color( 0.560784, 0.568627, 0.6, 1 )
 metallic = 0.33
 
@@ -232,7 +230,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6,
-"material": SubResource( 3 ),
+"material": SubResource( 21 ),
 "name": "Grey_Asphalt",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -271,7 +269,7 @@ surfaces/5 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 18,
-"material": SubResource( 3 ),
+"material": SubResource( 21 ),
 "name": "Grey_Asphalt",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -297,7 +295,7 @@ surfaces/7 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 12,
-"material": SubResource( 3 ),
+"material": SubResource( 21 ),
 "name": "Grey_Asphalt",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -317,7 +315,7 @@ data = {
 image = SubResource( 34 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="BoxShape" id=13]
+[sub_resource type="BoxShape" id=25]
 extents = Vector3( 1.61843, 0.356988, 1.61507 )
 
 [sub_resource type="SpatialMaterial" id=36]
@@ -637,7 +635,7 @@ data = {
 image = SubResource( 53 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="ConvexPolygonShape" id=6]
+[sub_resource type="ConvexPolygonShape" id=46]
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
 [sub_resource type="CubeMesh" id=55]
@@ -657,7 +655,7 @@ data = {
 image = SubResource( 56 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="ConvexPolygonShape" id=8]
+[sub_resource type="ConvexPolygonShape" id=50]
 points = PoolVector3Array( -0.25, 1, 1, 0.25, 1, -1, 0.25, 1, 1, -0.25, 1, -1, -0.25, -1, 1, 0.25, -1, -1, 0.25, -1, 1, -0.25, -1, -1, 0.25, 1, 1, -0.25, 1, -1, 0.25, 1, -1, -0.25, 1, 1, 0.25, -1, 1, -0.25, -1, -1, 0.25, -1, -1, -0.25, -1, 1, 0.25, 1, 1, -0.25, -1, 1, -0.25, 1, 1, 0.25, -1, 1, 0.25, 1, -1, -0.25, -1, -1, -0.25, 1, -1, 0.25, -1, -1 )
 
 [sub_resource type="CubeMesh" id=58]
@@ -831,14 +829,14 @@ data = {
 image = SubResource( 77 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="BoxShape" id=11]
+[sub_resource type="BoxShape" id=72]
 extents = Vector3( 1.60295, 0.512096, 1.56556 )
 
 [resource]
 item/0/name = "FloorCube"
 item/0/mesh = SubResource( 17 )
 item/0/mesh_transform = null
-item/0/shapes = [ SubResource( 2 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+item/0/shapes = [ SubResource( 4 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
 item/0/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/0/preview = SubResource( 19 )
 item/1/name = "WaterCube"
@@ -850,13 +848,13 @@ item/1/preview = SubResource( 22 )
 item/2/name = "BoundaryCube"
 item/2/mesh = SubResource( 52 )
 item/2/mesh_transform = null
-item/2/shapes = [ SubResource( 6 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+item/2/shapes = [ SubResource( 46 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
 item/2/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/2/preview = SubResource( 54 )
 item/3/name = "HalfCube"
 item/3/mesh = SubResource( 55 )
 item/3/mesh_transform = null
-item/3/shapes = [ SubResource( 8 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+item/3/shapes = [ SubResource( 50 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
 item/3/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/3/preview = SubResource( 57 )
 item/4/name = "MeshInstance"
@@ -880,19 +878,19 @@ item/6/preview = SubResource( 66 )
 item/7/name = "roadTile_001"
 item/7/mesh = SubResource( 68 )
 item/7/mesh_transform = null
-item/7/shapes = [ SubResource( 10 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 ) ]
+item/7/shapes = [ SubResource( 18 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 ) ]
 item/7/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/7/preview = SubResource( 70 )
 item/8/name = "roadTile_002"
 item/8/mesh = SubResource( 72 )
 item/8/mesh_transform = null
-item/8/shapes = [ SubResource( 10 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4963, 0.359981, -1.56638 ) ]
+item/8/shapes = [ SubResource( 18 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4963, 0.359981, -1.56638 ) ]
 item/8/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/8/preview = SubResource( 74 )
 item/9/name = "roadTile_003"
 item/9/mesh = SubResource( 76 )
 item/9/mesh_transform = null
-item/9/shapes = [ SubResource( 11 ), Transform( 0.929397, 0.369082, 0, -0.369082, 0.929397, 0, 0, 0, 1, 1.43183, 0.779032, -1.43976 ) ]
+item/9/shapes = [ SubResource( 72 ), Transform( 0.929397, 0.369082, 0, -0.369082, 0.929397, 0, 0, 0, 1, 1.43183, 0.779032, -1.43976 ) ]
 item/9/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/9/preview = SubResource( 78 )
 item/10/name = "roadTile_007"
@@ -904,13 +902,13 @@ item/10/preview = SubResource( 25 )
 item/11/name = "roadTile_060"
 item/11/mesh = SubResource( 28 )
 item/11/mesh_transform = null
-item/11/shapes = [ SubResource( 10 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 ) ]
+item/11/shapes = [ SubResource( 18 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 ) ]
 item/11/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/11/preview = SubResource( 30 )
 item/12/name = "roadTile_098"
 item/12/mesh = SubResource( 33 )
 item/12/mesh_transform = null
-item/12/shapes = [ SubResource( 13 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50658, 0.292842, -1.50094 ) ]
+item/12/shapes = [ SubResource( 25 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50658, 0.292842, -1.50094 ) ]
 item/12/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/12/preview = SubResource( 35 )
 item/13/name = "roadTile_212"
