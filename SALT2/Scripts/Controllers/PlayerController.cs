@@ -10,6 +10,7 @@ public class PlayerController : KinematicBody
 {
     #region Private Fields
 
+    private const int ScoreDamagePenalty = -100;
     [Export]
     private float gravity = 17;
     [Export]
@@ -40,6 +41,7 @@ public class PlayerController : KinematicBody
     private object damagedSyncObject = new object();
     private object deathSequenceSyncObject = new object();
 
+    private ScoreController scoreController;
     private AnimationPlayer animPlayer;
     private Spatial graphics;
     private Position3D gun;
@@ -78,6 +80,7 @@ public class PlayerController : KinematicBody
 
         maxHp = hitPoints;
         currentSpeed = maxSpeed;
+        scoreController = GetNode<ScoreController>("/root/Main/Score");
     }
 
     /// <inheritdoc/>
@@ -240,7 +243,7 @@ public class PlayerController : KinematicBody
             {
                 hitPoints = 0;
             }
-
+            UpdateScore(amount);
             wasRecentlyDamaged = true;
             GD.Print($"Player HP changed! Remaining HP {hitPoints}");
 
