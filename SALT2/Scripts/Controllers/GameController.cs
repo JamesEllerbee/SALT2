@@ -1,29 +1,21 @@
-using System;
 using Godot;
+using System;
 
-namespace SALT2.Scenes
+public class GameController : Spatial
 {
-    /// <summary>
-    /// Script to control game components.
-    /// </summary>
-    public class GameController : Spatial
+    // Declare member variables here. Examples:
+    // private int a = 2;
+    // private string b = "text";
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
     {
-        private MusicController musicController;
-
-        /// <inheritdoc/>
-        public override void _Ready()
-        {
-            musicController = GetNode<MusicController>("/root/Main/SeedbayMusic");
-        }
-
-        /// <inheritdoc/>
-        public override void _Process(float delta)
-        {
-            // check to see if the music controller is playing the level track, and make it play if it is not.
-            if (!musicController.Playing)
-            {
-                musicController.Play();
-            }
-        }
+        
     }
+
+//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+//  public override void _Process(float delta)
+//  {
+//      
+//  }
 }
