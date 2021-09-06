@@ -318,4 +318,19 @@ public class PlayerController : KinematicBody
         b.LookAt(GlobalTransform.origin, Vector3.Up);
         b.Shoot = true;
     }
+
+    private void UpdateScore(int value)
+    {
+        bool wasDamage = value > 0;
+        if (wasDamage)
+        {
+            // decrement score
+            scoreController.Add(ScoreDamagePenalty);
+        }
+        else
+        {
+            // increment score
+            scoreController.Add(ScoreDamagePenalty * -1);
+        }
+    }
 }
