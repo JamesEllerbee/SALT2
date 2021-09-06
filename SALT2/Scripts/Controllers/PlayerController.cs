@@ -32,6 +32,9 @@ public class PlayerController : KinematicBody
     private float currentSpeed;
 
     private Vector3 motion;
+    private Vector3 lastValidPosition;
+    private float minValidY = -50;
+
     private bool canShoot = true;
     private bool facingRight = true;
     private bool wasRecentlyDamaged = false;
@@ -67,7 +70,6 @@ public class PlayerController : KinematicBody
     public int CurrentHealth { get => hitPoints; }
 
     #endregion
-
 
     /// <inheritdoc/>
     public override void _Ready()
@@ -145,6 +147,21 @@ public class PlayerController : KinematicBody
                 });
             }
         }
+
+        // if player fall below min valid y value, set translations to last valid position
+        if (Translation.y < minValidY)
+        {
+            Translation = lastValidPosition;
+
+            // reset velocity
+            MoveAndSlide(Vector3.Zero);
+        }
+
+        // if player falls of z axis, update translation.
+        if (Translation.z != 0)
+        {
+            Translation = new Vector3(Translation.x, Translation.y, 0);
+        }
     }
 
     /// <inheritdoc/>
@@ -192,6 +209,11 @@ public class PlayerController : KinematicBody
             {
                 motion.x = Mathf.Lerp(motion.x, 0, friction);
             }
+
+            lastValidPosition = Translation;
+
+            // ensure lastvalid position always has a z value of 0
+            lastValidPosition.z = 0;
         }
         else if (!inDeathSequence)
         {
