@@ -1,9 +1,26 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Materials/dev_dark_orange.tres" type="Material" id=1]
-[ext_resource path="res://Materials/dev_red.tres" type="Material" id=2]
+[ext_resource path="res://Sounds/lazer_sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://Materials/dev_orange.tres" type="Material" id=3]
 [ext_resource path="res://Scripts/Controllers/BossController.cs" type="Script" id=4]
+[ext_resource path="res://Sounds/lazer_charge.wav" type="AudioStream" id=5]
+[ext_resource path="res://Materials/dev_red.tres" type="Material" id=6]
+
+[sub_resource type="Animation" id=6]
+resource_name = "damageTaken"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:material/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 1 ) ]
+}
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -11,8 +28,11 @@
 
 [sub_resource type="CylinderMesh" id=3]
 
-[sub_resource type="SphereShape" id=4]
-radius = 0.5
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereShape" id=5]
+radius = 0.3
 
 [node name="Boss" type="StaticBody" groups=[
 "Boss",
@@ -21,6 +41,10 @@ transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 collision_layer = 2048
 collision_mask = 1029
 script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 20.0
+anims/damageTaken = SubResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -40,16 +64,41 @@ mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="Cooldown" type="Timer" parent="Gun"]
+wait_time = 2.0
 
 [node name="Lazer" type="Position3D" parent="."]
-
-[node name="MeshInstance" type="MeshInstance" parent="Lazer"]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
-mesh = SubResource( 3 )
-material/0 = ExtResource( 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0 )
 
 [node name="LazerCooldown" type="Timer" parent="Lazer"]
-wait_time = 5.0
+wait_time = 8.0
+
+[node name="RayCast" type="RayCast" parent="Lazer"]
+transform = Transform( 0, -10, 4.37114e-08, 0, -4.37114e-07, -1, 0, -4.37114e-07, 1.91069e-15, 0, 0, 0 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="Lazer"]
+transform = Transform( -1.09278e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 2.5, -4.37114e-08, 1.91069e-15, 3, 0, 0 )
+visible = false
+material_override = SubResource( 4 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Lazer/CSGCombiner"]
+transform = Transform( 0.0235039, 7.10543e-15, -3.30872e-24, 0, 5.40805, -5.34069e-24, 0, -4.51673e-22, 0.063946, 0, 0, 0 )
+
+[node name="CSGCombiner2" type="CSGCombiner" parent="Lazer"]
+transform = Transform( -1.09278e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 2.5, -4.37114e-08, 1.91069e-15, 3, 0, 0 )
+visible = false
+material_override = SubResource( 4 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Lazer/CSGCombiner2"]
+transform = Transform( 0.0235039, 7.10543e-15, -3.30872e-24, 0, 5.40805, -5.34069e-24, 0, -4.51673e-22, 0.063946, 0, 0, 0 )
+radius = 0.2
+
+[node name="LazerDuration" type="AudioStreamPlayer" parent="Lazer"]
+stream = ExtResource( 2 )
+volume_db = -10.0
+
+[node name="LazerCharge" type="AudioStreamPlayer" parent="Lazer"]
+stream = ExtResource( 5 )
+volume_db = -10.0
 
 [node name="DetectionRadius" type="Area" parent="."]
 transform = Transform( -1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 0, 0, 0 )
@@ -57,9 +106,16 @@ gravity = 0.0
 collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="DetectionRadius"]
-transform = Transform( 10, -6.77626e-21, 0, 0, -4.37114e-07, -1, -6.77626e-21, 10, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 4 )
+transform = Transform( 10, 6.77626e-21, 0, 0, -4.37114e-07, -1, -3.38813e-21, 10, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="BossWindup" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="Gun/Cooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="timeout" from="Lazer/LazerCooldown" to="." method="_on_LazerCooldown_timeout"]
+[connection signal="finished" from="Lazer/LazerDuration" to="." method="_on_LazerDuration_finished"]
+[connection signal="finished" from="Lazer/LazerCharge" to="." method="_on_LazerCharge_finished"]
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_DetectionRadius_body_entered"]
+[connection signal="timeout" from="BossWindup" to="." method="_on_BossWindup_timeout"]

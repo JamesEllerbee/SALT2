@@ -12,12 +12,16 @@ public class CameraController : Camera
     private KinematicBody player;
     private bool bossSequence = false;
     private PackedScene alert;
+    private PackedScene missionStart;
 
     /// <inheritdoc/>
     public override void _Ready()
     {
         player = (KinematicBody)GetNode("/root/Main/Player");
         alert = (PackedScene)ResourceLoader.Load("res://Prefabs/ALERT.tscn");
+        missionStart = (PackedScene)ResourceLoader.Load("res://Prefabs/MISSION_START.tscn");
+        var s = missionStart.Instance();
+        AddChild(s);
 
         if (player == null)
         {

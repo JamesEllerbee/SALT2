@@ -1,20 +1,20 @@
 using Godot;
 using System;
 
-public class AlertController : Control
+public class MissionStartController : Control
 {
     private AnimationPlayer alertAnim;
     private AnimationPlayer alertBlinkAnim;
-    private AnimationPlayer emergAnim;
-    private AnimationPlayer destroyAnim;
+    private AnimationPlayer missionAnim;
+    private AnimationPlayer startAnim;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         alertAnim = (AnimationPlayer)GetNode("Alert/AlertAnim");
         alertBlinkAnim = (AnimationPlayer)GetNode("Alert/AlertBlinkAnim");
-        emergAnim = (AnimationPlayer)GetNode("Emergency/EmergencyAnim");
-        destroyAnim = (AnimationPlayer)GetNode("Destroy/DestroyAnim");
+        missionAnim = (AnimationPlayer)GetNode("Mission/MissionAnim");
+        startAnim = (AnimationPlayer)GetNode("Start/StartAnim");
 
         alertAnim.Play("alertAppear");
     }
@@ -24,22 +24,22 @@ public class AlertController : Control
         if (animation == "alertAppear")
         {
             alertBlinkAnim.Play("alertBlink");
-            emergAnim.Play("emergencyAppear");
+            missionAnim.Play("missionAppear");
         }
     }
 
-    public void _on_EmergencyAnim_animation_finished(String animation)
+    public void _on_MissionAnim_animation_finished(String animation)
     {
-        if (animation == "emergencyAppear")
+        if (animation == "missionAppear")
         {
-            destroyAnim.Play("destroyBlink");
+            startAnim.Play("startBlink");
             alertBlinkAnim.Stop();
         }
     }
 
-    public void _on_DestroyAnim_animation_finished(String animation)
+    public void _on_StartAnim_animation_finished(String animation)
     {
-        if (animation == "destroyBlink")
+        if (animation == "startBlink")
         {
             QueueFree();
         }

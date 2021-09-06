@@ -48,6 +48,7 @@ public class PlayerController : KinematicBody
 
     private ScoreController scoreController;
     private AnimationPlayer animPlayer;
+    private AnimationPlayer damageAnim;
     private Spatial graphics;
     private Position3D gun;
     private Godot.Timer cdTimer;
@@ -81,6 +82,8 @@ public class PlayerController : KinematicBody
         animPlayer.GetAnimation("pain").Loop = true;
         animPlayer.GetAnimation("jump").Loop = true;
         animPlayer.Play("idle");
+        damageAnim = (AnimationPlayer)GetNode("DamageAnimation");
+        damageAnim.GetAnimation("damageTaken").Loop = true;
         gun = (Position3D)graphics.GetNode("Gun");
         cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
         standingShape = (CollisionShape)GetNode("CollisionShape");
@@ -131,6 +134,7 @@ public class PlayerController : KinematicBody
             if (haveLock)
             {
                 inDeathSequence = true;
+                damageAnim.Stop();
 
                 // trigger death and respawn.
                 var deathTimers = Task.Factory.StartNew(() =>
@@ -297,6 +301,10 @@ public class PlayerController : KinematicBody
         if (haveLock && !wasRecentlyDamaged)
         {
             hitPoints -= amount;
+            if (amount > 0 && !inDeathSequence)
+            {
+                damageAnim.Play("damageTaken");
+            }
 
             if (hitPoints > maxHp)
             {
@@ -321,6 +329,7 @@ public class PlayerController : KinematicBody
 
                 // todo: stop invincibility animation
                 GD.Print("Player can now be damaged.");
+                damageAnim.Stop();
             });
         }
     }
