@@ -126,6 +126,9 @@ namespace SALT2.Scripts.Controllers.Enemies
                 // update mask so that bullets no longer interact with this entity.
                 CollisionMask = 0b0;
 
+                GetNode<AudioStreamPlayer>("DamageSoundFX").Stop();
+                GetNode<AudioStreamPlayer>("DeathSoundFX").Play();
+
                 // begin death equence timer.
                 var deathTask = Task.Factory.StartNew(() =>
                 {
@@ -167,6 +170,14 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             // future: if an entity has more than 1 hp, and the enemy should have I frames, then update this to create a invulnerability timer and synchronize the code.
             HitPoints -= damageValue;
+            if(HitPoints!= 0)
+            {
+                GetNode<AudioStreamPlayer>("DamageSoundFX").Play();
+            }
+           else if(HitPoints == 0)
+           {
+                GetNode<AudioStreamPlayer>("DeathSoundFX").Play();
+           }
             GD.Print($"Enemy damaged! {HitPoints}");
         }
 
