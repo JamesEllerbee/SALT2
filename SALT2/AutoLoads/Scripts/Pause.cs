@@ -13,16 +13,37 @@ public class Pause : CanvasLayer
 		{
 			GetNode<TextureRect>("BackGround").Visible = !GetNode<TextureRect>("BackGround").Visible;
 			GetNode<VBoxContainer>("VBoxContainer").Visible = !GetNode<VBoxContainer>("VBoxContainer").Visible;
+			
+			GetNode<AnimatedSprite>("AnimatedSprite").Play("Idle", false);
+			GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 225f);
+			GetNode<AnimatedSprite>("AnimatedSprite").Visible = !GetNode<AnimatedSprite>("AnimatedSprite").Visible;
+			
+			
+			
+			//GetNode<AudioStreamPlayer>("PauseMusic").StreamPaused = !GetNode<AudioStreamPlayer>("PauseMusic").StreamPaused;
+			
+			if(GetNode<VBoxContainer>("VBoxContainer").Visible)
+			{
+				GetNode<AudioStreamPlayer>("PauseMusic").Play();
+			} 
+			
+			 if(!GetNode<VBoxContainer>("VBoxContainer").Visible)
+			{
+				GetNode<AudioStreamPlayer>("PauseMusic").Stop();
+			} 
 
 			// checks if options are open, will automatically close out of pause menu if it is
-			if (GetNode<HSlider>("VolumeSlider").Visible == true)
+			if (GetNode<HSlider>("VolumeSlider").Visible)
 			{
+				GetNode<AudioStreamPlayer>("PauseMusic").Stop();
 				GetNode<VBoxContainer>("VBoxContainer").Visible = false;
+				GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
 			}
 
 			GetNode<HSlider>("VolumeSlider").Visible = false;
 			GetNode<CheckButton>("FullScreenToggle").Visible = false;
 			GetNode<TextureButton>("BackButton").Visible = false;
+			GetNode<AudioStreamPlayer>("PauseMusic").Stop();
 			GetTree().Paused = !GetTree().Paused; // toggles paused status
 		}
 	}
@@ -32,12 +53,17 @@ public class Pause : CanvasLayer
 		GetTree().Paused = false;
 		GetNode<TextureRect>("BackGround").Visible = false;
 		GetNode<VBoxContainer>("VBoxContainer").Visible = false;
+		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+		GetNode<AudioStreamPlayer>("PauseMusic").Stop();
+		GetNode<AudioStreamPlayer>("ContinueSoundFX").Play();
 	}
 
 	private void _on_QuitButton_pressed()
 	{
 		GetNode<TextureRect>("BackGround").Visible = false;
 		GetNode<VBoxContainer>("VBoxContainer").Visible = false;
+		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+		GetNode<AudioStreamPlayer>("PauseMusic").Stop();
 		GetTree().Paused = false;
 		GetTree().ChangeScene("res://Scenes/Menu.tscn");
 	}
@@ -48,6 +74,7 @@ public class Pause : CanvasLayer
 		GetNode<HSlider>("VolumeSlider").Visible = true;
 		GetNode<CheckButton>("FullScreenToggle").Visible = true;
 		GetNode<TextureButton>("BackButton").Visible = true;
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 525f);
 	}
 
 	private void _on_VolumeSlider_value_changed(float value)
@@ -66,5 +93,28 @@ public class Pause : CanvasLayer
 		GetNode<HSlider>("VolumeSlider").Visible = false;
 		GetNode<CheckButton>("FullScreenToggle").Visible = false;
 		GetNode<TextureButton>("BackButton").Visible = false;
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 313f);
+	}
+	
+	private void _on_ContinueButton_mouse_entered()
+	{
+		GetNode<TextureButton>("VBoxContainer/ContinueButton").GrabFocus();
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 225f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+		
+	}
+	
+	private void _on_OptionsButton_mouse_entered()
+	{
+		GetNode<TextureButton>("VBoxContainer/OptionsButton").GrabFocus();
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 313f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+	}
+	
+	private void _on_QuitButton_mouse_entered()
+	{
+		GetNode<TextureButton>("VBoxContainer/QuitButton").GrabFocus();
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 397f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
 	}
 }
