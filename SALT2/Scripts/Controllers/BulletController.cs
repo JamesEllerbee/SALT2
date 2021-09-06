@@ -74,6 +74,14 @@ public class BulletController : RigidBody
             player.UpdateHitPoints(damage);
             QueueFree();
         }
+        else if (body.IsInGroup("Boss"))
+        {
+            GD.Print("Boss Hit!");
+
+            // TODO: Add logic to damage boss
+            QueueFree();
+            scoreController.Add(20);
+        }
         else
         {
             QueueFree();
