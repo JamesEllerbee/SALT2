@@ -36,6 +36,8 @@ public class PlayerController : KinematicBody
     private Vector3 motion;
     private bool canShoot = true;
     private bool facingRight = true;
+    private bool isCrouching = false;
+    private bool isShooting = false;
     private bool wasRecentlyDamaged = false;
     private bool inDeathSequence = false;
     private int maxHp;
@@ -75,7 +77,11 @@ public class PlayerController : KinematicBody
     public override void _Ready()
     {
         graphics = (Spatial)GetNode("Graphics");
-        animPlayer = (AnimationPlayer)graphics.GetNode("AnimationPlayer");
+        animPlayer = (AnimationPlayer)graphics.GetNode("SaltMare/AnimationPlayer");
+        animPlayer.GetAnimation("idle").Loop = true;
+        animPlayer.GetAnimation("crouchStay").Loop = true;
+        animPlayer.GetAnimation("pain").Loop = true;
+        animPlayer.Play("idle");
         gun = (Position3D)graphics.GetNode("Gun");
         cdTimer = (Godot.Timer)gun.GetNode("Cooldown");
         standingShape = (CollisionShape)GetNode("CollisionShape");
@@ -97,7 +103,7 @@ public class PlayerController : KinematicBody
         base._Process(delta);
 
         // When fire is pressed, spawn new bullet and shoot.
-        if (Input.IsActionPressed("action_shoot") && canShoot)
+        if (Input.IsActionPressed("action_shoot") && canShoot && !inDeathSequence)
         {
             Shoot();
             cdTimer.Start();
@@ -110,12 +116,14 @@ public class PlayerController : KinematicBody
             currentSpeed = maxCrouchSpeed;
             crouchingShape.Disabled = false;
             standingShape.Disabled = true;
+            isCrouching = true;
         }
         else
         {
             currentSpeed = maxSpeed;
             standingShape.Disabled = false;
             crouchingShape.Disabled = true;
+            isCrouching = false;
         }
 
         // if the player's remaining hp is less than zero and the player is not already in a death sequence.
@@ -131,13 +139,11 @@ public class PlayerController : KinematicBody
                 // trigger death and respawn.
                 var deathTimers = Task.Factory.StartNew(() =>
                 {
-                    // pause for three sceonds before updating the ui and resetting the player's hitpoints.
-                    graphics.RotateZ(1.5708f);
-
-                    System.Threading.Thread.Sleep(deathSequenceTimeMs);
+                    animPlayer.Play("pain");
                     motion = Vector3.Zero;
 
-                    graphics.RotateZ(-1.5708f);
+                    // pause for three sceonds before updating the ui and resetting the player's hitpoints.
+                    System.Threading.Thread.Sleep(deathSequenceTimeMs);
 
                     UpdateUIHp(true);
                     hitPoints = maxHp;
@@ -163,21 +169,48 @@ public class PlayerController : KinematicBody
         {
             motion.x = Math.Min(motion.x + acceleration, currentSpeed);
             moveDir += 1;
-
-            // TODO: Add walk animation.
+            if (!isShooting)
+            {
+                if (isCrouching)
+                {
+                    animPlayer.Play("crouchWalk");
+                }
+                else
+                {
+                    animPlayer.Play("run");
+                }
+            }
         }
         else if (Input.IsActionPressed("move_left") && !inDeathSequence)
         {
             motion.x = Math.Max(motion.x - acceleration, -currentSpeed);
             moveDir -= 1;
-
-            // TODO: Add walk animation.
+            if (!isShooting)
+            {
+                if (isCrouching)
+                {
+                    animPlayer.Play("crouchWalk");
+                }
+                else
+                {
+                    animPlayer.Play("run");
+                }
+            }
         }
         else
         {
             isFriction = true;
-
-            // TODO: Add idle animation.
+            if (!isShooting && !inDeathSequence)
+            {
+                if (isCrouching)
+                {
+                    animPlayer.Play("crouchStay");
+                }
+                else
+                {
+                    animPlayer.Play("idle");
+                }
+            }
         }
 
         // Jump logic. Checks if player is on floor before deciding if it is ok to jump.
@@ -200,13 +233,13 @@ public class PlayerController : KinematicBody
             // Play jump animation if going up.
             if (motion.y > 0)
             {
-                PlayAnimation("test_jump_anim");
+                // jump
             }
 
             // Play falling animation if going down.
             else
             {
-                PlayAnimation("test_fall_anim");
+                // fall
             }
 
             // Air friction is applied while in the air.
@@ -271,22 +304,23 @@ public class PlayerController : KinematicBody
         canShoot = true;
     }
 
+    /// <summary>
+    /// Used to detect end of shooting animations.
+    /// </summary>
+    /// <param name="animation">The animation that has finished.</param>
+    public void _on_AnimationPlayer_animation_finished(String animation)
+    {
+        if (animation == "shoot" || animation == "crouchShoot")
+        {
+            isShooting = false;
+        }
+    }
+
     // Flips player model depending on direction faced.
     private void Flip()
     {
         graphics.RotateY(3.14159f);
         facingRight = !facingRight;
-    }
-
-    // Plays animations.
-    private void PlayAnimation(String animation)
-    {
-        if (animPlayer.CurrentAnimation == animation)
-        {
-            return;
-        }
-
-        animPlayer.Play(animation);
     }
 
     // Logic for firing player's weapons.
@@ -296,6 +330,15 @@ public class PlayerController : KinematicBody
         gun.AddChild(b);
         b.LookAt(GlobalTransform.origin, Vector3.Up);
         b.Shoot = true;
+        isShooting = true;
+        if (isCrouching)
+        {
+            animPlayer.Play("crouchShoot");
+        }
+        else
+        {
+            animPlayer.Play("shoot");
+        }
     }
 
     private void UpdateUIHp(bool reset = false)

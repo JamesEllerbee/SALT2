@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Textures/white-cloud-blue-sky-sea.jpg" type="Texture" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
 [ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/BASIC_GROUND_FROG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/Controllers/CameraController.cs" type="Script" id=6]
 [ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=9]
 
 [sub_resource type="PanoramaSky" id=1]
@@ -24,7 +23,7 @@ background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132, 2.237, 0 )
 
-[node name="Gun" parent="Player/Graphics" index="0"]
+[node name="Gun" parent="Player/Graphics" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.255, 0, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -44,13 +43,21 @@ __meta__ = {
 }
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
-script = ExtResource( 6 )
 
 [node name="StaticBody" parent="Camera" index="3"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -10.9558, 0, -10 )
 
+[node name="DebugMesh" parent="Camera/StaticBody" index="0"]
+visible = false
+
 [node name="CollisionShape" parent="Camera/StaticBody" index="1"]
 shape = SubResource( 3 )
+
+[node name="DebugMesh" parent="Camera/StaticBody2" index="0"]
+visible = false
+
+[node name="DebugMesh" parent="Camera/Despawner" index="0"]
+visible = false
 
 [node name="GroundBasicFrog" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4616, 1.90403, 0 )
@@ -60,6 +67,7 @@ MovingPeriod = 1000
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7395, 2.32817, 0 )
 
 [editable path="Player"]
+[editable path="Player/Graphics/SaltMare"]
 [editable path="Camera"]
 [editable path="GroundRusherFrog"]
 [editable path="GroundRusherFrog/Graphics/polywogUPDATED"]
