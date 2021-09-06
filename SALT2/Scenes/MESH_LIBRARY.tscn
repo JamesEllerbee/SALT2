@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Materials/dev_purple.tres" type="Material" id=1]
 [ext_resource path="res://Animations/uv_water.tres" type="Animation" id=2]
@@ -42,6 +42,18 @@ size = Vector3( 0.5, 2, 2 )
 points = PoolVector3Array( -0.25, 1, 1, 0.25, 1, -1, 0.25, 1, 1, -0.25, 1, -1, -0.25, -1, 1, 0.25, -1, -1, 0.25, -1, 1, -0.25, -1, -1, 0.25, 1, 1, -0.25, 1, -1, 0.25, 1, -1, -0.25, 1, 1, 0.25, -1, 1, -0.25, -1, -1, 0.25, -1, -1, -0.25, -1, 1, 0.25, 1, 1, -0.25, -1, 1, -0.25, 1, 1, 0.25, -1, 1, 0.25, 1, -1, -0.25, -1, -1, -0.25, 1, -1, 0.25, -1, -1 )
 
 [sub_resource type="CubeMesh" id=9]
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 1.51294, 0.225757, 1.50661 )
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 1.60295, 0.512096, 1.56556 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 1.51483, 0.802112, 1.48465 )
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 1.61843, 0.356988, 1.61507 )
 
 [node name="MeshLibrary" type="Spatial"]
 
@@ -102,27 +114,52 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 0, 50 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
 
 [node name="roadTile_001" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.862, 112.698, 185.952 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0 )
 mesh = ExtResource( 10 )
 material/0 = null
 
+[node name="StaticBody" type="StaticBody" parent="roadTile_001"]
+
+[node name="CollisionShape" type="CollisionShape" parent="roadTile_001/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 )
+shape = SubResource( 10 )
+
 [node name="roadTile_002" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.293, 115.216, 183.708 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0 )
 mesh = ExtResource( 11 )
 material/0 = null
 
+[node name="StaticBody" type="StaticBody" parent="roadTile_002"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0194168, 0.120978, -0.0599847 )
+
+[node name="CollisionShape" type="CollisionShape" parent="roadTile_002/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 )
+shape = SubResource( 10 )
+
 [node name="roadTile_003" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.9589, 111.209, 188.654 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5161, 0.00753498, 0.0139158 )
 mesh = ExtResource( 15 )
 material/0 = null
 
+[node name="StaticBody" type="StaticBody" parent="roadTile_003"]
+
+[node name="CollisionShape" type="CollisionShape" parent="roadTile_003/StaticBody"]
+transform = Transform( 0.929397, 0.369082, 0, -0.369082, 0.929397, 0, 0, 0, 1, 1.43183, 0.779032, -1.43976 )
+shape = SubResource( 11 )
+
 [node name="roadTile_007" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 104.713, 109.324, 187.698 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0 )
 mesh = ExtResource( 17 )
 material/0 = null
 
+[node name="StaticBody" type="StaticBody" parent="roadTile_007"]
+
+[node name="CollisionShape" type="CollisionShape" parent="roadTile_007/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.509, 0.85, -1.484 )
+shape = SubResource( 12 )
+
 [node name="roadTile_060" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.862, 112.698, 185.952 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 0, 0 )
 mesh = ExtResource( 9 )
 material/0 = null
 material/1 = null
@@ -131,8 +168,14 @@ material/3 = null
 material/4 = null
 material/5 = null
 
+[node name="StaticBody" type="StaticBody" parent="roadTile_060"]
+
+[node name="CollisionShape" type="CollisionShape" parent="roadTile_060/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51572, 0.239003, -1.5064 )
+shape = SubResource( 10 )
+
 [node name="roadTile_098" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.862, 112.698, 185.952 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.023, 0, 0 )
 mesh = ExtResource( 16 )
 material/0 = null
 material/1 = null
@@ -142,6 +185,12 @@ material/4 = null
 material/5 = null
 material/6 = null
 material/7 = null
+
+[node name="StaticBody" type="StaticBody" parent="roadTile_098"]
+
+[node name="CollisionShape" type="CollisionShape" parent="roadTile_098/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50658, 0.292842, -1.50094 )
+shape = SubResource( 13 )
 
 [node name="roadTile_212" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.5799, 113.641, 186.901 )

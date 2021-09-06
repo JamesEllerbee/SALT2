@@ -54,20 +54,11 @@ __meta__ = {
 [node name="LeftBoundary" parent="Camera" index="0"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -6.01274, 0, 0 )
 
-[node name="DebugMesh" parent="Camera/LeftBoundary" index="0"]
-visible = false
-
 [node name="RightBoundary" parent="Camera" index="1"]
 transform = Transform( -1, 0, 4.37114e-07, 0, 100, 0, -8.74228e-08, 0, -5, 5.97065, 0, 0 )
 
-[node name="DebugMesh" parent="Camera/RightBoundary" index="0"]
-visible = false
-
 [node name="Despawner" parent="Camera" index="2"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, 45.2228, 0, -10 )
-
-[node name="DebugMesh" parent="Camera/Despawner" index="0"]
-visible = false
 
 [node name="GroundBasicFrog" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92736, 6.3373, 0 )
@@ -117,6 +108,7 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.13322, 5.43569, 0 )
 [editable path="Player/Graphics/SaltMare"]
 [editable path="Camera"]
 [editable path="GroundBasicFrog"]
+[editable path="GroundBasicFrog/Graphics/frogGUNR"]
 [editable path="GroundRusherFrog"]
 [editable path="GroundRusherFrog/Graphics/polywogUPDATED"]
 [editable path="GroundRusherFrog2"]
@@ -126,4 +118,6 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.13322, 5.43569, 0 )
 [editable path="GroundRusherFrog4"]
 [editable path="GroundRusherFrog4/Graphics/polywogUPDATED"]
 [editable path="Cumcumber"]
+[editable path="Cumcumber/Graphics/cumberXD"]
 [editable path="Cumcumber2"]
+[editable path="Cumcumber2/Graphics/cumberXD"]
