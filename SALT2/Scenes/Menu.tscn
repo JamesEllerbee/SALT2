@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
-[ext_resource path="res://Sounds/Dry-Empty-GunFire-A-www.fesliyanstudios.com.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/Mossberg 500 pump shotgun sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Dry-Empty-GunFire-A.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Mossberg_500_pump_shotgun_sound.wav" type="AudioStream" id=4]
 [ext_resource path="res://Fonts/SALT2TITLE.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
@@ -21,6 +21,7 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=4]
 size = 35
 font_data = ExtResource( 5 )
+
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
