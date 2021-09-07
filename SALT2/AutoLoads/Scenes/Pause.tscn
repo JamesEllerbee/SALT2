@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Textures/BlackTexture.png" type="Texture" id=1]
 [ext_resource path="res://AutoLoads/Scripts/Pause.cs" type="Script" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Textures/rockhover.png" type="Texture" id=6]
 [ext_resource path="res://Textures/cucumber_tick.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/HelvetiPixel.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://Prefabs/SLUG_SPRITE.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Textures/SpriteSheet/SlugWalkSpriteSheetRedone.png" type="Texture" id=9]
 [ext_resource path="res://Sounds/PauseMusic.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/Dry-Empty-GunFire-A.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/Shotgun Reload Sound Effect (Royalty Free) HD-[AudioTrimmer.com].wav" type="AudioStream" id=12]
@@ -42,6 +42,74 @@ font_data = ExtResource( 8 )
 [sub_resource type="DynamicFont" id=8]
 size = 50
 font_data = ExtResource( 3 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 128, 640, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 768, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 128, 768, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 896, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 128, 896, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 1024, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 128, 1024, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 pause_mode = 2
@@ -202,11 +270,6 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 text = "Back"
 
-[node name="AnimatedSprite" parent="." instance=ExtResource( 9 )]
-visible = false
-position = Vector2( 635, 225 )
-scale = Vector2( 0.480719, 0.458621 )
-
 [node name="PauseMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 
@@ -218,6 +281,13 @@ volume_db = -5.0
 stream = ExtResource( 12 )
 volume_db = -5.0
 pitch_scale = 1.5
+
+[node name="SlugAnimation" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 645.08, 225.015 )
+scale = Vector2( 0.603719, 0.541149 )
+frames = SubResource( 19 )
+animation = "Walk"
 
 [connection signal="mouse_entered" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]

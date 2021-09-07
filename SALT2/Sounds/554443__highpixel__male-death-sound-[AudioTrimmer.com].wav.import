@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/554443__highpixel__male-death-sound-[AudioTrimmer.com].wav-76b79f3e6d61523e1f3f0df2696adb21.sample"
+
+[deps]
+
+source_file="res://Sounds/554443__highpixel__male-death-sound-[AudioTrimmer.com].wav"
+dest_files=[ "res://.import/554443__highpixel__male-death-sound-[AudioTrimmer.com].wav-76b79f3e6d61523e1f3f0df2696adb21.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

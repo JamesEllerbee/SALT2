@@ -151,6 +151,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             if (animation == "shoot")
             {
+                GetNode<AudioStreamPlayer>("ShootSoundFX").Play();
                 Shoot();
                 canShoot = true;
                 shootAnim = false;

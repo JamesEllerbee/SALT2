@@ -14,9 +14,9 @@ public class Pause : CanvasLayer
 			GetNode<TextureRect>("BackGround").Visible = !GetNode<TextureRect>("BackGround").Visible;
 			GetNode<VBoxContainer>("VBoxContainer").Visible = !GetNode<VBoxContainer>("VBoxContainer").Visible;
 			
-			GetNode<AnimatedSprite>("AnimatedSprite").Play("Idle", false);
-			GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 225f);
-			GetNode<AnimatedSprite>("AnimatedSprite").Visible = !GetNode<AnimatedSprite>("AnimatedSprite").Visible;
+			GetNode<AnimatedSprite>("SlugAnimation").Play("Idle", false);
+			GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 225f);
+			GetNode<AnimatedSprite>("SlugAnimation").Visible = !GetNode<AnimatedSprite>("SlugAnimation").Visible;
 			
 			
 			
@@ -37,7 +37,7 @@ public class Pause : CanvasLayer
 			{
 				GetNode<AudioStreamPlayer>("PauseMusic").Stop();
 				GetNode<VBoxContainer>("VBoxContainer").Visible = false;
-				GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+				GetNode<AnimatedSprite>("SlugAnimation").Visible = false;
 			}
 
 			GetNode<HSlider>("VolumeSlider").Visible = false;
@@ -53,7 +53,7 @@ public class Pause : CanvasLayer
 		GetTree().Paused = false;
 		GetNode<TextureRect>("BackGround").Visible = false;
 		GetNode<VBoxContainer>("VBoxContainer").Visible = false;
-		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+		GetNode<AnimatedSprite>("SlugAnimation").Visible = false;
 		GetNode<AudioStreamPlayer>("PauseMusic").Stop();
 		GetNode<AudioStreamPlayer>("ContinueSoundFX").Play();
 	}
@@ -62,7 +62,7 @@ public class Pause : CanvasLayer
 	{
 		GetNode<TextureRect>("BackGround").Visible = false;
 		GetNode<VBoxContainer>("VBoxContainer").Visible = false;
-		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+		GetNode<AnimatedSprite>("SlugAnimation").Visible = false;
 		GetNode<AudioStreamPlayer>("PauseMusic").Stop();
 		GetTree().Paused = false;
 		GetTree().ChangeScene("res://Scenes/Menu.tscn");
@@ -74,7 +74,7 @@ public class Pause : CanvasLayer
 		GetNode<HSlider>("VolumeSlider").Visible = true;
 		GetNode<CheckButton>("FullScreenToggle").Visible = true;
 		GetNode<TextureButton>("BackButton").Visible = true;
-		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 525f);
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 525f);
 	}
 
 	private void _on_VolumeSlider_value_changed(float value)
@@ -93,13 +93,13 @@ public class Pause : CanvasLayer
 		GetNode<HSlider>("VolumeSlider").Visible = false;
 		GetNode<CheckButton>("FullScreenToggle").Visible = false;
 		GetNode<TextureButton>("BackButton").Visible = false;
-		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 313f);
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
 	}
 	
 	private void _on_ContinueButton_mouse_entered()
 	{
 		GetNode<TextureButton>("VBoxContainer/ContinueButton").GrabFocus();
-		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 225f);
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 225f);
 		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
 		
 	}
@@ -107,14 +107,14 @@ public class Pause : CanvasLayer
 	private void _on_OptionsButton_mouse_entered()
 	{
 		GetNode<TextureButton>("VBoxContainer/OptionsButton").GrabFocus();
-		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 313f);
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
 		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
 	}
 	
 	private void _on_QuitButton_mouse_entered()
 	{
 		GetNode<TextureButton>("VBoxContainer/QuitButton").GrabFocus();
-		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(635f, 397f);
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 397f);
 		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
 	}
 }
