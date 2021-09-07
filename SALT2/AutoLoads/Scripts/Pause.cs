@@ -9,7 +9,7 @@ public class Pause : CanvasLayer
 	/// <inheritdoc/>
 	public override void _Input(InputEvent inputEvent)
 	{
-		if (inputEvent.IsActionPressed("ui_cancel") && !GetTree().CurrentScene.Name.Equals("Menu"))
+		if (inputEvent.IsActionPressed("ui_cancel") && ((!GetTree().CurrentScene.Name.Equals("Menu")) && (!GetTree().CurrentScene.Name.Equals("GameOverScreen"))))
 		{
 			GetNode<TextureRect>("BackGround").Visible = !GetNode<TextureRect>("BackGround").Visible;
 			GetNode<VBoxContainer>("VBoxContainer").Visible = !GetNode<VBoxContainer>("VBoxContainer").Visible;
