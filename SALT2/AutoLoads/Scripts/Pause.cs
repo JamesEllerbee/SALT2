@@ -6,6 +6,25 @@ using Godot;
 /// </summary>
 public class Pause : CanvasLayer
 {
+	public override void _Ready()
+	{
+		GetNode<TextureButton>("VBoxContainer/ContinueButton").GrabFocus();
+	}
+	
+	public override void _Process(float delta)
+	{
+		if (Input.IsActionPressed("ui_up") && GetNode<TextureButton>("BackButton").Visible)
+		{
+			GetNode<CheckButton>("FullScreenToggle").GrabFocus();
+		}
+		
+		if (Input.IsActionPressed("ui_down") && GetNode<TextureButton>("BackButton").Visible)
+		{
+			GetNode<TextureButton>("BackButton").GrabFocus();
+		}
+	
+	}
+	
 	/// <inheritdoc/>
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -14,6 +33,7 @@ public class Pause : CanvasLayer
 			|| (!GetTree().CurrentScene.Name.Equals("VictoryScreen"))))
 		{
 			GetNode<TextureRect>("BackGround").Visible = !GetNode<TextureRect>("BackGround").Visible;
+			GetNode<TextureButton>("VBoxContainer/ContinueButton").GrabFocus();
 			GetNode<VBoxContainer>("VBoxContainer").Visible = !GetNode<VBoxContainer>("VBoxContainer").Visible;
 			
 			GetNode<AnimatedSprite>("SlugAnimation").Play("Idle", false);
@@ -76,6 +96,7 @@ public class Pause : CanvasLayer
 		GetNode<HSlider>("VolumeSlider").Visible = true;
 		GetNode<CheckButton>("FullScreenToggle").Visible = true;
 		GetNode<TextureButton>("BackButton").Visible = true;
+		GetNode<TextureButton>("BackButton").GrabFocus();
 		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 525f);
 	}
 
@@ -95,6 +116,7 @@ public class Pause : CanvasLayer
 		GetNode<HSlider>("VolumeSlider").Visible = false;
 		GetNode<CheckButton>("FullScreenToggle").Visible = false;
 		GetNode<TextureButton>("BackButton").Visible = false;
+		GetNode<TextureButton>("VBoxContainer/OptionsButton").GrabFocus();
 		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
 	}
 	
@@ -119,4 +141,34 @@ public class Pause : CanvasLayer
 		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 397f);
 		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
 	}
+	
+	private void _on_ContinueButton_focus_entered()
+	{
+		GetNode<TextureButton>("VBoxContainer/ContinueButton").GrabFocus();
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 225f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+	}	
+	
+	private void _on_OptionsButton_focus_entered()
+	{
+		GetNode<TextureButton>("VBoxContainer/OptionsButton").GrabFocus();
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+	}
+	
+	private void _on_QuitButton_focus_entered()
+	{
+		GetNode<TextureButton>("VBoxContainer/QuitButton").GrabFocus();
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 397f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+	}
+	
+	private void _on_BackButton_focus_entered()
+	{
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
+
+	}
+	
+	
 }
+
