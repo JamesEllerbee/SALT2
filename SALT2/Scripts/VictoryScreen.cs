@@ -4,10 +4,24 @@ using System;
 public class VictoryScreen : CanvasLayer
 {
 	
+	public override void _Process(float delta)
+	{
+		if (Input.IsActionPressed("ui_up"))
+		{
+			GetNode<TextureButton>("AnotherMission").GrabFocus();
+		}
+		
+		if (Input.IsActionPressed("ui_down"))
+		{
+			GetNode<TextureButton>("GoHome").GrabFocus();
+		}
+	} 
+	
 	public override void _Ready()
 	{
 		GetNode<AudioStreamPlayer>("VictoryMusic").Play();
 		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+		GetNode<TextureButton>("AnotherMission").GrabFocus();
 	}
 
 	private async void _on_AnotherMission_pressed()
@@ -50,5 +64,32 @@ public class VictoryScreen : CanvasLayer
 	{
 		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
 	}
+	
+	private void _on_AnotherMission_focus_entered()
+	{
+		GetNode<AnimatedSprite>("AnimatedSprite").Visible = true;
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(343f, 285f);
+		GetNode<AnimatedSprite>("AnimatedSprite").Play("Walk", false);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+	}
+	
+	private void _on_AnotherMission_focus_exited()
+	{
+		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+	}
+	
+	private void _on_GoHome_focus_entered()
+	{
+		GetNode<AnimatedSprite>("AnimatedSprite").Visible = true;
+		GetNode<AnimatedSprite>("AnimatedSprite").Play("Walk", false);
+		GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(343f, 430f);
+		GetNode<AudioStreamPlayer>("SelectSoundFX").Play();
+	}
+	
+	private void _on_GoHome_focus_exited()
+	{
+		GetNode<AnimatedSprite>("AnimatedSprite").Visible = false;
+	}
+
 
 }
