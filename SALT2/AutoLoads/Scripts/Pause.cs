@@ -166,9 +166,12 @@ public class Pause : CanvasLayer
 	private void _on_BackButton_focus_entered()
 	{
 		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
-
+	}
+	
+	private void _on_FullScreenToggle_focus_entered()
+	{
+		GetNode<AnimatedSprite>("SlugAnimation").Position = new Vector2(635f, 313f);
 	}
 	
 	
 }
-
