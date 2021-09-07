@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/SALT2_MT1.wav" type="AudioStream" id=2]
@@ -174,72 +174,29 @@ region = Rect2( 128, 384, 128, 128 )
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 640, 128, 128 )
 region = Rect2( 128, 128, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 768, 128, 128 )
 region = Rect2( 0, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=37]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 768, 128, 128 )
 region = Rect2( 128, 256, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 128, 640, 128, 128 )
+region = Rect2( 0, 384, 128, 128 )
 
 [sub_resource type="AtlasTexture" id=39]
 flags = 4
 atlas = ExtResource( 14 )
-region = Rect2( 0, 768, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=40]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 512, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=41]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 128, 512, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 640, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 128, 128, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 256, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=45]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 128, 256, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=46]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 384, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=47]
-flags = 4
-atlas = ExtResource( 14 )
 region = Rect2( 128, 384, 128, 128 )
 
-[sub_resource type="SpriteFrames" id=48]
+[sub_resource type="SpriteFrames" id=40]
 animations = [ {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
 "loop": true,
@@ -261,18 +218,13 @@ animations = [ {
 "name": "Shoot",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 46 ), SubResource( 47 ) ],
+"frames": [ SubResource( 38 ), SubResource( 39 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 6.0
 } ]
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=41]
 resource_name = "FadeToBlack"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Black:color")
@@ -524,7 +476,7 @@ volume_db = -15.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 230, 367.114 )
 scale = Vector2( 0.426436, 0.363865 )
-frames = SubResource( 48 )
+frames = SubResource( 40 )
 animation = "Idle"
 frame = 1
 
@@ -538,7 +490,7 @@ __meta__ = {
 }
 
 [node name="FadeToBlack" type="AnimationPlayer" parent="."]
-anims/FadeToBlack = SubResource( 49 )
+anims/FadeToBlack = SubResource( 41 )
 
 [connection signal="focus_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_focus_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_mouse_entered"]
