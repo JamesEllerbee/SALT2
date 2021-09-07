@@ -13,6 +13,7 @@ public class BossController : StaticBody
     private float aimSpeed = 2;
 
     private bool isFighting = false;
+    private bool isDead = false;
     private bool canShootGun = false;
     private bool canShootLazer = false;
     private bool isLazerFiring = false;
@@ -25,6 +26,9 @@ public class BossController : StaticBody
     private Timer lazerCooldown;
     private AudioStreamPlayer lazerDuration;
     private AudioStreamPlayer lazerCharge;
+    private AudioStreamPlayer entranceSound;
+    private AudioStreamPlayer deathSound;
+    private AudioStreamPlayer shootSound;
     private Timer bossWindup;
     private PhysicsBody player;
     private RayCast lazerCast;
@@ -34,6 +38,7 @@ public class BossController : StaticBody
     private AnimationPlayer bossAnim;
     private AnimationPlayer lazerAnim;
     private AnimationPlayer gunAnim;
+    private AnimationPlayer deathAnim;
     private PackedScene bullet;
 
     /// <inheritdoc/>
@@ -46,6 +51,9 @@ public class BossController : StaticBody
         lazerCooldown = (Timer)lazer.GetNode("LazerCooldown");
         lazerDuration = (AudioStreamPlayer)lazer.GetNode("LazerDuration");
         lazerCharge = (AudioStreamPlayer)lazer.GetNode("LazerCharge");
+        entranceSound = (AudioStreamPlayer)GetNode("EntranceSound");
+        deathSound = (AudioStreamPlayer)GetNode("DeathSound");
+        shootSound = (AudioStreamPlayer)GetNode("ShootSoundFX");
         bossWindup = (Timer)GetNode("BossWindup");
         lazerCast = (RayCast)lazer.GetNode("RayCast");
         lazerModel = (CSGCombiner)lazer.GetNode("CSGCombiner");
@@ -53,6 +61,7 @@ public class BossController : StaticBody
         damageAnim = (AnimationPlayer)GetNode("DamageAnimation");
         bossAnim = (AnimationPlayer)GetNode("AbirdBoss/AnimationPlayer");
         lazerAnim = (AnimationPlayer)GetNode("bossLaser/AnimationPlayer");
+        deathAnim = (AnimationPlayer)GetNode("DeathAnimation");
         lazerAnim.GetAnimation("chargeLaser").Loop = true;
         lazerAnim.GetAnimation("shootlaser").Loop = true;
         gunAnim = (AnimationPlayer)GetNode("bossGun/AnimationPlayer");
@@ -97,6 +106,22 @@ public class BossController : StaticBody
                 }
             }
         }
+
+        if (isDead)
+        {
+            lazerDuration.Stop();
+            lazerCharge.Stop();
+            damageAnim.Stop();
+            gunAnim.Stop();
+            lazerAnim.Stop();
+            isFighting = false;
+            canShootGun = false;
+            canShootLazer = false;
+            isLazerFiring = false;
+            lazerProcess = false;
+            bossAnim.PlaybackSpeed = 3;
+            deathAnim.Play("deathAnimation");
+        }
     }
 
     /// <summary>
@@ -108,7 +133,10 @@ public class BossController : StaticBody
         if (body.IsInGroup("Player"))
         {
             player = body;
+            entranceSound.Play();
             bossWindup.Start();
+            CollisionShape collider = (CollisionShape)GetNode("DetectionRadius/CollisionShape");
+            collider.Disabled = true;
         }
     }
 
@@ -151,6 +179,14 @@ public class BossController : StaticBody
     }
 
     /// <summary>
+    /// Deletes boss when death animation finishes.
+    /// </summary>
+    public void _on_DeathAnimation_animation_finished(String animation)
+    {
+        QueueFree();
+    }
+
+    /// <summary>
     /// Gives player a chance to see boss before fight.
     /// </summary>
     public void _on_BossWindup_timeout()
@@ -184,7 +220,13 @@ public class BossController : StaticBody
 
             if (hitPoints == 0)
             {
-                // Add death scene
+                deathSound.Play();
+                isDead = true;
+            }
+            else if (hitPoints == (maxHitpoints / 2))
+            {
+                bossAnim.PlaybackSpeed = 2;
+                entranceSound.Play();
             }
         }
     }
@@ -197,6 +239,7 @@ public class BossController : StaticBody
         b.LookAt(player.GlobalTransform.origin, Vector3.Up);
         b.RotateY(3.14159f);
         b.RotateX(3.14159f);
+        shootSound.Play();
         b.Shoot = true;
     }
 

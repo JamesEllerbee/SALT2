@@ -50,7 +50,6 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             base._PhysicsProcess(delta);
 
-            // todo: can alter what this entity should be doing when player has been detected
             if (!shooting && !IsDead)
             {
                 if (!shootAnim)

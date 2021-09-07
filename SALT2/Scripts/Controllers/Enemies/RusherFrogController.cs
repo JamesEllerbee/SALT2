@@ -9,7 +9,6 @@ namespace SALT2.Scripts.Controllers.Enemies
     public class RusherFrogController : FrogController
     {
         private AnimationPlayer anim;
-        private AnimationPlayer damageAnim;
         private bool isPlayingDeathAnimation = false;
 
         /// <inheritdoc/>
@@ -19,7 +18,6 @@ namespace SALT2.Scripts.Controllers.Enemies
 
             // Animation Setup
             anim = (AnimationPlayer)GetNode("Graphics/polywogUPDATED/AnimationPlayer");
-            damageAnim = (AnimationPlayer)GetNode("DamageAnimation");
             anim.GetAnimation("WalkCycle").Loop = true;
             anim.Play("WalkCycle");
         }
@@ -32,7 +30,6 @@ namespace SALT2.Scripts.Controllers.Enemies
             if (IsDead && !isPlayingDeathAnimation)
             {
                 GD.Print("Playing death animation");
-                // todo: begin playing the death animation
                 anim.Play("Death");
                 isPlayingDeathAnimation = true;
             }
