@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/564918__sparkle1__jump-and-spark-[AudioTrimmer.com].wav-39ccab0da78208aeb9297e1ef45a29cd.sample"
+
+[deps]
+
+source_file="res://Sounds/564918__sparkle1__jump-and-spark-[AudioTrimmer.com].wav"
+dest_files=[ "res://.import/564918__sparkle1__jump-and-spark-[AudioTrimmer.com].wav-39ccab0da78208aeb9297e1ef45a29cd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

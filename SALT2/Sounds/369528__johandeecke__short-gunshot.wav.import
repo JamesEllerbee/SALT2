@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/369528__johandeecke__short-gunshot.wav-86d3ce92cb9da0aa3c32f2ba5da4e4e2.sample"
+
+[deps]
+
+source_file="res://Sounds/369528__johandeecke__short-gunshot.wav"
+dest_files=[ "res://.import/369528__johandeecke__short-gunshot.wav-86d3ce92cb9da0aa3c32f2ba5da4e4e2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

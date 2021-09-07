@@ -140,6 +140,7 @@ public class PlayerController : KinematicBody
                 var deathTimers = Task.Factory.StartNew(() =>
                 {
                     animPlayer.Play("pain");
+                    GetNode<AudioStreamPlayer>("DeathSoundFX").Play();
                     motion = Vector3.Zero;
 
                     // pause for three sceonds before updating the ui and resetting the player's hitpoints.
@@ -235,6 +236,7 @@ public class PlayerController : KinematicBody
             if (Input.IsActionPressed("move_jump"))
             {
                 motion.y = jumpHeight;
+                GetNode<AudioStreamPlayer>("JumpSoundFX").Play();
             }
 
             if (isFriction == true)
@@ -303,6 +305,7 @@ public class PlayerController : KinematicBody
             hitPoints -= amount;
             if (amount > 0 && !inDeathSequence)
             {
+                GetNode<AudioStreamPlayer>("DamageSoundFX").Play();
                 damageAnim.Play("damageTaken");
             }
 
@@ -369,6 +372,7 @@ public class PlayerController : KinematicBody
         b.LookAt(GlobalTransform.origin, Vector3.Up);
         b.Shoot = true;
         isShooting = true;
+        GetNode<AudioStreamPlayer>("ShootSoundFX").Play();
         if (isCrouching)
         {
             animPlayer.Play("crouchShoot");
