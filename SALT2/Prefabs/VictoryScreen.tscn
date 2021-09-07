@@ -1,0 +1,302 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://Fonts/HelvetiPixel.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Textures/SpriteSheet/SlugWalkSpriteSheetRedone.png" type="Texture" id=2]
+[ext_resource path="res://Textures/rockhover.png" type="Texture" id=3]
+[ext_resource path="res://Textures/rock2.png" type="Texture" id=4]
+[ext_resource path="res://Textures/rockpressed.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/VictoryScreen.cs" type="Script" id=6]
+[ext_resource path="res://Textures/blueSunset.png" type="Texture" id=7]
+[ext_resource path="res://Textures/VictorySalt.png" type="Texture" id=8]
+[ext_resource path="res://Sounds/Dry-Empty-GunFire-A.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/Mossberg_500_pump_shotgun_sound.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/466133__humanoide9000__victory-fanfare.wav" type="AudioStream" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 55
+outline_size = 1
+outline_color = Color( 0.137255, 0.133333, 0.133333, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 512, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 512, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 640, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 640, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 768, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 768, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 896, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 896, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 1024, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 1024, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 640, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 768, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 768, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 896, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 896, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 1024, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 1024, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 512, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 640, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 640, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "Shoot",
+"speed": 5.0
+} ]
+
+[node name="VictoryScreen" type="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 501.724, 297.43 )
+scale = Vector2( 0.558787, 0.558787 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -296.0
+margin_right = 296.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "Mission Accomplished Soldier! 
+Great work out there!
+You ready for another mission?"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictorySalt" type="Sprite" parent="."]
+position = Vector2( 864.976, 418.447 )
+rotation = 0.15708
+scale = Vector2( 1.13079, 1.13079 )
+texture = ExtResource( 8 )
+
+[node name="AnotherMission" type="TextureButton" parent="."]
+anchor_left = 0.462
+anchor_top = 0.491
+anchor_right = 0.462
+anchor_bottom = 0.491
+margin_left = -89.088
+margin_top = -40.6
+margin_right = 90.912
+margin_bottom = 39.4
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="AnotherMission"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -92.7244
+margin_top = -26.3431
+margin_right = 98.2756
+margin_bottom = 32.6569
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "Yes Sir!
+Give me another mission"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoHome" type="TextureButton" parent="."]
+anchor_left = 0.462
+anchor_top = 0.719
+anchor_right = 0.462
+anchor_bottom = 0.719
+margin_left = -90.2881
+margin_top = -40.0266
+margin_right = 89.7119
+margin_bottom = 39.9734
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GoHome"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.9548
+margin_top = -17.9751
+margin_right = 47.0452
+margin_bottom = 13.0249
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "No Sir! 
+Send me Home"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="SelectSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="ShootSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 343, 430 )
+scale = Vector2( 0.473251, 0.473251 )
+frames = SubResource( 30 )
+animation = "Shoot"
+flip_h = true
+
+[connection signal="mouse_entered" from="AnotherMission" to="." method="_on_AnotherMission_mouse_entered"]
+[connection signal="mouse_exited" from="AnotherMission" to="." method="_on_AnotherMission_mouse_exited"]
+[connection signal="pressed" from="AnotherMission" to="." method="_on_AnotherMission_pressed"]
+[connection signal="mouse_entered" from="GoHome" to="." method="_on_GoHome_mouse_entered"]
+[connection signal="mouse_exited" from="GoHome" to="." method="_on_GoHome_mouse_exited"]
+[connection signal="pressed" from="GoHome" to="." method="_on_GoHome_pressed"]
