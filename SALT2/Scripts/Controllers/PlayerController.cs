@@ -112,7 +112,7 @@ public class PlayerController : KinematicBody
         // When down is pressed, make player crouch.
         if (Input.IsActionPressed("move_down"))
         {
-            currentSpeed = maxCrouchSpeed;
+            //currentSpeed = maxCrouchSpeed;
             crouchingShape.Disabled = false;
             standingShape.Disabled = true;
             isCrouching = true;
