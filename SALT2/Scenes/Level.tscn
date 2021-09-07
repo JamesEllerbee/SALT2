@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
@@ -15,6 +15,22 @@
 [ext_resource path="res://Level/Objects/rocked.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Level/Objects/palmTree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Level/Objects/cumberXD.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Textures/skySLUG.png" type="Texture" id=16]
+[ext_resource path="res://Prefabs/BossBoundary.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Prefabs/BOSS.tscn" type="PackedScene" id=18]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 16 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 1.4
+ambient_light_sky_contribution = 0.3
+fog_enabled = true
+fog_color = Color( 0.658824, 0.643137, 0.576471, 1 )
+fog_depth_begin = 0.0
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 12 )
@@ -25,6 +41,9 @@ script = ExtResource( 12 )
 
 [node name="SeedBayMusic" parent="." instance=ExtResource( 9 )]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
 [node name="sandLand" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.161, 0 )
 
@@ -33,6 +52,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 365.981, -20.905, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="Boss" parent="." instance=ExtResource( 18 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 280.709, 7.662, 0 )
+
+[node name="BossBoundary" parent="." instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -7.54979e-07, 0, 10, 0, 1.50996e-07, 0, -5, 289.413, -4.76837e-07, 0.0546188 )
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 18.221 )
@@ -63,15 +88,12 @@ mesh_library = ExtResource( 2 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 524370, 0, 10, 1, 2, 12, 4, 2, 12, 7, 2, 12, 10, 2, 12, 13, 2, 12, 16, 2, 12, 19, 2, 12, 22, 2, 12, 25, 2, 12, 28, 2, 12, 31, 2, 12, 34, 2, 12, 37, 2, 12, 40, 2, 12, 43, 2, 12, 46, 2, 12, 49, 2, 12, 52, 2, 12, 55, 2, 12, 58, 2, 12, 61, 2, 12, 64, 2, 12, 67, 2, 12, 70, 2, 12, 73, 2, 12, 76, 2, 12, 79, 2, 12, 82, 2, 12, 85, 2, 12, 88, 2, 12, 91, 2, 12, 94, 2, 12, 97, 2, 12, 100, 2, 12, 103, 2, 12, 106, 2, 12, 109, 2, 12, 112, 2, 12, 115, 2, 12, 118, 2, 12, 119, 2, 10, 121, 2, 12, 122, 2, 10, 124, 2, 12, 125, 2, 10, 127, 2, 12, 130, 2, 12, 133, 2, 12, 136, 2, 12, 139, 2, 12, 142, 2, 12, 145, 2, 12, 148, 2, 12, 151, 2, 12, 154, 2, 12, 157, 2, 12, 160, 2, 12, 163, 2, 12, 166, 2, 12, 169, 2, 12, 172, 2, 12, 175, 2, 12, 178, 2, 12, 181, 2, 12, 184, 2, 12, 187, 2, 12, 190, 2, 12, 193, 2, 12, 196, 2, 12, 199, 2, 12, 202, 2, 12, 205, 2, 12, 208, 2, 12, 211, 2, 12, 214, 2, 12, 217, 2, 12, 220, 2, 12, 223, 2, 12, 225, 2, 10, 226, 2, 12, 228, 2, 10, 229, 2, 12, 230, 2, 12, 233, 2, 12, 236, 2, 12, 239, 2, 12, 240, 2, 12, 243, 2, 12, 65516, 2, 12, 65519, 2, 12, 65522, 2, 12, 65525, 2, 12, 65528, 2, 12, 65531, 2, 12, 65534, 2, 12, 65657, 2, 10, 65659, 2, 10, 65661, 2, 10, 65761, 2, 10, 65764, 2, 10, 131195, 2, 10, 131300, 2, 10, 196836, 2, 10, 262197, 2, 10, 262198, 2, 10, 262199, 2, 10, 262200, 2, 10, 262201, 2, 10, 262202, 2, 10, 262203, 2, 10, 262204, 2, 8, 262205, 2, 10, 262304, 2, 12, 262307, 2, 12, 262310, 2, 12, 327741, 2, 10, 393277, 2, 10, 458813, 2, 10, 524349, 2, 10, 589885, 2, 10, 655421, 2, 10, 720957, 2, 10, 786493, 2, 10, 852029, 2, 10, 917565, 2, 10, 983101, 2, 10, 1048637, 2, 10, 1114173, 2, 10, 1179709, 2, 10, 1245245, 2, 10, 1310781, 2, 10, 1376317, 2, 10, 82, 65534, 10, 65618, 65534, 10, 131154, 65534, 10, 196690, 65534, 10, 262226, 65534, 10, 327762, 65534, 10, 393298, 65534, 10, 458834, 65534, 10, 524370, 65534, 10, 524370, 65535, 10 )
+"cells": PoolIntArray( 524370, 0, 10, 1, 2, 12, 4, 2, 12, 7, 2, 12, 10, 2, 12, 13, 2, 12, 16, 2, 12, 19, 2, 12, 22, 2, 12, 25, 2, 12, 28, 2, 12, 31, 2, 12, 34, 2, 12, 37, 2, 12, 40, 2, 12, 43, 2, 12, 46, 2, 12, 49, 2, 12, 52, 2, 12, 55, 2, 12, 58, 2, 12, 61, 2, 12, 64, 2, 12, 67, 2, 12, 70, 2, 12, 73, 2, 12, 76, 2, 12, 79, 2, 12, 82, 2, 12, 85, 2, 12, 88, 2, 12, 91, 2, 12, 94, 2, 12, 97, 2, 12, 100, 2, 12, 103, 2, 12, 106, 2, 12, 109, 2, 12, 112, 2, 12, 115, 2, 12, 118, 2, 12, 119, 2, 10, 121, 2, 12, 122, 2, 10, 124, 2, 12, 125, 2, 10, 127, 2, 12, 130, 2, 12, 133, 2, 12, 136, 2, 12, 139, 2, 12, 142, 2, 12, 145, 2, 12, 148, 2, 12, 151, 2, 12, 154, 2, 12, 157, 2, 12, 160, 2, 12, 163, 2, 12, 166, 2, 12, 169, 2, 12, 172, 2, 12, 175, 2, 12, 178, 2, 12, 181, 2, 12, 184, 2, 12, 187, 2, 12, 190, 2, 12, 193, 2, 12, 196, 2, 12, 199, 2, 12, 202, 2, 12, 205, 2, 12, 208, 2, 12, 211, 2, 12, 214, 2, 12, 217, 2, 12, 220, 2, 12, 223, 2, 12, 225, 2, 10, 226, 2, 12, 228, 2, 10, 229, 2, 12, 230, 2, 12, 233, 2, 12, 236, 2, 12, 239, 2, 12, 240, 2, 12, 243, 2, 12, 246, 2, 12, 249, 2, 12, 252, 2, 12, 255, 2, 12, 258, 2, 12, 261, 2, 12, 264, 2, 12, 267, 2, 12, 270, 2, 12, 273, 2, 12, 276, 2, 12, 279, 2, 12, 282, 2, 12, 285, 2, 12, 65516, 2, 12, 65519, 2, 12, 65522, 2, 12, 65525, 2, 12, 65528, 2, 12, 65531, 2, 12, 65534, 2, 12, 65657, 2, 10, 65659, 2, 10, 65661, 2, 10, 65761, 2, 10, 65764, 2, 10, 131195, 2, 10, 131300, 2, 10, 196836, 2, 10, 262197, 2, 10, 262198, 2, 10, 262199, 2, 10, 262200, 2, 10, 262201, 2, 10, 262202, 2, 10, 262203, 2, 10, 262204, 2, 8, 262205, 2, 10, 262304, 2, 12, 262307, 2, 12, 262310, 2, 12, 327741, 2, 10, 393277, 2, 10, 458813, 2, 10, 524349, 2, 10, 589885, 2, 10, 655421, 2, 10, 720957, 2, 10, 786493, 2, 10, 852029, 2, 10, 917565, 2, 10, 983101, 2, 10, 1048637, 2, 10, 1114173, 2, 10, 1179709, 2, 10, 1245245, 2, 10, 1310781, 2, 10, 1376317, 2, 10, 82, 65534, 10, 65618, 65534, 10, 131154, 65534, 10, 196690, 65534, 10, 262226, 65534, 10, 327762, 65534, 10, 393298, 65534, 10, 458834, 65534, 10, 524370, 65534, 10, 524370, 65535, 10 )
 }
 __meta__ = {
 "_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 3, 0 )
+"_editor_floor_": Vector3( 0, 0, 0 )
 }
-
-[node name="Cumcumber" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 59.5416, 7.67233, 1.20227 )
 
 [node name="rockedA" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5521, 1.58789, 0 )
@@ -137,9 +159,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 221.172, 3, 0 )
 
 [node name="GroundBasicFrog6" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 226.94, 5.319, 0.437 )
+MoveSpeed = 0.0
+MovingPeriod = 0
+directionModifier = 0
 
 [node name="GroundBasicFrog7" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 230.151, 7.284, 0 )
+MoveSpeed = 0.0
+MovingPeriod = 0
+directionModifier = 0
 
 [node name="palmTree" parent="." instance=ExtResource( 14 )]
 transform = Transform( 0.995435, 0.0763707, -0.0572374, -0.0915809, 0.933145, -0.34764, 0.0268612, 0.351295, 0.935879, 8.57302, -6.21871, -20.4027 )
@@ -312,4 +340,14 @@ transform = Transform( -0.0236067, 0.626917, -0.778729, -0.756583, -0.520365, -0
 [node name="cumberXD" parent="." instance=ExtResource( 15 )]
 transform = Transform( -0.147159, 0.989078, 0.00834083, -0.988457, -0.147363, 0.0351711, 0.0360161, -0.00306881, 0.999346, -0.805925, -2.14939, 5.37798 )
 
+[node name="Cumcumber" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 93.953, 7, 0 )
+
+[node name="Cumcumber2" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 162.59, 7, 0 )
+
+[node name="Cumcumber3" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 242, 7, 0 )
+
+[editable path="BossBoundary"]
 [editable path="Camera"]

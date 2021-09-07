@@ -457,10 +457,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -10.0
-attenuation = 1e-05
 
 [node name="FullScreenToggle" type="CheckButton" parent="."]
 visible = false

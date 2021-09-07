@@ -112,14 +112,14 @@ public class PlayerController : KinematicBody
 		// When down is pressed, make player crouch.
 		if (Input.IsActionPressed("move_down"))
 		{
-			currentSpeed = maxCrouchSpeed;
+			//currentSpeed = maxCrouchSpeed;
 			crouchingShape.Disabled = false;
 			standingShape.Disabled = true;
 			isCrouching = true;
 		}
 		else
 		{
-			currentSpeed = maxSpeed;
+			//currentSpeed = maxSpeed;
 			standingShape.Disabled = false;
 			crouchingShape.Disabled = true;
 			isCrouching = false;
@@ -336,6 +336,7 @@ public class PlayerController : KinematicBody
 				// todo: stop invincibility animation
 				GD.Print("Player can now be damaged.");
 				damageAnim.Stop();
+				damageAnim.Play("damageOver");
 			});
 		}
 	}

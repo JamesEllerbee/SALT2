@@ -18,9 +18,9 @@ public class Menu : Control
     public override void _Process(float delta)
     {
         // Makes music loop
-        if (!GetNode<AudioStreamPlayer2D>("MainMenuMusic").Playing)
+        if (!GetNode<AudioStreamPlayer>("MainMenuMusic").Playing)
         {
-            GetNode<AudioStreamPlayer2D>("MainMenuMusic").Play();
+            GetNode<AudioStreamPlayer>("MainMenuMusic").Play();
         }
     }
 

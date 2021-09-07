@@ -36,15 +36,21 @@ public class Health : Control
         }
         else if (player.CurrentHealth == 2)
         {
+            ticket1.Visible = true;
+            ticket2.Visible = true;
             ticket3.Visible = false;
         }
         else if (player.CurrentHealth == 1)
         {
+            ticket1.Visible = true;
             ticket2.Visible = false;
+            ticket3.Visible = false;
         }
         else if (player.CurrentHealth <= 0)
         {
             ticket1.Visible = false;
+            ticket2.Visible = false;
+            ticket3.Visible = false;
         }
     }
 }

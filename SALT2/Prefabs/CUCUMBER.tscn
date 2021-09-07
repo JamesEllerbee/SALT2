@@ -1,9 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Models/cumberXD.glb" type="PackedScene" id=1]
+[ext_resource path="res://Models/Cumber/cumberXD.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Controllers/CucumberController.cs" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
+radius = 2.0
+height = 2.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -16,10 +18,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0.3, 0 ), Vector3( 0, -0.3, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.3, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -0.3, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
 [node name="Cumcumber" type="Area"]
@@ -32,9 +34,10 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="Graphics" type="Spatial" parent="."]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
 
 [node name="cumberXD" parent="Graphics" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -42,5 +45,3 @@ playback_speed = 0.6
 anims/idle = SubResource( 2 )
 
 [connection signal="body_entered" from="." to="." method="OnCumcumberBodyEntered"]
-
-[editable path="Graphics/cumberXD"]

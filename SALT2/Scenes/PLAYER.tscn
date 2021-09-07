@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Models/SaltMare.glb" type="PackedScene" id=1]
 [ext_resource path="res://Materials/dev_red.tres" type="Material" id=2]
@@ -16,8 +16,22 @@ radius = 1.5
 
 [sub_resource type="CylinderMesh" id=3]
 
-[sub_resource type="Animation" id=4]
-resource_name = "damageTaken"
+[sub_resource type="Animation" id=6]
+resource_name = "damageOver"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/SaltMare/Armature/Skeleton/Circle:material/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ null ]
+}
+
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics/SaltMare/Armature/Skeleton/Circle:material/0")
 tracks/0/interp = 1
@@ -36,6 +50,7 @@ tracks/0/keys = {
 ]]
 collision_mask = 1051
 script = ExtResource( 3 )
+maxSpeed = 6.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -65,7 +80,8 @@ wait_time = 0.2
 
 [node name="DamageAnimation" type="AnimationPlayer" parent="."]
 playback_speed = 20.0
-anims/damageTaken = SubResource( 4 )
+anims/damageOver = SubResource( 6 )
+anims/damageTaken = SubResource( 5 )
 
 [node name="JumpSoundFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

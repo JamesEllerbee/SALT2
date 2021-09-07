@@ -29,6 +29,8 @@ namespace SALT2.Scripts.Controllers.Enemies
 
         private ScoreController scoreController;
 
+        private AnimationPlayer damageAnim;
+
         #endregion
 
         #region Public Properties
@@ -103,6 +105,7 @@ namespace SALT2.Scripts.Controllers.Enemies
 
             GD.Print($"Speed={MoveSpeed}, Period={MovingPeriod}");
             Graphics = GetNode<Spatial>("Graphics");
+            damageAnim = (AnimationPlayer)GetNode("DamageAnimation");
             scoreController = GetNode<ScoreController>("/root/Main/Score");
 
             // set the inital change direction period.
@@ -170,6 +173,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             // future: if an entity has more than 1 hp, and the enemy should have I frames, then update this to create a invulnerability timer and synchronize the code.
             HitPoints -= damageValue;
+            damageAnim.Play("damageTaken");
             if(HitPoints!= 0)
             {
                 GetNode<AudioStreamPlayer>("DamageSoundFX").Play();
