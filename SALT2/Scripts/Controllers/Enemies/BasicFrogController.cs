@@ -20,7 +20,7 @@ namespace SALT2.Scripts.Controllers.Enemies
         {
             base._Ready();
 
-            anim = (AnimationPlayer)GetNode("Graphics/frogGUNR/AnimationPlayer");
+            anim = (AnimationPlayer)GetNode("Graphics/frogGunner/AnimationPlayer");
             anim.GetAnimation("Walk").Loop = true;
             anim.Play("Walk");
             gun = (Position3D)GetNode("Graphics/Gun");

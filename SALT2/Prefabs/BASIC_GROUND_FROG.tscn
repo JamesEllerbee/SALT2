@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Models/frogGUNR.glb" type="PackedScene" id=1]
+[ext_resource path="res://Models/frogGunner/frogGunner.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Controllers/Enemies/BasicFrogController.cs" type="Script" id=2]
 [ext_resource path="res://Materials/dev_orange.tres" type="Material" id=3]
 [ext_resource path="res://Sounds/385046__mortisblack__damage.wav" type="AudioStream" id=4]
@@ -34,11 +34,8 @@ shape = SubResource( 1 )
 
 [node name="Graphics" type="Spatial" parent="."]
 
-[node name="frogGUNR" parent="Graphics" instance=ExtResource( 1 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -2.10264, 0 )
-
-[node name="AnimationPlayer" parent="Graphics/frogGUNR" index="1"]
-playback_speed = 1.5
+[node name="frogGunner" parent="Graphics" instance=ExtResource( 1 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -2.103, 0 )
 
 [node name="Gun" type="Position3D" parent="Graphics"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25489, 0, 0 )
@@ -78,10 +75,10 @@ pitch_scale = 0.7
 stream = ExtResource( 6 )
 pitch_scale = 2.0
 
-[connection signal="animation_finished" from="Graphics/frogGUNR/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="Graphics/frogGunner/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_DetectionRadius_body_entered"]
 [connection signal="body_exited" from="DetectionRadius" to="." method="_on_DetectionRadius_body_exited"]
 [connection signal="body_entered" from="DetectionRadius2" to="." method="_on_DetectionRadius2_body_entered"]
 [connection signal="body_exited" from="DetectionRadius2" to="." method="_on_DetectionRadius2_body_exited"]
 
-[editable path="Graphics/frogGUNR"]
+[editable path="Graphics/frogGunner"]
