@@ -19,6 +19,7 @@ public class BossController : StaticBody
     private bool isLazerFiring = false;
     private bool lazerProcess = false;
     private int hitPoints;
+    public int CurrentHealth { get => hitPoints; }
 
     private Position3D gun;
     private Position3D lazer;

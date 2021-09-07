@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Models/NewCumber/ACUMBblock.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Controllers/WincumberController.cs" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 2.0
+height = 3.0
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 2.1
+height = 3.1
+
+[sub_resource type="Animation" id=3]
+resource_name = "entrance"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 278, 40, 0 ), Vector3( 278, 7, 0 ) ]
+}
+
+[node name="WinCumber" type="StaticBody"]
+transform = Transform( -4.37114e-08, 0.443603, 0.896223, 0, 0.896223, -0.443603, -1, -1.93905e-08, -3.91752e-08, 278, 40, 0 )
+script = ExtResource( 2 )
+
+[node name="ACUMBblock" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.632917, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/entrance = SubResource( 3 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

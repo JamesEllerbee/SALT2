@@ -38,7 +38,6 @@ shape = SubResource( 1 )
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
 
 [node name="cumberXD" parent="Graphics" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

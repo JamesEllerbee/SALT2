@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
@@ -18,13 +18,28 @@
 [ext_resource path="res://Textures/skySLUG.png" type="Texture" id=16]
 [ext_resource path="res://Prefabs/BossBoundary.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Prefabs/BOSS.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Textures/controlsTUT.png" type="Texture" id=19]
+[ext_resource path="res://Prefabs/WinCumber.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Models/FORK/goodGiantFORK.glb" type="PackedScene" id=21]
+[ext_resource path="res://Models/SKULL/skull.glb" type="PackedScene" id=22]
+[ext_resource path="res://Textures/bg_cumber.png" type="Texture" id=23]
 
-[sub_resource type="PanoramaSky" id=1]
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_texture = ExtResource( 19 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_texture = ExtResource( 23 )
+
+[sub_resource type="PanoramaSky" id=4]
 panorama = ExtResource( 16 )
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=5]
 background_mode = 2
-background_sky = SubResource( 1 )
+background_sky = SubResource( 4 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 1.4
 ambient_light_sky_contribution = 0.3
@@ -35,6 +50,16 @@ fog_depth_begin = 0.0
 [node name="Main" type="Spatial"]
 script = ExtResource( 12 )
 
+[node name="Tutorial" type="MeshInstance" parent="."]
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 13.7809, 11.231, -1 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="BackgroundCumber" type="MeshInstance" parent="."]
+transform = Transform( 18.4883, 0, 7.62786, 0, 20, 0, -7.62786, 0, 18.4883, -18.3322, 8.70355, -24.0858 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
 [node name="Health" parent="." instance=ExtResource( 5 )]
 
 [node name="Score" parent="." instance=ExtResource( 6 )]
@@ -42,7 +67,7 @@ script = ExtResource( 12 )
 [node name="SeedBayMusic" parent="." instance=ExtResource( 9 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
+environment = SubResource( 5 )
 
 [node name="sandLand" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.161, 0 )
@@ -55,6 +80,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="Boss" parent="." instance=ExtResource( 18 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 280.709, 7.662, 0 )
+
+[node name="WinCumber" parent="." instance=ExtResource( 20 )]
+transform = Transform( -4.37114e-08, -0.443603, -0.896223, 0, 0.896223, -0.443603, 1, -1.93905e-08, -3.91752e-08, 278, 40, 0 )
 
 [node name="BossBoundary" parent="." instance=ExtResource( 17 )]
 transform = Transform( -1, 0, -7.54979e-07, 0, 10, 0, 1.50996e-07, 0, -5, 289.413, -4.76837e-07, 0.0546188 )
@@ -175,9 +203,6 @@ transform = Transform( 0.995435, 0.0763707, -0.0572374, -0.0915809, 0.933145, -0
 [node name="palmTree5" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( 0.642974, -0.394774, -0.656307, 0.233583, 0.917174, -0.32285, 0.7294, 0.0542822, 0.681931, 19.3613, 1.56302, -11.2406 )
 
-[node name="palmTree4" parent="palmTree" instance=ExtResource( 14 )]
-transform = Transform( 0.670498, -0.305889, -0.675919, -0.0515143, 0.889656, -0.453717, 0.740122, 0.339035, 0.580754, -20.2567, -3.82511, -4.93113 )
-
 [node name="palmTree3" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( 0.551411, 0.0841473, 0.829979, -0.680285, 0.621215, 0.388978, -0.482865, -0.779109, 0.39979, 37.1399, -2.23423, -15.7812 )
 
@@ -199,14 +224,8 @@ transform = Transform( 0.551411, 0.0841473, 0.829979, -0.680285, 0.621215, 0.388
 [node name="palmTree10" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( 0.879555, -0.384377, -0.280422, 0.323753, 0.915388, -0.239267, 0.348663, 0.119661, 0.929578, 130.31, 6.5678, -16.699 )
 
-[node name="palmTree11" parent="palmTree" instance=ExtResource( 14 )]
-transform = Transform( -0.715498, 0.0897477, 0.692827, -0.385434, 0.776413, -0.498622, -0.58267, -0.623802, -0.520929, 224.398, 13.9427, -8.94133 )
-
 [node name="palmTree12" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( -0.338902, 0.339102, 0.877585, -0.443608, 0.764991, -0.466905, -0.829674, -0.547539, -0.108829, 201.995, 2.55855, -8.62189 )
-
-[node name="palmTree13" parent="palmTree" instance=ExtResource( 14 )]
-transform = Transform( -0.345796, 0.363319, 0.865115, -0.671241, 0.548452, -0.498635, -0.655638, -0.753127, 0.0542216, 240.782, 11.7502, -1.98827 )
 
 [node name="palmTree14" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( -0.77367, -0.612262, 0.163009, -0.633535, 0.750933, -0.186367, -0.00830401, -0.247458, -0.968863, 182.92, 8.64939, -11.4367 )
@@ -255,9 +274,6 @@ transform = Transform( -0.152406, -0.222154, 0.963026, -0.613834, 0.78496, 0.083
 
 [node name="palmTree29" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( -0.815427, -0.0839295, 0.572745, -0.500776, 0.598571, -0.625249, -0.290351, -0.796661, -0.530121, 306.578, 6.82388, -23.0337 )
-
-[node name="palmTree30" parent="palmTree" instance=ExtResource( 14 )]
-transform = Transform( -0.651059, -0.386757, -0.653102, -0.473665, 0.879366, -0.048564, 0.593097, 0.277734, -0.755712, 249.063, 0.280748, -31.0238 )
 
 [node name="palmTree31" parent="palmTree" instance=ExtResource( 14 )]
 transform = Transform( -0.714164, 0.354242, 0.603725, -0.0909318, 0.80823, -0.581803, -0.694048, -0.470399, -0.544997, 239.26, -2.84301, -43.0362 )
@@ -349,5 +365,15 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 162.59, 7, 0 )
 [node name="Cumcumber3" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 242, 7, 0 )
 
+[node name="goodGiantFORK" parent="." instance=ExtResource( 21 )]
+transform = Transform( 0.823612, 0.0799421, -0.561492, -0.567154, 0.116091, -0.815389, 0, 0.990016, 0.140953, 276.891, -6.56582, -34.0752 )
+
+[node name="goodGiantFORK2" parent="." instance=ExtResource( 21 )]
+transform = Transform( 0.884931, -0.065645, 0.461073, 0.465723, 0.124734, -0.876096, 0, 0.990016, 0.140953, 234.447, -5.9614, -23.4881 )
+
+[node name="skull" parent="." instance=ExtResource( 22 )]
+transform = Transform( -0.396039, 0, 0.0561531, 0, 0.4, 0, -0.0561531, 0, -0.396039, 259.205, -6.74269, -35.4904 )
+
+[editable path="WinCumber"]
 [editable path="BossBoundary"]
 [editable path="Camera"]
