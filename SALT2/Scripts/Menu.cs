@@ -84,6 +84,7 @@ public class Menu : Control
     {
         GetNode<TextureButton>("VBoxContainer/StartButton").GrabFocus();
         GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(230f, 367.114f);
+        GetNode<AnimatedSprite>("AnimatedSprite").Play("Walk", false);
 
     }
 
@@ -91,6 +92,7 @@ public class Menu : Control
     {
         GetNode<TextureButton>("VBoxContainer/OptionsButton").GrabFocus();
         GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(230f, 450.083f);
+        GetNode<AnimatedSprite>("AnimatedSprite").Play("Walk", false);
 
     }
 
@@ -98,6 +100,7 @@ public class Menu : Control
     {
         GetNode<TextureButton>("VBoxContainer/QuitButton").GrabFocus();
         GetNode<AnimatedSprite>("AnimatedSprite").Position = new Vector2(230f, 534.173f);
+        GetNode<AnimatedSprite>("AnimatedSprite").Play("Walk", false);
     }
 
     private void _on_StartButton_focus_entered()
