@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Models/cumberXD.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Controllers/CucumberController.cs" type="Script" id=2]
+[ext_resource path="res://Sounds/348112__matrixxx__crunch.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -10,7 +11,7 @@ resource_name = "idle"
 length = 2.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Graphics/cumberXD:translation")
+tracks/0/path = NodePath("../Cumcumber/Graphics/cumberXD:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -40,6 +41,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
 autoplay = "idle"
 playback_speed = 0.6
 anims/idle = SubResource( 2 )
+
+[node name="CucumberSoundFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 1.0
 
 [connection signal="body_entered" from="." to="." method="OnCumcumberBodyEntered"]
 

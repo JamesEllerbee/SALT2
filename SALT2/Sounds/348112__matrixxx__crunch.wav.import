@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/348112__matrixxx__crunch.wav-eb825778d7e3f7b69e3c79bfaa05c97c.sample"
+
+[deps]
+
+source_file="res://Sounds/348112__matrixxx__crunch.wav"
+dest_files=[ "res://.import/348112__matrixxx__crunch.wav-eb825778d7e3f7b69e3c79bfaa05c97c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
