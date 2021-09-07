@@ -1,0 +1,232 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Level/Objects/sandLand.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Models/MeshLibraries/MESH_LIBRARY.tres" type="MeshLibrary" id=2]
+[ext_resource path="res://Scenes/PLAYER.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/CAMERA.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/HEALTH.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/ROCK.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/BASIC_GROUND_FROG.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/SEED_DAY_MUSIC.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Prefabs/RUSHER_GROUND_FROG.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/CUCUMBER.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Controllers/GameController.cs" type="Script" id=12]
+[ext_resource path="res://Level/Objects/palmTree.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Level/Objects/cumberXD.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Level/Objects/rocked.tscn" type="PackedScene" id=15]
+
+[node name="Main" type="Spatial"]
+script = ExtResource( 12 )
+
+[node name="Health" parent="." instance=ExtResource( 5 )]
+
+[node name="Score" parent="." instance=ExtResource( 6 )]
+
+[node name="SeedBayMusic" parent="." instance=ExtResource( 9 )]
+
+[node name="sandLand" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0534039, -7.14215, -0.0196805 )
+
+[node name="sandLand2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 365.981, -20.905, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.82728, 0 )
+
+[node name="Camera" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 18.221 )
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 2 )
+cell_size = Vector3( 1, 1, 1 )
+cell_center_z = false
+data = {
+"cells": PoolIntArray( 524370, 0, 10, 1, 2, 12, 4, 2, 12, 7, 2, 12, 10, 2, 12, 13, 2, 12, 16, 2, 12, 19, 2, 12, 22, 2, 12, 25, 2, 12, 28, 2, 12, 31, 2, 12, 34, 2, 12, 37, 2, 12, 40, 2, 12, 43, 2, 12, 46, 2, 12, 49, 2, 12, 52, 2, 12, 55, 2, 12, 58, 2, 12, 61, 2, 12, 64, 2, 12, 67, 2, 12, 70, 2, 12, 73, 2, 12, 76, 2, 12, 79, 2, 12, 82, 2, 12, 85, 2, 12, 88, 2, 12, 91, 2, 12, 94, 2, 12, 97, 2, 12, 100, 2, 12, 103, 2, 12, 106, 2, 12, 109, 2, 12, 112, 2, 12, 115, 2, 12, 118, 2, 12, 119, 2, 10, 121, 2, 12, 122, 2, 10, 124, 2, 12, 125, 2, 10, 127, 2, 12, 130, 2, 12, 133, 2, 12, 136, 2, 12, 139, 2, 12, 142, 2, 12, 145, 2, 12, 148, 2, 12, 151, 2, 12, 154, 2, 12, 157, 2, 12, 160, 2, 12, 163, 2, 12, 166, 2, 12, 169, 2, 12, 172, 2, 12, 175, 2, 12, 178, 2, 12, 181, 2, 12, 184, 2, 12, 187, 2, 12, 190, 2, 12, 193, 2, 12, 196, 2, 12, 199, 2, 12, 202, 2, 12, 205, 2, 12, 208, 2, 12, 211, 2, 12, 214, 2, 12, 217, 2, 12, 220, 2, 12, 223, 2, 12, 225, 2, 10, 226, 2, 12, 228, 2, 10, 229, 2, 12, 230, 2, 12, 233, 2, 12, 236, 2, 12, 239, 2, 12, 240, 2, 12, 243, 2, 12, 65516, 2, 12, 65519, 2, 12, 65522, 2, 12, 65525, 2, 12, 65528, 2, 12, 65531, 2, 12, 65534, 2, 12, 65657, 2, 10, 65659, 2, 10, 65661, 2, 10, 65761, 2, 10, 65764, 2, 10, 131195, 2, 10, 131300, 2, 10, 196836, 2, 10, 262197, 2, 10, 262198, 2, 10, 262199, 2, 10, 262200, 2, 10, 262201, 2, 10, 262202, 2, 10, 262203, 2, 10, 262204, 2, 8, 262205, 2, 10, 262304, 2, 12, 262307, 2, 12, 262310, 2, 12, 327741, 2, 10, 393277, 2, 10, 458813, 2, 10, 524349, 2, 10, 589885, 2, 10, 655421, 2, 10, 720957, 2, 10, 786493, 2, 10, 852029, 2, 10, 917565, 2, 10, 983101, 2, 10, 1048637, 2, 10, 1114173, 2, 10, 1179709, 2, 10, 1245245, 2, 10, 1310781, 2, 10, 1376317, 2, 10, 82, 65534, 10, 65618, 65534, 10, 131154, 65534, 10, 196690, 65534, 10, 262226, 65534, 10, 327762, 65534, 10, 393298, 65534, 10, 458834, 65534, 10, 524370, 65534, 10, 524370, 65535, 10 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 3, 0 )
+}
+
+[node name="Cumcumber" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 59.5416, 7.67233, 1.20227 )
+
+[node name="rockedA" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5521, 1.58789, 0 )
+
+[node name="rockedB" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.9602, 2.42085, 0 )
+
+[node name="rockedB2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.216, 2.885, 0 )
+
+[node name="rockedC" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.206, 3.881, 0 )
+
+[node name="rockedD" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8809, 0.706152, 0 )
+
+[node name="GroundRusherFrog" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.664, 3.469, 0 )
+MoveSpeed = 0.0
+MovingPeriod = 10000
+directionModifier = -1
+
+[node name="GroundRusherFrog2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 107.714, 3, 0 )
+
+[node name="GroundRusherFrog3" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 3.114, 0 )
+
+[node name="GroundRusherFrog4" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.758, 3, 0 )
+
+[node name="GroundBasicFrog" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 142.785, 3, 0 )
+MoveSpeed = 1.0
+MovingPeriod = 10000
+directionModifier = -1
+
+[node name="GroundBasicFrog2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 157.575, 3.797, 0 )
+directionModifier = -1
+
+[node name="GroundBasicFrog3" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 166.276, 7.904, 0 )
+directionModifier = -1
+
+[node name="GroundRusherFrog5" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 184.708, 3.019, 0 )
+
+[node name="GroundRusherFrog6" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 191.471, 3, 0 )
+
+[node name="GroundBasicFrog4" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 204.791, 3, 0 )
+
+[node name="GroundBasicFrog5" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 197.786, 3, 0 )
+
+[node name="GroundRusherFrog7" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 216.364, 3.019, 0 )
+
+[node name="GroundRusherFrog8" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 221.172, 3, 0 )
+
+[node name="GroundBasicFrog6" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 226.94, 5.319, 0.437 )
+
+[node name="GroundBasicFrog7" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 230.151, 7.284, 0 )
+
+[node name="palmTree" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.995435, 0.0763707, -0.0572374, -0.0915809, 0.933145, -0.34764, 0.0268612, 0.351295, 0.935879, 8.57302, -6.21871, -20.4027 )
+
+[node name="palmTree5" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.616129, -0.326034, -0.716999, -0.0944859, 0.873139, -0.478227, 0.781958, 0.362396, 0.50716, 28.6087, -2.62563, -29.8534 )
+
+[node name="palmTree4" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.62114, -0.255954, -0.740725, -0.366771, 0.740329, -0.563376, 0.692578, 0.621611, 0.365971, -11.6011, -6.21871, -26.9055 )
+
+[node name="palmTree3" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.524578, 0.1758, 0.833014, -0.51744, 0.842827, 0.14798, -0.676072, -0.508662, 0.533095, 46.276, -6.21871, -34.9592 )
+
+[node name="palmTree2" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.880309, -0.319563, -0.350621, 0.100349, 0.847792, -0.520748, 0.463665, 0.423235, 0.778387, 59.2813, -6.21871, -25.9586 )
+
+[node name="palmTree6" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.995435, 0.0763707, -0.0572374, -0.0915809, 0.933145, -0.34764, 0.0268612, 0.351295, 0.935879, 89.0375, -9.76273, -24.6674 )
+
+[node name="palmTree7" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.436591, 0.262293, -0.860576, -0.444894, 0.894355, 0.0468828, 0.781958, 0.362396, 0.50716, 109.073, -11.5903, -34.1182 )
+
+[node name="palmTree8" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.923104, 0.214375, -0.319252, -0.366771, 0.740329, -0.563376, 0.115578, 0.637147, 0.762028, 68.8634, -6.21871, -31.1703 )
+
+[node name="palmTree9" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.524578, 0.1758, 0.833014, -0.51744, 0.842827, 0.14798, -0.676072, -0.508662, 0.533095, 126.741, -6.21871, -39.224 )
+
+[node name="palmTree10" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.880309, -0.319563, -0.350621, 0.100349, 0.847792, -0.520748, 0.463665, 0.423235, 0.778387, 139.746, -6.21871, -30.2234 )
+
+[node name="palmTree11" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.708317, 0.184338, 0.681401, -0.0915809, 0.933145, -0.34764, -0.699929, -0.308643, -0.64408, 233.523, -10.6503, -17.8451 )
+
+[node name="palmTree12" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.323745, 0.427317, 0.84415, -0.0944859, 0.873139, -0.478227, -0.941415, -0.234584, -0.242299, 210.335, -19.3328, -22.1471 )
+
+[node name="palmTree13" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.357954, 0.446653, 0.819981, -0.366771, 0.740329, -0.563376, -0.85869, -0.502408, -0.101185, 249.267, -16.6139, -11.668 )
+
+[node name="palmTree14" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.818046, -0.537954, 0.203487, -0.51744, 0.842827, 0.14798, -0.251111, 0.0157618, -0.96783, 191.973, -10.9237, -23.1541 )
+
+[node name="palmTree15" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.678123, 0.441274, 0.587731, 0.100349, 0.847792, -0.520748, -0.728066, -0.294153, -0.619188, 182.664, -6.21871, -35.9405 )
+
+[node name="palmTree16" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.930874, 0.0437679, 0.362709, -0.0915809, 0.933145, -0.34764, -0.353675, -0.356827, -0.864632, 154.998, -9.76273, -46.9737 )
+
+[node name="palmTree17" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.154254, -0.128089, 0.979693, -0.444894, 0.894355, 0.0468828, -0.882199, -0.428627, -0.194944, 132.967, -11.5903, -44.66 )
+
+[node name="palmTree18" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.83333, 0.00776576, 0.552722, -0.366771, 0.740329, -0.563376, -0.413571, -0.6722, -0.61409, 171.899, -6.21871, -34.1808 )
+
+[node name="palmTree19" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.718208, -0.33373, -0.610574, -0.51744, 0.842827, 0.14798, 0.465223, 0.422216, -0.778011, 114.604, -6.21871, -45.667 )
+
+[node name="palmTree20" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.678123, 0.441274, 0.587731, 0.100349, 0.847792, -0.520748, -0.728066, -0.294153, -0.619188, 105.295, -6.21871, -58.4533 )
+
+[node name="palmTree21" parent="." instance=ExtResource( 13 )]
+transform = Transform( 0.880309, -0.319563, -0.350621, 0.0206263, 0.764165, -0.64469, 0.473952, 0.560295, 0.679293, 234.494, -12.4439, -45.6833 )
+
+[node name="palmTree22" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.708317, 0.184338, 0.681401, 0.0279051, 0.971858, -0.233908, -0.705343, -0.146666, -0.693528, 328.271, -18.9018, -34.2309 )
+
+[node name="palmTree23" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.323745, 0.427317, 0.84415, 0.0658127, 0.90021, -0.430454, -0.943853, -0.0838015, -0.319561, 305.083, -26.7333, -39.937 )
+
+[node name="palmTree24" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.357954, 0.446653, 0.819981, -0.21653, 0.814525, -0.538205, -0.908286, -0.370203, -0.194849, 344.015, -15.5767, -27.3942 )
+
+[node name="palmTree25" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.818046, -0.537954, 0.203487, -0.467616, 0.828067, 0.309258, -0.334867, 0.157833, -0.928952, 335.665, -26.4193, -21.2532 )
+
+[node name="palmTree26" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.678123, 0.441274, 0.587731, 0.22183, 0.885284, -0.408733, -0.700672, -0.146794, -0.698219, 326.356, -19.6232, -33.0616 )
+
+[node name="palmTree27" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.930874, 0.0437679, 0.362709, -0.0305541, 0.979993, -0.196671, -0.36406, -0.194158, -0.910913, 298.69, -21.2535, -44.5347 )
+
+[node name="palmTree28" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.154254, -0.128089, 0.979693, -0.289562, 0.953883, 0.0791228, -0.944648, -0.271477, -0.18423, 276.659, -23.4455, -42.5628 )
+
+[node name="palmTree29" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.83333, 0.00776576, 0.552722, -0.291681, 0.843191, -0.451609, -0.469557, -0.537558, -0.700391, 315.591, -19.9203, -31.3272 )
+
+[node name="palmTree30" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.718208, -0.33373, -0.610574, -0.588558, 0.759444, 0.27721, 0.371183, 0.558453, -0.741858, 258.296, -17.981, -42.6485 )
+
+[node name="palmTree31" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.678123, 0.441274, 0.587731, 0.22183, 0.885284, -0.408733, -0.700672, -0.146794, -0.698219, 248.987, -15.8222, -55.2513 )
+
+[node name="rocked" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.30296, -0.349028, -0.886789, 0.816685, 0.38449, -0.43034, 0.491162, -0.854603, 0.168561, 34.485, -5.38869, -14.456 )
+
+[node name="rocked2" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.30296, -0.349028, -0.886789, 0.449505, 0.768174, -0.455911, 0.840333, -0.536739, -0.0758363, 49.7059, -4.37852, -17.4676 )
+
+[node name="rocked3" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.30296, -0.349028, -0.886789, 0.476229, -0.861454, 0.176359, -0.825482, -0.368885, 0.427204, 63.5519, -4.62777, -15.2326 )
+
+[node name="rocked4" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.178072, -0.041969, -0.983122, 0.899715, -0.411549, -0.145396, -0.398501, -0.910421, 0.111046, 41.2664, -4.07764, -21.2997 )
+
+[node name="rocked5" parent="." instance=ExtResource( 15 )]
+transform = Transform( 0.596376, 0.188873, -0.780169, 0.634898, 0.483715, 0.602432, 0.491162, -0.854603, 0.168561, 74.1606, -7.48465, -13.8076 )
+
+[node name="cumberXD" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4467, -3.6647, 2.64684 )
