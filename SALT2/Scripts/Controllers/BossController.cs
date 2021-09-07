@@ -16,6 +16,7 @@ public class BossController : StaticBody
     private bool canShootGun = false;
     private bool canShootLazer = false;
     private bool isLazerFiring = false;
+    private bool lazerProcess = false;
     private int hitPoints;
 
     private Position3D gun;
@@ -29,7 +30,10 @@ public class BossController : StaticBody
     private RayCast lazerCast;
     private CSGCombiner lazerModel;
     private CSGCombiner lazerChargeModel;
-    private AnimationPlayer anim;
+    private AnimationPlayer damageAnim;
+    private AnimationPlayer bossAnim;
+    private AnimationPlayer lazerAnim;
+    private AnimationPlayer gunAnim;
     private PackedScene bullet;
 
     /// <inheritdoc/>
@@ -46,7 +50,14 @@ public class BossController : StaticBody
         lazerCast = (RayCast)lazer.GetNode("RayCast");
         lazerModel = (CSGCombiner)lazer.GetNode("CSGCombiner");
         lazerChargeModel = (CSGCombiner)lazer.GetNode("CSGCombiner2");
-        anim = (AnimationPlayer)GetNode("AnimationPlayer");
+        damageAnim = (AnimationPlayer)GetNode("DamageAnimation");
+        bossAnim = (AnimationPlayer)GetNode("AbirdBoss/AnimationPlayer");
+        lazerAnim = (AnimationPlayer)GetNode("bossLaser/AnimationPlayer");
+        lazerAnim.GetAnimation("chargeLaser").Loop = true;
+        lazerAnim.GetAnimation("shootlaser").Loop = true;
+        gunAnim = (AnimationPlayer)GetNode("bossGun/AnimationPlayer");
+        bossAnim.GetAnimation("idle").Loop = true;
+        bossAnim.Play("idle");
         bullet = (PackedScene)ResourceLoader.Load("res://Scenes/ENEMY_BULLET.tscn");
         RotateY(3.14159f);
     }
@@ -56,8 +67,9 @@ public class BossController : StaticBody
     {
         if (isFighting)
         {
-            if (canShootGun)
+            if (canShootGun && !lazerProcess)
             {
+                gunAnim.Play("shootlaser");
                 Shoot();
                 gunCooldown.Start();
                 canShootGun = false;
@@ -67,6 +79,8 @@ public class BossController : StaticBody
             {
                 canShootLazer = false;
                 lazerChargeModel.Visible = true;
+                lazerProcess = true;
+                lazerAnim.Play("chargeLaser");
                 lazerCharge.Play();
             }
 
@@ -131,6 +145,8 @@ public class BossController : StaticBody
         isLazerFiring = false;
         lazerCast.Enabled = false;
         lazerModel.Visible = false;
+        lazerProcess = false;
+        lazerAnim.Stop();
         lazerCooldown.Start();
     }
 
@@ -153,7 +169,7 @@ public class BossController : StaticBody
         if (isFighting)
         {
             hitPoints -= amount;
-            anim.Play("damageTaken");
+            damageAnim.Play("damageTaken");
 
             if (hitPoints > maxHitpoints)
             {
@@ -190,6 +206,7 @@ public class BossController : StaticBody
         lazerCast.Enabled = true;
         lazerModel.Visible = true;
         isLazerFiring = true;
+        lazerAnim.Play("shootlaser");
         lazerDuration.Play();
     }
 }

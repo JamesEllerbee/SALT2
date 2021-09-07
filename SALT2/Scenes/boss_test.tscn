@@ -8,12 +8,10 @@
 [ext_resource path="res://Prefabs/SCORE.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/BossBoundary.tscn" type="PackedScene" id=7]
 
-
-
 [node name="Main" type="Spatial"]
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.351457, 4.00106, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51531, 6.36598, 13.4927 )
 
 [node name="LeftBoundary" parent="Camera" index="0"]
 transform = Transform( 1, 0, 0, 0, 100, 0, 0, 0, 5, -14, 0, -12 )
@@ -35,7 +33,7 @@ __meta__ = {
 }
 
 [node name="BossBoundary" parent="." instance=ExtResource( 7 )]
-transform = Transform( -1, 0, -7.54979e-07, 0, 10, 0, 1.50996e-07, 0, -5, 30.5133, 0, 0 )
+transform = Transform( -1, 0, -7.54979e-07, 0, 10, 0, 1.50996e-07, 0, -5, 33.5187, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.20022, 2.08955, 0 )
