@@ -112,7 +112,7 @@ anims/alertBlink = SubResource( 2 )
 
 [node name="Mission" type="Label" parent="."]
 anchor_right = 0.5
-anchor_bottom = 0.3
+anchor_bottom = 0.2
 rect_scale = Vector2( 2, 2 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -129,7 +129,7 @@ anims/missionAppear = SubResource( 3 )
 
 [node name="Start" type="Label" parent="."]
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.3
 margin_left = -4.48987
 margin_top = 3.36737
 margin_right = -4.48987
