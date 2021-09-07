@@ -192,7 +192,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="GameOverScreen" type="CanvasLayer"]
 layer = 2
 script = ExtResource( 5 )
 
